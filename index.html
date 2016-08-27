@@ -105,12 +105,14 @@
     ga.l = +new Date;
 
     // Creates the tracker.
-    ga('create', {
-      trackingId: window.ENV === 'prod' ? 'UA-43643469-8' : 'UA-43643469-9',
-      cookieDomain: 'auto',
-      cookiePath: window.ENV !== 'dev' ? window.PREFIX || '/' : null,
-      siteSpeedSampleRate: 10 // 10% of users.
-    });
+    if (window.ENV !== 'dev') {
+      ga('create', {
+        trackingId: 'UA-82202527-2',
+        cookieDomain: 'auto',
+        cookiePath: window.PREFIX || '/',
+        siteSpeedSampleRate: 10 // 10% of users.
+      });
+    }
 
     // Setup error tracking before anything else runs.
     window.onerror = function (message, file, lineNumber, columnNumber, error) {
@@ -120,7 +122,9 @@
         if (error !== undefined) {
           message = error.stack;
         }
-        ga('send', 'event', 'error', file + ':' + lineNumber, message);
+        if (window.ENV !== 'dev') {
+          ga('send', 'event', 'error', file + ':' + lineNumber, message);
+        }
       } catch (e) {
         // no-op
       }
