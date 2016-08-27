@@ -3,214 +3,176 @@
     "title": "Core Team",
     "members": [
       {
-        "name": "Oleh Zasadnyy",
-        "photoUrl": "/images/people/oleh_zasadnyy.jpg",
+        "name": "Shad Roi",
+        "photoUrl": "/images/people/shad_roi.jpg",
         "socials": [
           {
-            "icon": "gplus",
-            "link": "https://plus.google.com/+OlehZasadnyy",
-            "name": "Google+"
-          },
+            "icon": "facebook",
+            "link": "https://facebook.com/shadroi",
+            "name": "Facebook"
+          }
+        ],
+        "title": "Community Manager"
+      },
+      {
+        "name": "Frances Marie Teves",
+        "photoUrl": "/images/people/frances_teves.jpg",
+        "socials": [
           {
             "icon": "facebook",
-            "link": "https://www.facebook.com/oleh.zasadnyy",
+            "link": "https://facebook.com/FrancesMATeves",
+            "name": "Facebook"
+          }
+        ],
+        "title": "Communications Manager"
+      },
+      {
+        "name": "John Irvin Estiamba",
+        "photoUrl": "/images/people/john_estiamba.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://facebook.com/johnirvinestiamba",
+            "name": "Facebook"
+          }
+        ],
+        "title": "Program Manager"
+      },
+      {
+        "name": "Emelie Diamante Anggoy",
+        "photoUrl": "/images/people/emelie_anggoy.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://facebook.com/emelaidiamond",
             "name": "Facebook"
           },
           {
             "icon": "twitter",
-            "link": "https://twitter.com/ozasadnyy",
+            "link": "https://twitter.com/emelaidiamond",
+            "name": "Twitter"
+          }
+        ],
+        "title": "Program Manager"
+      },
+      {
+        "name": "Kim Bismark",
+        "photoUrl": "/images/people/kim_bismark.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://facebook.com/kiemburleigh",
+            "name": "Facebook"
+          }
+        ],
+        "title": "Sponsorship Manager"
+      },
+      {
+        "name": "Julia Menchavez",
+        "photoUrl": "/images/people/julia_menchavez.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://facebook.com/jcmenchavez",
+            "name": "Facebook"
+          },
+          {
+            "icon": "twitter",
+            "link": "https://twitter.com/jedijulia",
+            "name": "Twitter"
+          }
+        ],
+        "title": "Partnership Manager"
+      },
+      {
+        "name": "Rome Nicolas",
+        "photoUrl": "/images/people/rome_nicolas.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://facebook.com/iamromenicolas",
+            "name": "Facebook"
+          },
+          {
+            "icon": "twitter",
+            "link": "https://twitter.com/zuprome",
             "name": "Twitter"
           },
           {
             "icon": "website",
-            "link": "http://o.zasadnyy.com/",
+            "link": "http://www.zuprome.com/",
             "name": "Blog"
           }
         ],
-        "title": "Website and sponsors"
+        "title": "Social Media / Communications Manager"
       },
       {
-        "name": "Sofiya Huts",
-        "photoUrl": "/images/people/sofiya_huts.jpg",
+        "name": "Ayrton Wyn Chrysler Adiong",
+        "photoUrl": "/images/people/ayrton_adiong.jpg",
         "socials": [
-          {
-            "icon": "gplus",
-            "link": "https://plus.google.com/+SofiaHuts",
-            "name": "Google+"
-          },
           {
             "icon": "facebook",
-            "link": "https://www.facebook.com/sophie.huts.7",
+            "link": "https://facebook.com/ayrtonadiong",
             "name": "Facebook"
-          }
-        ],
-        "title": "Social and media"
-      },
-      {
-        "name": "Vitaliy Zasadnyy",
-        "photoUrl": "/images/people/vitaliy_zasadnyy.jpg",
-        "socials": [
-          {
-            "icon": "linkedin",
-            "link": "https://www.linkedin.com/in/zasadnyy",
-            "name": "Linkedin"
           },
           {
             "icon": "twitter",
-            "link": "https://twitter.com/zasadnyy",
+            "link": "https://twitter.com/ayrtonified",
+            "name": "Twitter"
+          }
+        ],
+        "title": "Volunteer Lead"
+      },
+      {
+        "name": "Cheer Cordova",
+        "photoUrl": "/images/people/cheer_cordova.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://facebook.com/simplechay",
+            "name": "Facebook"
+          }
+        ],
+        "title": "Logistics Manager"
+      },
+      {
+        "name": "Mark Win Panerio",
+        "photoUrl": "/images/people/mark_panerio.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://www.facebook.com/markwinpanerio",
+            "name": "Facebook"
+          },
+          {
+            "icon": "twitter",
+            "link": "https://twitter.com/markwin24",
+            "name": "Twitter"
+          }
+        ],
+        "title": "Technical Crew"
+      },
+      {
+        "name": "Arnelle Balane",
+        "photoUrl": "/images/people/arnelle_balane.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://facebook.com/arnellebalane",
+            "name": "Facebook"
+          },
+          {
+            "icon": "twitter",
+            "link": "https://twitter.com/arnellebalane",
             "name": "Twitter"
           },
           {
             "icon": "website",
-            "link": "http://v.zasadnyy.com/",
+            "link": "https://arnellebalane.com",
             "name": "Blog"
           }
         ],
-        "title": "Speakers"
-      },
-      {
-        "name": "Marta Maxymiak",
-        "photoUrl": "/images/people/marta_maxymiak.jpg",
-        "socials": [
-          {
-            "icon": "gplus",
-            "link": "https://plus.google.com/104036874811391520583",
-            "name": "Google+"
-          },
-          {
-            "icon": "facebook",
-            "link": "https://www.facebook.com/marta.maxymiak",
-            "name": "Facebook"
-          }
-        ],
-        "title": "Party and happiness"
-      },
-      {
-        "name": "Ostap Andrusiv",
-        "photoUrl": "/images/people/ostap_andrusiv.jpg",
-        "socials": [
-          {
-            "icon": "gplus",
-            "link": "https://google.com/+OstapAndrusiv",
-            "name": "Google+"
-          },
-          {
-            "icon": "facebook",
-            "link": "https://www.facebook.com/ostap.andrusiv",
-            "name": "Facebook"
-          },
-          {
-            "icon": "twitter",
-            "link": "https://twitter.com/p1f",
-            "name": "Twitter"
-          },
-          {
-            "icon": "website",
-            "link": "http://andrusiv.com/",
-            "name": "Blog"
-          }
-        ],
-        "title": "Sponsors"
-      },
-      {
-        "name": "Vasylyna Mytsak",
-        "photoUrl": "/images/people/vasylyna_mytsak.jpg",
-        "socials": [
-          {
-            "icon": "gplus",
-            "link": "https://plus.google.com/+ВасилинаМицак",
-            "name": "Google+"
-          },
-          {
-            "icon": "facebook",
-            "link": "https://www.facebook.com/vasylyna.mytsak",
-            "name": "Facebook"
-          }
-        ],
-        "title": "Party and happiness"
-      },
-      {
-        "name": "Volodya Karpliuk",
-        "photoUrl": "/images/people/volodya_karpliuk.jpg",
-        "socials": [
-          {
-            "icon": "gplus",
-            "link": "https://plus.google.com/+VolodyaKarpliuk23",
-            "name": "Google+"
-          },
-          {
-            "icon": "facebook",
-            "link": "https://www.facebook.com/volodya.karpluk",
-            "name": "Facebook"
-          },
-          {
-            "icon": "twitter",
-            "link": "https://twitter.com/keyv23",
-            "name": "Twitter"
-          }
-        ],
-        "title": "Speakers"
-      },
-      {
-        "name": "Diana Pinchuk",
-        "photoUrl": "/images/people/diana_pinchuk.jpg",
-        "socials": [
-          {
-            "icon": "gplus",
-            "link": "https://plus.google.com/+DianaPinchuk",
-            "name": "Google+"
-          },
-          {
-            "icon": "facebook",
-            "link": "https://www.facebook.com/diana.pinchuk.9",
-            "name": "Facebook"
-          }
-        ],
-        "title": "Social and media"
-      }
-    ]
-  },
-  {
-    "title": "Program Committee",
-    "members": [
-      {
-        "name": "Ihor Dvoretskyi",
-        "photoUrl": "/images/people/ihor_dvoretskyi.jpg",
-        "socials": [
-          {
-            "icon": "facebook",
-            "link": "https://www.facebook.com/idvoretskyi",
-            "name": "Facebook"
-          },
-          {
-            "icon": "twitter",
-            "link": "https://twitter.com/idvoretskyi",
-            "name": "Twitter"
-          }
-        ],
-        "title": "Cloud stream"
-      },
-      {
-        "name": "Dmytro Danylyk",
-        "photoUrl": "/images/people/dmytro_danylyk.jpg",
-        "socials": [
-          {
-            "icon": "gplus",
-            "link": "https://plus.google.com/+DmytroDanylyk",
-            "name": "Google+"
-          },
-          {
-            "icon": "twitter",
-            "link": "https://twitter.com/dmytrodanylyk",
-            "name": "Twitter"
-          },
-          {
-            "icon": "website",
-            "link": "http://www.dmytrodanylyk.com/#/about",
-            "name": "Website"
-          }
-        ],
-        "title": "Android Stream"
+        "title": "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧"
       }
     ]
   }
