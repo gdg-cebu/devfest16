@@ -121,20 +121,11 @@
     "url": "http://2event.com/events/630032",
     "elements": [
       {
-        "name": "student-ticket",
+        "name": "free-for-all-ticket",
         "price": "FREE",
         "currency": "",
-        "starts": "student-ticket-starts",
-        "ends": "student-ticket-ends",
-        "info": "student-ticket-info",
-        "soldOut": false
-      },
-      {
-        "name": "professional-ticket",
-        "price": 1000,
-        "currency": "₱",
-        "starts": "professional-ticket-starts",
-        "ends": "professional-ticket-ends",
+        "starts": "free-for-all-ticket-starts",
+        "ends": "free-for-all-ticket-ends",
         "soldOut": false
       }
     ]
@@ -143,15 +134,15 @@
   "teamPageText": "team-page-text",
   "statistics": [
     {
-      "counter": 600,
+      "counter": 1000,
       "caption": "attendees"
     },
     {
-      "counter": 2,
-      "caption": "days"
+      "counter": 1,
+      "caption": "day"
     },
     {
-      "counter": 30,
+      "counter": 24,
       "caption": "sessions"
     },
     {
