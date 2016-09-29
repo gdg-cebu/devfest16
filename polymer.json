@@ -10,5 +10,10 @@
     "src/pages/schedule-page.html",
     "src/pages/speakers-page.html",
     "src/pages/team-page.html"
+  ],
+  "sources": [
+    "data/**/*",
+    "images/**/*",
+    "scripts/**/*"
   ]
 }
