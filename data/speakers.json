@@ -5,11 +5,11 @@
     "name": "Albert Padin",
     "title": "CTO and Co-Founder",
     "company": "Symph",
-    "companyLogo": "/images/logos/symph.svg",
+    "companyLogo": "/images/logos/symph.png",
     "country": "Cebu City, Philippines",
     "photoUrl": "/images/people/albert_padin.jpg",
-    "shortBio": "Albert is a Co-Founder and CTO of Symph, as well as the only Google Developer Expert in the Philippines",
-    "bio": "Albert is a Co-Founder and CTO of Symph, as well as the only Google Developer Expert in the Philippines",
+    "shortBio": "Albert is a Co-Founder and CTO of Symph, as well as the only Google Developer Expert in the Philippines.",
+    "bio": "Albert is a Co-Founder and CTO of Symph, as well as the only Google Developer Expert in the Philippines.",
     "tags": [
       "AppEngine",
       "Datastore",
@@ -43,6 +43,42 @@
         "icon": "website",
         "name": "Website",
         "link": "http://albertpadin.com/"
+      }
+    ]
+  },
+  "2": {
+    "id": 2,
+    "featured": "true",
+    "name": "Shad Roi de la Cruz",
+    "title": "GDG Cebu Community Manager",
+    "company": "Symph",
+    "companyLogo": "/images/logos/symph.png",
+    "country": "Cebu City, Philippines",
+    "photoUrl": "/images/people/shad_roi.jpg",
+    "shortBio": "Shad Roi is the current community manager of Google Developers Group Cebu.",
+    "bio": "Shad Roi is the current community manager of Google Developers Group Cebu.",
+    "tags": [
+      "Firebase",
+      "Community"
+    ],
+    "badges": [
+
+    ],
+    "socials": [
+      {
+        "icon": "twitter",
+        "name": "Twitter",
+        "link": "https://github.com/shadroi/"
+      },
+      {
+        "icon": "github",
+        "name": "GitHub",
+        "link": "https://github.com/shadroi/"
+      },
+      {
+        "icon": "website",
+        "name": "Website",
+        "link": "http://www.shadroi.com/"
       }
     ]
   }
