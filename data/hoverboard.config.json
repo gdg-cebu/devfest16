@@ -179,21 +179,21 @@
     }
   },
   "location": {
-    "apiKey": "",
+    "apiKey": "AIzaSyCXvXtcojG1F-Ycgk-tkOrZhaBtQdQtFHw",
     "link": "https://www.facebook.com/expopivdennij",
     "pointer": {
-      "latitude": 49.809841,
-      "longitude": 23.972805,
+      "latitude": 10.2820768,
+      "longitude": 123.8812298,
       "zoom": 15
     },
     "mapCenter": {
-      "latitude": 49.809841,
-      "longitude": 23.982805
+      "latitude": 10.2820768,
+      "longitude": 123.8952298
     },
     "images": [
-      "/images/backgrounds/location_1.jpg",
-      "/images/backgrounds/location_2.jpg",
-      "/images/backgrounds/location_3.jpg"
+      "/images/backgrounds/seaside-1.png",
+      "/images/backgrounds/seaside-2.png",
+      "/images/backgrounds/seaside-3.png"
     ]
   },
   "videosSessionsUrl": "https://www.youtube.com/playlist?list=PLt8lEzcLNl31AX3-ONkkWmDOZezu9Cmnv",
