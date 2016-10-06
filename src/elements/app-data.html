@@ -10,7 +10,6 @@
 <dom-module id="app-data">
   <template>
     <iron-ajax auto url="[[configSource]]" handle-as="json" last-response="{{app.data}}"></iron-ajax>
-    <iron-ajax auto url="[[postsSource]]" handle-as="json" on-response="_reversePosts"></iron-ajax>
     <iron-ajax auto url="[[videosSource]]" handle-as="json" last-response="{{app.videos}}"></iron-ajax>
 
     <firebase-app name="devfest16" api-key="[[firebase.apiKey]]" database-url="[[firebase.databaseURL]]" auth-domain="[[firebase.authDomain]]"></firebase-app>
@@ -67,7 +66,7 @@
 
           postsSource: {
             type: String,
-            value: 'data/blog.json'
+            value: '/blog-posts'
           },
 
           partnersSource: {
@@ -137,6 +136,10 @@
           database.ref(this.speakersSource).once('value', function(data) {
             element._speakersRaw = element._arrayToObject(data.val());
           });
+
+          database.ref(this.postsSource).once('value', function(data) {
+            element.posts = data.val().reverse();
+          });
         },
 
         _generateSchedule: function () {
@@ -202,10 +205,6 @@
             difference = Math.floor((timeEnd - timeStart) / totalNumber),
             result = new Date(timeStart + difference * number);
           return result.getHours() + ':' + result.getMinutes();
-        },
-
-        _reversePosts: function (response) {
-          this.posts = response.detail.response.reverse();
         },
 
         _arrayToObject: function(array) {
