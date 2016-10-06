@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
 
 <dom-module id="app-data">
@@ -13,7 +15,9 @@
     <iron-ajax auto url="[[scheduleSource]]" handle-as="json" last-response="{{_scheduleRaw}}"></iron-ajax>
     <iron-ajax auto url="[[teamSource]]" handle-as="json" last-response="{{app.team}}"></iron-ajax>
     <iron-ajax auto url="[[videosSource]]" handle-as="json" last-response="{{app.videos}}"></iron-ajax>
-    <iron-ajax auto url="[[featuredSessionsSource]]" handle-as="json" last-response="{{app.featuredSessions}}"></iron-ajax>
+
+    <firebase-app name="devfest16" api-key="AIzaSyANKBBz_mF15tJ5Q7DNuPDk_Y2UdNoIJBc" database-url="https://gdgcebu-devfest16.firebaseio.com/" auth-domain="https://gdgcebu-devfest16.firebaseapp.com"></firebase-app>
+    <firebase-document app-name="devfest16" path="[[featuredSessionsSource]]" data="{{app.featuredSessions}}"></firebase-document>
   </template>
   <script>
     (function () {
@@ -35,7 +39,7 @@
 
           featuredSessionsSource: {
             type: String,
-            value: 'data/featured-sessions.json'
+            value: '/featured-sessions'
           },
 
           speakersSource: {
