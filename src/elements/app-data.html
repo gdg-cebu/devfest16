@@ -4,20 +4,20 @@
 <link rel="import" href="../../bower_components/polymerfire/firebase-app.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
+<script src="../../bower_components/firebase/firebase.js"></script>
+
 
 <dom-module id="app-data">
   <template>
     <iron-ajax auto url="[[configSource]]" handle-as="json" last-response="{{app.data}}"></iron-ajax>
-    <iron-ajax auto url="[[speakersSource]]" handle-as="json" last-response="{{_speakersRaw}}"></iron-ajax>
-    <iron-ajax auto url="[[sessionsSource]]" handle-as="json" last-response="{{sessions}}"></iron-ajax>
-    <iron-ajax auto url="[[postsSource]]" handle-as="json" on-response="_reversePosts"></iron-ajax>
-    <iron-ajax auto url="[[partnersSource]]" handle-as="json" last-response="{{app.partners}}"></iron-ajax>
-    <iron-ajax auto url="[[scheduleSource]]" handle-as="json" last-response="{{_scheduleRaw}}"></iron-ajax>
-    <iron-ajax auto url="[[teamSource]]" handle-as="json" last-response="{{app.team}}"></iron-ajax>
-    <iron-ajax auto url="[[videosSource]]" handle-as="json" last-response="{{app.videos}}"></iron-ajax>
 
-    <firebase-app name="devfest16" api-key="AIzaSyANKBBz_mF15tJ5Q7DNuPDk_Y2UdNoIJBc" database-url="https://gdgcebu-devfest16.firebaseio.com/" auth-domain="https://gdgcebu-devfest16.firebaseapp.com"></firebase-app>
+    <firebase-app name="devfest16" api-key="[[firebase.apiKey]]" database-url="[[firebase.databaseURL]]" auth-domain="[[firebase.authDomain]]"></firebase-app>
+
     <firebase-document app-name="devfest16" path="[[featuredSessionsSource]]" data="{{app.featuredSessions}}"></firebase-document>
+    <firebase-document app-name="devfest16" path="[[partnersSource]]" data="{{app.partners}}"></firebase-document>
+    <firebase-document app-name="devfest16" path="[[scheduleSource]]" data="{{_scheduleRaw}}"></firebase-document>
+    <firebase-document app-name="devfest16" path="[[sessionsSource]]" data="{{sessions}}"></firebase-document>
+    <firebase-document app-name="devfest16" path="[[teamSource]]" data="{{app.team}}"></firebase-document>
   </template>
   <script>
     (function () {
@@ -32,6 +32,17 @@
             notify: true
           },
 
+          firebase: {
+            type: Object,
+            value: function() {
+              return {
+                apiKey: 'AIzaSyANKBBz_mF15tJ5Q7DNuPDk_Y2UdNoIJBc',
+                authDomain: 'https://gdgcebu-devfest16.firebaseapp.com',
+                databaseURL: 'https://gdgcebu-devfest16.firebaseio.com'
+              };
+            }
+          },
+
           configSource: {
             type: String,
             value: 'data/hoverboard.config.json'
@@ -44,32 +55,32 @@
 
           speakersSource: {
             type: String,
-            value: 'data/speakers.json'
+            value: '/speakers'
           },
 
           sessionsSource: {
             type: String,
-            value: 'data/sessions.json'
+            value: '/sessions'
           },
 
           postsSource: {
             type: String,
-            value: 'data/blog.json'
+            value: '/blog-posts'
           },
 
           partnersSource: {
             type: String,
-            value: 'data/partners.json'
+            value: '/partners'
           },
 
           scheduleSource: {
             type: String,
-            value: 'data/schedule.json'
+            value: '/schedule'
           },
 
           teamSource: {
             type: String,
-            value: 'data/team.json'
+            value: '/team'
           },
 
           videosSource: {
@@ -112,6 +123,22 @@
 
         ready: function () {
           this.app = this.app || {};
+
+          firebase.initializeApp({
+            apiKey: this.firebase.apiKey,
+            authDomain: this.firebase.authDomain,
+            databaseURL: this.firebase.databaseURL
+          });
+          var database = firebase.database();
+          var element = this;
+
+          database.ref(this.speakersSource).once('value', function(data) {
+            element._speakersRaw = element._arrayToObject(data.val());
+          });
+
+          database.ref(this.postsSource).once('value', function(data) {
+            element.posts = data.val().reverse();
+          });
         },
 
         _generateSchedule: function () {
@@ -179,8 +206,13 @@
           return result.getHours() + ':' + result.getMinutes();
         },
 
-        _reversePosts: function (response) {
-          this.posts = response.detail.response.reverse();
+        _arrayToObject: function(array) {
+          return array.reduce(function(object, item, index) {
+            if (item) {
+              object[index] = item;
+            }
+            return object;
+          }, {});
         }
 
       });

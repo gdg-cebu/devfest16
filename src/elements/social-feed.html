@@ -1,11 +1,11 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <link rel="import" href="../behaviors/localize-behavior.html">
 <link rel="import" href="social-post.html">
+
+<script src="../../bower_components/firebase/firebase.js"></script>
 
 
 <dom-module id="social-feed">
@@ -51,12 +51,6 @@
       }
     </style>
 
-    <iron-ajax
-      auto
-      url="[[app.data.tweetsSource]]"
-      handle-as="json"
-      last-response="{{_posts}}"
-    ></iron-ajax>
     <div class="container">
       <div class="social-section">
         <h4 class="heading">[[localize('before-hashtag')]] <a href$="https://www.google.com/#q=%23[[app.data.hashtag]]">#[[app.data.hashtag]]</a></h4>
@@ -93,6 +87,11 @@
         ],
 
         properties: {
+          socialFeedSource: {
+            type: String,
+            value: '/social-feed'
+          },
+
           interval: {
             type: Number,
             value: 10000
@@ -107,6 +106,14 @@
             type: Number,
             value: -1
           }
+        },
+
+        ready: function() {
+          var element = this;
+
+          firebase.database().ref(this.socialFeedSource).once('value', function(data) {
+            element._posts = data.val();
+          });
         },
 
         _postsChanged: function () {
