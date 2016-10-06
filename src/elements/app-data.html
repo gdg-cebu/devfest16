@@ -11,7 +11,6 @@
   <template>
     <iron-ajax auto url="[[configSource]]" handle-as="json" last-response="{{app.data}}"></iron-ajax>
     <iron-ajax auto url="[[postsSource]]" handle-as="json" on-response="_reversePosts"></iron-ajax>
-    <iron-ajax auto url="[[teamSource]]" handle-as="json" last-response="{{app.team}}"></iron-ajax>
     <iron-ajax auto url="[[videosSource]]" handle-as="json" last-response="{{app.videos}}"></iron-ajax>
 
     <firebase-app name="devfest16" api-key="[[firebase.apiKey]]" database-url="[[firebase.databaseURL]]" auth-domain="[[firebase.authDomain]]"></firebase-app>
@@ -20,6 +19,7 @@
     <firebase-document app-name="devfest16" path="[[partnersSource]]" data="{{app.partners}}"></firebase-document>
     <firebase-document app-name="devfest16" path="[[scheduleSource]]" data="{{_scheduleRaw}}"></firebase-document>
     <firebase-document app-name="devfest16" path="[[sessionsSource]]" data="{{sessions}}"></firebase-document>
+    <firebase-document app-name="devfest16" path="[[teamSource]]" data="{{app.team}}"></firebase-document>
   </template>
   <script>
     (function () {
@@ -82,7 +82,7 @@
 
           teamSource: {
             type: String,
-            value: 'data/team.json'
+            value: '/team'
           },
 
           videosSource: {
