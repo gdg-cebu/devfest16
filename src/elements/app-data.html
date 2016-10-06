@@ -10,7 +10,6 @@
 <dom-module id="app-data">
   <template>
     <iron-ajax auto url="[[configSource]]" handle-as="json" last-response="{{app.data}}"></iron-ajax>
-    <iron-ajax auto url="[[videosSource]]" handle-as="json" last-response="{{app.videos}}"></iron-ajax>
 
     <firebase-app name="devfest16" api-key="[[firebase.apiKey]]" database-url="[[firebase.databaseURL]]" auth-domain="[[firebase.authDomain]]"></firebase-app>
 
