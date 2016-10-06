@@ -11,13 +11,14 @@
     <iron-ajax auto url="[[speakersSource]]" handle-as="json" last-response="{{_speakersRaw}}"></iron-ajax>
     <iron-ajax auto url="[[sessionsSource]]" handle-as="json" last-response="{{sessions}}"></iron-ajax>
     <iron-ajax auto url="[[postsSource]]" handle-as="json" on-response="_reversePosts"></iron-ajax>
-    <iron-ajax auto url="[[partnersSource]]" handle-as="json" last-response="{{app.partners}}"></iron-ajax>
     <iron-ajax auto url="[[scheduleSource]]" handle-as="json" last-response="{{_scheduleRaw}}"></iron-ajax>
     <iron-ajax auto url="[[teamSource]]" handle-as="json" last-response="{{app.team}}"></iron-ajax>
     <iron-ajax auto url="[[videosSource]]" handle-as="json" last-response="{{app.videos}}"></iron-ajax>
 
     <firebase-app name="devfest16" api-key="AIzaSyANKBBz_mF15tJ5Q7DNuPDk_Y2UdNoIJBc" database-url="https://gdgcebu-devfest16.firebaseio.com/" auth-domain="https://gdgcebu-devfest16.firebaseapp.com"></firebase-app>
+
     <firebase-document app-name="devfest16" path="[[featuredSessionsSource]]" data="{{app.featuredSessions}}"></firebase-document>
+    <firebase-document app-name="devfest16" path="[[partnersSource]]" data="{{app.partners}}"></firebase-document>
   </template>
   <script>
     (function () {
@@ -59,7 +60,7 @@
 
           partnersSource: {
             type: String,
-            value: 'data/partners.json'
+            value: '/partners'
           },
 
           scheduleSource: {
