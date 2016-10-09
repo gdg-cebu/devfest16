@@ -49,6 +49,13 @@
         "fontColor": "#fff",
         "tabBarColor": "#fff"
       }
+    },
+    "hackathon": {
+      "headerSettings": {
+        "backgroundColor": "#0097a7",
+        "fontColor": "#fff",
+        "tabBarColor": "fff"
+      }
     }
   },
   "navigation": [
