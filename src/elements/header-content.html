@@ -133,7 +133,9 @@
                           alt="GDG DevFest Ukraine 2016"></iron-image>
               <h3 class="dates">{{localize('dates')}}</h3>
               <div class="action-buttons">
-                <!-- <paper-button class="primary" on-tap="_scrollToTickets" raised>{{localize('buy-ticket')}}</paper-button> -->
+                <a href="[[app.data.registrationFormUrl]]" tabindex="-1" target="_blank">
+                  <paper-button class="primary" raised>{{localize('register-now')}}</paper-button>
+                </a>
               </div>
             </div>
           </div>
