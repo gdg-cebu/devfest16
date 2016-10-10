@@ -1,0 +1,144 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+
+<link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
+
+<link rel="import" href="../behaviors/page-behavior.html">
+<link rel="import" href="../elements/footer-block.html">
+
+<dom-module id="hackathon-page">
+
+  <template>
+
+    <style include="shared-styles">
+      .details-item:not(:last-child) {
+        padding-bottom: 32px;
+      }
+
+      @media (min-width: 1600px) {
+        .container {
+          max-width: 960px;
+        }
+      }
+    </style>
+
+    <iron-ajax auto url="[[mechanicsSource]]" handle-as="text" last-response="{{mechanics}}"></iron-ajax>
+    <iron-ajax auto url="[[criteriaSource]]" handle-as="text" last-response="{{criteria}}"></iron-ajax>
+
+    <div class="container">
+      <div class="details">
+        <div class="details-item" cascaded>
+          <marked-element markdown="[[mechanics]]">
+            <div class="markdown-html"></div>
+          </marked-element>
+        </div>
+
+        <div class="details-item" cascaded>
+          <div class="details-item" cascaded>
+            <marked-element markdown="{{criteria}}">
+              <div class="markdown-html"></div>
+            </marked-element>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeGaJrhGmMLPAk6V8tTGAxxQFtukFzx5wh3lycQQN5irKT_Xg/viewform?embedded=true" width="100%" height="2900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+
+    <footer-block app="{{app}}" cascaded></footer-block>
+
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+
+        is: 'hackathon-page',
+
+        behaviors: [
+          Polymer.NeonSharedElementAnimatableBehavior,
+          HOVERBOARD.PageBehavior
+        ],
+
+        properties: {
+          mechanicsSource: {
+            type: String,
+            value: 'https://gist.githubusercontent.com/jedijulia/7c9f410de6102667c0d6d27b833f05d1/raw/0911e4fe6f2209a83b1cf7fcc6481c9bd5e7572f/mechanics.md'
+          },
+
+          criteriaSource: {
+            type: String,
+            value: 'https://gist.githubusercontent.com/jedijulia/7c9f410de6102667c0d6d27b833f05d1/raw/0911e4fe6f2209a83b1cf7fcc6481c9bd5e7572f/criteria.md'
+          },
+
+          mechanics: {
+            type: String,
+            value: '',
+            observer: '_updateCascadedNodes'
+          },
+
+          criteria: {
+            type: String,
+            value: '',
+            observer: '_updateCascadedNodes'
+          },
+
+          animationConfig: {
+            type: Object,
+            value: function() {
+              var cascaded = Polymer.dom(this.root).querySelectorAll('[cascaded]');
+              var cascadedArray = Array.prototype.slice.call(cascaded);
+              return {
+                'entry': [{
+                  name: 'fade-in-animation',
+                  animation: 'fade-in-animation',
+                  node: this,
+                  timing: {
+                    delay: 500
+                  }
+                }],
+                'exit': [{
+                  name: 'fade-out-animation',
+                  animation: 'fade-out-animation',
+                  node: this
+                }]
+              };
+            }
+          }
+        },
+
+        _updateCascadedNodes: function() {
+          console.log('updating cascaded nodes');
+          if (!this.mechanics || !this.criteria) {
+            return null;
+          }
+          var cascaded = Polymer.dom(this.root).querySelectorAll('[cascaded]');
+          var cascadedArray = Array.prototype.slice.call(cascaded);
+          this.animationConfig.entry.push({
+            name: 'cascaded-animation',
+            animation: 'transform-animation',
+            transformFrom: 'translate3d(0, 100%, 0)',
+            nodes: cascadedArray,
+            timing: {
+              delay: 500
+            }
+          });
+          this.animationConfig.exit.push({
+            name: 'cascaded-animation',
+            animation: 'transform-animation',
+            transformTo: 'translate3d(0, 100%, 0)',
+            nodes: cascadedArray
+          });
+        }
+
+      });
+
+    })();
+  </script>
+
+</dom-module>

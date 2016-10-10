@@ -49,12 +49,23 @@
         "fontColor": "#fff",
         "tabBarColor": "#fff"
       }
+    },
+    "hackathon": {
+      "headerSettings": {
+        "backgroundColor": "#0f9d58",
+        "fontColor": "#fff",
+        "tabBarColor": "fff"
+      }
     }
   },
   "navigation": [
     {
       "route": "home",
       "permalink": "/"
+    },
+    {
+      "route": "hackathon",
+      "permalink": "/hackathon/"
     },
     {
       "route": "speakers",
