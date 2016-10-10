@@ -21,8 +21,8 @@
       }
     </style>
 
-    <iron-ajax auto url="[[mechanicsSource]]" handle-as="text" on-response="_updateCascadedNodes" last-response="{{mechanics}}"></iron-ajax>
-    <iron-ajax auto url="[[criteriaSource]]" handle-as="text" on-response="_updateCascadedNodes" last-response="{{criteria}}"></iron-ajax>
+    <iron-ajax auto url="[[mechanicsSource]]" handle-as="text" last-response="{{mechanics}}"></iron-ajax>
+    <iron-ajax auto url="[[criteriaSource]]" handle-as="text" last-response="{{criteria}}"></iron-ajax>
 
     <div class="container">
       <div class="details">
@@ -76,12 +76,14 @@
 
           mechanics: {
             type: String,
-            value: ''
+            value: '',
+            observer: '_updateCascadedNodes'
           },
 
           criteria: {
             type: String,
-            value: ''
+            value: '',
+            observer: '_updateCascadedNodes'
           },
 
           animationConfig: {
@@ -109,6 +111,7 @@
         },
 
         _updateCascadedNodes: function() {
+          console.log('updating cascaded nodes');
           if (!this.mechanics || !this.criteria) {
             return null;
           }
