@@ -14,6 +14,10 @@
   <template>
 
     <style include="shared-styles">
+      .details-item:not(:last-child) {
+        padding-bottom: 32px;
+      }
+
       @media (min-width: 1600px) {
         .container {
           max-width: 960px;
@@ -31,11 +35,7 @@
             <div class="markdown-html"></div>
           </marked-element>
         </div>
-      </div>
-    </div>
 
-    <div class="container">
-      <div class="details">
         <div class="details-item" cascaded>
           <div class="details-item" cascaded>
             <marked-element markdown="{{criteria}}">
@@ -45,6 +45,8 @@
         </div>
       </div>
     </div>
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeGaJrhGmMLPAk6V8tTGAxxQFtukFzx5wh3lycQQN5irKT_Xg/viewform?embedded=true" width="100%" height="2900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 
     <footer-block app="{{app}}" cascaded></footer-block>
 
