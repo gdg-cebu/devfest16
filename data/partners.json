@@ -16,12 +16,12 @@
       {
         "name": "UnionBank of the Philippines",
         "url": "http://unionbankph.com/",
-        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/UnionBankPH.png"
+        "logoUrl": "../images/logos/unionbank.png"
       },
       {
         "name": "City Savings Bank",
         "url": "http://www.citysavings.com.ph/www/csb-cms/renderer/view/csb",
-        "logoUrl": "https://ecmorchardmedia.blob.core.windows.net/media/Default/eCompareMo/logos/logo-bank-citysavings.png"
+        "logoUrl": "../images/logos/city-savings-bank.png"
       }
     ]
   },
@@ -31,12 +31,12 @@
       {
         "name": "Republiq Group of Companies",
         "url": "http://rgc.world/",
-        "logoUrl": "http://rgc.world/wp-content/themes/rgc/images/logo.png"
+        "logoUrl": "../images/logos/rgc.png"
       },
       {
         "name": "UVNS",
         "url": "http://newschool.com.ph/wp/",
-        "logoUrl": "http://scontent.cdninstagram.com/t51.2885-19/11821755_1467571036880177_538141409_a.jpg"
+        "logoUrl": "../images/logos/uvns.png"
       }
     ]
   },
@@ -46,47 +46,22 @@
       {
         "name": "Symph",
         "url": "http://sym.ph/",
-        "logoUrl": "http://www.sym.ph/wp-content/themes/symph/images/logo.png"
-      },
-      {
-        "name": "Uber",
-        "url": "http://uber.com/",
-        "logoUrl": "http://www.underconsideration.com/brandnew/archives/uber_2016_logo.png"
+        "logoUrl": "../images/logos/symph.png"
       },
       {
         "name": "The Tide",
         "url": "http://www.thetidecebu.com/",
-        "logoUrl": "http://www.thetidecebu.com/wp-content/uploads/2014/08/tide.png?x63108"
+        "logoUrl": "../images/logos/the-tide.png"
       }
     ]
   },
   {
-    "title": "organizational-partners",
+    "title": "official-ridesharing-partner",
     "logos": [
       {
-        "name": "Techtalks.ph",
-        "url": "http://techtalks.ph/",
-        "logoUrl": "http://www.techtalks.ph/wp-content/uploads/2015/02/techtalks-logo.png"
-      },
-      {
-        "name": "PRWorks",
-        "url": "http://prworks.com/",
-        "logoUrl": "http://www.prworks.com/wp-content/themes/prworklt/images/logo.png"
-      }
-    ]
-  },
-  {
-    "title": "media-partners",
-    "logos": [
-      {
-        "name": "Inquirer.net",
-        "url": "http://inquirer.net/",
-        "logoUrl": "https://www.inquirer.net/inq2016/images/inquirerdotnet_2016.svg"
-      },
-      {
-        "name": "Istorya.net",
-        "url": "http://istorya.net/",
-        "logoUrl": "https://www.istorya.net/forums/images/istorya_logo.png"
+        "name": "Uber",
+        "url": "http://uber.com/",
+        "logoUrl": "../images/logos/uber.png"
       }
     ]
   }
