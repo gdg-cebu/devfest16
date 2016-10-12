@@ -15,13 +15,17 @@
         display: block;
       }
 
-      .container {
+      .about-wrapper {
         @apply(--layout-vertical);
       }
 
       .about-item {
-        @apply(--layout-flex-5);
+        @apply(--layout-flex-3);
         text-align: justify;
+      }
+
+      .about-item:first-of-type {
+        text-align: center;
       }
 
       .about-item:not(:first-of-type) {
@@ -39,12 +43,16 @@
       }
 
       @media (min-width: 601px) {
-        .container {
+        .about-wrapper {
           @apply(--layout-horizontal);
         }
 
         .container .heading {
           margin-bottom: 20px;
+        }
+
+        .about-item:first-of-type {
+          margin-right: 20px;
         }
 
         .about-item:not(:first-of-type) {
@@ -54,19 +62,18 @@
     </style>
 
     <div class="container">
-      <div class="about-item">
-        <h4 class="heading">[[localize('organizer')]]</h4>
-        <marked-element markdown="[[localize('about-organizers')]]">
-          <div class="markdown-html"></div>
-        </marked-element>
-        <a class="page-link" href="/team">[[localize('open-team-page')]]</a>
-      </div>
-      <span class="divider"></span>
-      <div class="about-item">
-        <h4 class="heading">[[localize('what-is-gdg')]]</h4>
-        <marked-element markdown="[[localize('about-gdg')]]">
-          <div class="markdown-html"></div>
-        </marked-element>
+      <h4 class="heading text-center">[[localize('what-is-gdg-devfest')]]</h4>
+      <div class="about-wrapper">
+        <span class="divider"></span>
+        <div class="about-item">
+          <img src="../../images/philippines-map.png" alt="Philippines Map">
+        </div>
+        <div class="about-item">
+          <marked-element markdown="[[localize('about-gdg-devfest')]]">
+            <div class="markdown-html"></div>
+          </marked-element>
+        </div>
+        <span class="divider"></span>
       </div>
     </div>
 
