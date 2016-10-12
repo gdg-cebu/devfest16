@@ -1,6 +1,6 @@
 [
   {
-    "title": "Core Team",
+    "title": "Community Manager",
     "members": [
       {
         "name": "Shad Roi",
@@ -13,6 +13,23 @@
           }
         ],
         "title": "Community Manager"
+      }
+    ]
+  },
+  {
+    "title": "Program and Communication",
+    "members": [
+      {
+        "name": "John Irvin Estiamba",
+        "photoUrl": "/images/people/john_estiamba.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://facebook.com/johnirvinestiamba",
+            "name": "Facebook"
+          }
+        ],
+        "title": "Program Manager"
       },
       {
         "name": "Frances Marie Teves",
@@ -27,16 +44,26 @@
         "title": "Communications Manager"
       },
       {
-        "name": "John Irvin Estiamba",
-        "photoUrl": "/images/people/john_estiamba.jpg",
+        "name": "Rome Nicolas",
+        "photoUrl": "/images/people/rome_nicolas.jpg",
         "socials": [
           {
             "icon": "facebook",
-            "link": "https://facebook.com/johnirvinestiamba",
+            "link": "https://facebook.com/iamromenicolas",
             "name": "Facebook"
+          },
+          {
+            "icon": "twitter",
+            "link": "https://twitter.com/zuprome",
+            "name": "Twitter"
+          },
+          {
+            "icon": "website",
+            "link": "http://www.zuprome.com/",
+            "name": "Blog"
           }
         ],
-        "title": "Program Manager"
+        "title": "Social Media / Communications Manager"
       },
       {
         "name": "Emelie Diamante Anggoy",
@@ -54,7 +81,12 @@
           }
         ],
         "title": "Program Manager"
-      },
+      }
+    ]
+  },
+  {
+    "title": "Partnership and Sponsorship",
+    "members": [
       {
         "name": "Kim Bismark",
         "photoUrl": "/images/people/kim_bismark.jpg",
@@ -83,28 +115,23 @@
           }
         ],
         "title": "Partnership Manager"
-      },
+      }
+    ]
+  },
+  {
+    "title": "Logistics and Volunteers",
+    "members": [
       {
-        "name": "Rome Nicolas",
-        "photoUrl": "/images/people/rome_nicolas.jpg",
+        "name": "Cheer Cordova",
+        "photoUrl": "/images/people/cheer_cordova.jpg",
         "socials": [
           {
             "icon": "facebook",
-            "link": "https://facebook.com/iamromenicolas",
+            "link": "https://facebook.com/simplechay",
             "name": "Facebook"
-          },
-          {
-            "icon": "twitter",
-            "link": "https://twitter.com/zuprome",
-            "name": "Twitter"
-          },
-          {
-            "icon": "website",
-            "link": "http://www.zuprome.com/",
-            "name": "Blog"
           }
         ],
-        "title": "Social Media / Communications Manager"
+        "title": "Logistics Manager"
       },
       {
         "name": "Ayrton Wyn Chrysler Adiong",
@@ -124,18 +151,6 @@
         "title": "Volunteer Lead"
       },
       {
-        "name": "Cheer Cordova",
-        "photoUrl": "/images/people/cheer_cordova.jpg",
-        "socials": [
-          {
-            "icon": "facebook",
-            "link": "https://facebook.com/simplechay",
-            "name": "Facebook"
-          }
-        ],
-        "title": "Logistics Manager"
-      },
-      {
         "name": "Mark Win Panerio",
         "photoUrl": "/images/people/mark_panerio.jpg",
         "socials": [
@@ -151,7 +166,12 @@
           }
         ],
         "title": "Technical Crew"
-      },
+      }
+    ]
+  },
+  {
+    "title": "Web Leads",
+    "members": [
       {
         "name": "Arnelle Balane",
         "photoUrl": "/images/people/arnelle_balane.jpg",
@@ -173,6 +193,71 @@
           }
         ],
         "title": "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧"
+      },
+      {
+        "name": "Emmanuel Lodovice",
+        "photoUrl": "/images/people/emmanuel_lodovice.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://www.facebook.com/name.3.anad",
+            "name": "Facebook"
+          },
+          {
+            "icon": "twitter",
+            "link": "https://twitter.com/nameanad"
+          }
+        ],
+        "title": "Web Lead"
+      },
+      {
+        "name": "Kevin Calingacion",
+        "photoUrl": "/images/people/kevin_calingacion.jpg",
+        "socials": [
+          {
+            "icon": "facebook",
+            "link": "https://www.facebook.com/Kev.Cal69",
+            "name": "Facebook"
+          }
+        ],
+        "title": "Web Lead"
+      }
+    ]
+  },
+  {
+    "title": "Google Developer Expert",
+    "members": [
+      {
+        "name": "Albert Padin",
+        "photoUrl": "/images/people/albert_padin.jpg",
+        "socials": [
+          {
+            "icon": "linkedin",
+            "link": "https://ph.linkedin.com/pub/albert-padin/9/556/82a/",
+            "name": "LinkedIn"
+          },
+          {
+            "icon": "twitter",
+            "link": "https://twitter.com/albertpadin/",
+            "name": "Twitter"
+          },
+          {
+            "icon": "github",
+            "link": "https://github.com/albertpadin/",
+            "name": "GitHub"
+          },
+          {
+            "icon": "gplus",
+            "link": "https://plus.google.com/110932426733785443586/",
+            "name": "Google+"
+          },
+          {
+            "icon": "website",
+            "link": "http://albertpadin.com/",
+            "name": "Website"
+          }
+        ],
+        "title": "GDE - Web Technologies"
       }
     ]
   }
