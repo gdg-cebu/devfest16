@@ -39,6 +39,7 @@
     "team": {
       "headerSettings": {
         "backgroundColor": "#009688",
+        "backgroundImage": "/images/backgrounds/team.jpg",
         "fontColor": "#fff",
         "tabBarColor": "#fff"
       }
@@ -53,6 +54,7 @@
     "hackathon": {
       "headerSettings": {
         "backgroundColor": "#0f9d58",
+        "backgroundImage": "/images/backgrounds/hackathon.jpg",
         "fontColor": "#fff",
         "tabBarColor": "fff"
       }
