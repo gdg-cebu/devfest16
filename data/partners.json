@@ -47,11 +47,6 @@
         "name": "Symph",
         "url": "http://sym.ph/",
         "logoUrl": "../images/logos/symph.png"
-      },
-      {
-        "name": "The Tide",
-        "url": "http://www.thetidecebu.com/",
-        "logoUrl": "../images/logos/the-tide.png"
       }
     ]
   },
@@ -61,7 +56,43 @@
       {
         "name": "Uber",
         "url": "http://uber.com/",
-        "logoUrl": "../images/logos/uber.png"
+        "logoUrl": "../images/logos/uber.png",
+        "width": 125,
+        "height": 125
+      }
+    ]
+  },
+  {
+    "title": "organizational-partners",
+    "logos": [
+      {
+        "name": "TechTalks.ph",
+        "url": "http://www.techtalks.ph/",
+        "logoUrl": "../images/logos/techtalks.png"
+      },
+      {
+        "name": "The Tide",
+        "url": "http://www.thetidecebu.com/",
+        "logoUrl": "../images/logos/the-tide.png"
+      }
+    ]
+  },
+  {
+    "title": "official-media-partners",
+    "logos": [
+      {
+        "name": "Escooped",
+        "url": "http://escooped.com/",
+        "logoUrl": "../images/logos/escooped.png",
+        "width": 125,
+        "height": 125
+      },
+      {
+        "name": "Entertainment Republiq",
+        "url": "http://rgc.world/",
+        "logoUrl": "../images/logos/entertainment-republiq.png",
+        "width": 125,
+        "height": 125
       }
     ]
   }
