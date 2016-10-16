@@ -1,5 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
 
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
@@ -9,11 +11,14 @@
 <link rel="import" href="../behaviors/localize-behavior.html">
 <link rel="import" href="../elements/footer-block.html">
 
+<link rel="import" href="../../minigames/trex-runner/trex-runner.html">
+<script src="../../minigames/trex-runner/trex-runner.js"></script>
+
 <dom-module id="minigames-page">
 
   <template>
 
-    <style include="shared-styles">
+    <style include="shared-styles trex-runner-styles">
       .details {
         @apply(--layout-vertical);
         @apply(--layout-center-justified);
@@ -23,6 +28,30 @@
         @apply(--layout-horizontal);
         margin: 0 auto;
         padding-bottom: 32px;
+      }
+
+      .game-container {
+        @apply(--layout-vertical);
+        width: 100%;
+      }
+
+      .game-panel,
+      .leaderboard-panel {
+        padding: 15px;
+      }
+
+      @media (min-width: 800px) {
+        .game-container {
+          @apply(--layout-horizontal);
+        }
+
+        .game-panel {
+          @apply(--layout-flex-9);
+        }
+
+        .leaderboard-panel {
+          @apply(--layout-flex-3);
+        }
       }
 
       @media (min-width: 1600px) {
@@ -38,6 +67,30 @@
           <marked-element markdown="{{localize(app.data.minigamesPageText)}}">
             <div class="markdown-html"></div>
           </marked-element>
+        </div>
+
+        <div class="details-item game-container" cascaded>
+          <div class="game-panel">
+            <h2>T-Rex Runner</h2>
+
+            <div class="trex-runner-wrapper">
+              <div id="game-screen"></div>
+
+              <div id="offline-resources">
+                <img id="offline-resources-1x" src="../../minigames/trex-runner/images/100-percent/100-offline-sprite.png">
+                <img id="offline-resources-2x" src="../../minigames/trex-runner/images/200-percent/200-offline-sprite.png">
+                <div id="audio-resources">
+                  <audio id="offline-sound-press" src="../../minigames/trex-runner/sounds/button-press.mp3"></audio>
+                  <audio id="offline-sound-hit" src="../../minigames/trex-runner/sounds/hit.mp3"></audio>
+                  <audio id="offline-sound-reached" src="../../minigames/trex-runner/sounds/score-reached.mp3"></audio>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="leaderboard-panel">
+            <h2>Leaderboard</h2>
+          </div>
         </div>
       </div>
     </div>
@@ -96,6 +149,10 @@
               };
             }
           }
+        },
+
+        ready: function() {
+          new Runner(Polymer.dom(this.root).querySelector('.trex-runner-wrapper'));
         }
 
       });
