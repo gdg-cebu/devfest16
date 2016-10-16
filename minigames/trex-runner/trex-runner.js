@@ -64,6 +64,9 @@ function Runner(documentCtx, opt_config) {
   this.images = {};
   this.imagesLoaded = 0;
 
+  // Make Runner implement Observer Pattern.
+  this.observers = {};
+
   this.loadImages();
 }
 window['Runner'] = Runner;
@@ -828,6 +831,51 @@ Runner.prototype = {
       this.inverted = document.body.classList.toggle(Runner.classes.INVERTED,
           this.invertTrigger);
     }
+  },
+
+  /**
+   * Adds a callback for a topic.
+   * @param {string} topic the name of the topic that will be observed.
+   * @param {function} callback
+   */
+  on: function(topic, callback) {
+    if (!this.observers.hasOwnProperty(topic)) {
+      this.observers[topic] = [];
+    }
+    this.observers[topic].push(callback);
+  },
+
+  /**
+   * Removes a callback for a topic.
+   * @param {string} topic the name of the topic that will be un-observed.
+   * @param {function} callback
+   */
+  off: function(topic, callback) {
+    if (!this.observers.hasOwnProperty(topic)) {
+      return null;
+    }
+    if (typeof callback === 'function') {
+      this.observers[topic] = this.observers[topic].filter(function(cb) {
+        return cb !== callback;
+      });
+    }
+    if (this.observers[topic].length === 0 || typeof callback === 'undefined') {
+      delete this.observers[topic];
+    }
+  },
+
+  /**
+   * Emits a topic and executes observers for that topic.
+   * @param {string} topic the name of the topic that will be emitted.
+   */
+  emit: function(topic) {
+    if (!this.observers.hasOwnProperty(topic)) {
+      return null;
+    }
+    var args = Array.prototype.slice.call(arguments, 1);
+    this.observers[topic].forEach(function(callback) {
+      callback.apply(null, args);
+    });
   }
 };
 
