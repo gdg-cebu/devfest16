@@ -34,7 +34,7 @@ function Runner(documentCtx, opt_config) {
   this.distanceMeter = null;
   this.distanceRan = 0;
 
-  this.highestScore = 0;
+  this.highestScore = parseInt(localStorage.getItem('trex-runner-highest-score'), 10) || 0;
 
   this.time = 0;
   this.runningTime = 0;
@@ -331,6 +331,9 @@ Runner.prototype = {
     // Distance meter
     this.distanceMeter = new DistanceMeter(this.canvas,
           this.spriteDef.TEXT_SPRITE, this.dimensions.WIDTH);
+    if (this.highestScore > 0) {
+      this.distanceMeter.setHighScore(this.highestScore);
+    }
 
     // Draw t-rex
     this.tRex = new Trex(this.canvas, this.spriteDef.TREX);
@@ -745,6 +748,7 @@ Runner.prototype = {
     if (this.distanceRan > this.highestScore) {
       this.highestScore = Math.ceil(this.distanceRan);
       this.distanceMeter.setHighScore(this.highestScore);
+      localStorage.setItem('trex-runner-highest-score', this.highestScore);
     }
 
     // Reset the time clock.
