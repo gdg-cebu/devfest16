@@ -152,7 +152,11 @@
         },
 
         ready: function() {
-          new Runner(Polymer.dom(this.root).querySelector('.trex-runner-wrapper'));
+          var wrapper = Polymer.dom(this.root).querySelector('.trex-runner-wrapper');
+          var runner = new Runner(wrapper);
+          runner.on('highscore', function(score) {
+            console.log(score);
+          });
         }
 
       });
