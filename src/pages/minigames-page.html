@@ -1,16 +1,40 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
 
 <link rel="import" href="../behaviors/page-behavior.html">
+<link rel="import" href="../behaviors/localize-behavior.html">
 <link rel="import" href="../elements/footer-block.html">
 
 <dom-module id="minigames-page">
 
   <template>
 
-    <style include="shared-styles"></style>
+    <style include="shared-styles">
+      .details {
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+      }
+
+      .details-item {
+        @apply(--layout-horizontal);
+        margin: 0 auto;
+        padding-bottom: 32px;
+      }
+    </style>
+
+    <div class="container">
+      <div class="details">
+        <div class="details-item" cascaded>
+          <marked-element markdown="{{localize(app.data.minigamesPageText)}}">
+            <div class="markdown-html"></div>
+          </marked-element>
+        </div>
+      </div>
+    </div>
 
     <footer-block app="{{app}}" cascaded></footer-block>
 
@@ -26,7 +50,8 @@
 
         behaviors: [
           Polymer.NeonSharedElementAnimatableBehavior,
-          HOVERBOARD.PageBehavior
+          HOVERBOARD.PageBehavior,
+          HOVERBOARD.LocalizeBehavior
         ],
 
         properties: {
