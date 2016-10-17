@@ -26,6 +26,16 @@
     ]
   },
   {
+    "title": "co-presented-by",
+    "logos": [
+      {
+        "name": "Arcanys",
+        "url": "https://www.arcanys.com/",
+        "logoUrl": "../images/logo/arcanys.jpg"
+      }
+    ]
+  },
+  {
     "title": "made-possible-by",
     "logos": [
       {
