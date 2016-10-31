@@ -138,6 +138,10 @@
             value: false
           },
 
+          currentUser: {
+            type: Object
+          },
+
           animationConfig: {
             type: Object,
             value: function() {
@@ -180,9 +184,14 @@
 
           this.$['google-login-btn'].addEventListener('google-signin-success', function() {
             var auth = gapi.auth2.getAuthInstance();
-            var user = auth.currentUser.get();
+            var profile = auth.currentUser.get().getBasicProfile();
             if (auth.isSignedIn.get()) {
               el.signedIn = true;
+              el.currentUser = {
+                name: profile.getName(),
+                email: profile.getEmail(),
+                avatar: profile.getImageUrl()
+              };
               el.startMinigame();
             }
           });
@@ -191,8 +200,19 @@
         startMinigame: function() {
           var wrapper = Polymer.dom(this.root).querySelector('.trex-runner-wrapper');
           var runner = new Runner(wrapper);
+
+          var highscoresRef = firebase.database().ref('minigames/trex-runner/highscores');
+          var userHighscoreRef = null;
+
+          var el = this;
+
           runner.on('highscore', function(score) {
-            console.log(score);
+            if (userHighscoreRef) {
+              userHighscoreRef.child('score').set(score);
+            } else {
+              var data = { score: score, user: el.currentUser };
+              userHighscoreRef = highscoresRef.push(data);
+            }
           });
         }
 
