@@ -2,7 +2,6 @@
 
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 
-<link rel="import" href="../../bower_components/google-signin/google-signin.html">
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
 
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
@@ -52,6 +51,23 @@
       .game-panel,
       .leaderboard-panel {
         padding: 15px;
+      }
+
+      #google-login-btn {
+        font-size: 0;
+        width: 191px;
+        height: 46px;
+        border: none;
+        background: url("../../images/signin/normal.png") center center no-repeat;
+        cursor: pointer;
+      }
+
+      #google-login-btn:focus {
+        background-image: url("../../images/signin/focus.png");
+      }
+
+      #google-login-btn:active {
+        background-image: url("../../images/signin/pressed.png");
       }
 
       @media (min-width: 800px) {
@@ -111,7 +127,7 @@
 
     <div class="login-block" hidden="[[signedIn]]">
       <h2>You need to sign in before you can start playing our minigames.</h2>
-      <google-signin id="google-login-btn" client-id="269971026170-14cmh93s1b6br76i5gvhnffk9ktsbeme.apps.googleusercontent.com" label-signin="Sign in with Google"></google-signin>
+      <button id="google-login-btn">Sign in with Google</button>
     </div>
 
     <footer-block app="{{app}}" cascaded></footer-block>
@@ -182,19 +198,19 @@
         ready: function() {
           var el = this;
 
-          this.$['google-login-btn'].addEventListener('google-signin-success', function() {
-            var auth = gapi.auth2.getAuthInstance();
-            var profile = auth.currentUser.get().getBasicProfile();
-            if (auth.isSignedIn.get()) {
-              el.signedIn = true;
-              el.currentUser = {
-                name: profile.getName(),
-                email: profile.getEmail(),
-                avatar: profile.getImageUrl()
-              };
-              el.startMinigame();
-            }
-          });
+          // this.$['google-login-btn'].addEventListener('google-signin-success', function() {
+          //   var auth = gapi.auth2.getAuthInstance();
+          //   var profile = auth.currentUser.get().getBasicProfile();
+          //   if (auth.isSignedIn.get()) {
+          //     el.signedIn = true;
+          //     el.currentUser = {
+          //       name: profile.getName(),
+          //       email: profile.getEmail(),
+          //       avatar: profile.getImageUrl()
+          //     };
+          //     el.startMinigame();
+          //   }
+          // });
         },
 
         startMinigame: function() {
