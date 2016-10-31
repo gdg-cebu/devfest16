@@ -16,12 +16,24 @@
       {
         "name": "UnionBank of the Philippines",
         "url": "http://unionbankph.com/",
-        "logoUrl": "../images/logos/unionbank.png"
+        "logoUrl": "../images/logos/unionbank.png",
+        "width": 200
       },
       {
         "name": "City Savings Bank",
         "url": "http://www.citysavings.com.ph/www/csb-cms/renderer/view/csb",
-        "logoUrl": "../images/logos/city-savings-bank.png"
+        "logoUrl": "../images/logos/city-savings-bank.jpg",
+        "width": 200
+      }
+    ]
+  },
+  {
+    "title": "co-presented-by",
+    "logos": [
+      {
+        "name": "Arcanys",
+        "url": "https://www.arcanys.com/",
+        "logoUrl": "../images/logos/arcanys.jpg"
       }
     ]
   },
