@@ -755,7 +755,7 @@ Runner.prototype = {
 
       // Emit event with score data.
       var actualDistance = this.distanceMeter.getActualDistance(this.highestScore);
-      this.emit('highcore', actualDistance);
+      this.emit('highscore', actualDistance);
     }
 
     // Reset the time clock.

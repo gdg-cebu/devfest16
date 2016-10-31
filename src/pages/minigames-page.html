@@ -83,40 +83,36 @@
           </marked-element>
         </div>
 
-        <template is="dom-if" if="signedIn">
-          <div class="details-item game-container">
-            <div class="game-panel">
-              <h2>T-Rex Runner</h2>
+        <div class="details-item game-container" hidden="[[!signedIn]]">
+          <div class="game-panel">
+            <h2>T-Rex Runner</h2>
 
-              <div class="trex-runner-wrapper">
-                <div id="game-screen"></div>
+            <div class="trex-runner-wrapper">
+              <div id="game-screen"></div>
 
-                <div id="offline-resources">
-                  <img id="offline-resources-1x" src="../../minigames/trex-runner/images/100-percent/100-offline-sprite.png">
-                  <img id="offline-resources-2x" src="../../minigames/trex-runner/images/200-percent/200-offline-sprite.png">
-                  <div id="audio-resources">
-                    <audio id="offline-sound-press" src="../../minigames/trex-runner/sounds/button-press.mp3"></audio>
-                    <audio id="offline-sound-hit" src="../../minigames/trex-runner/sounds/hit.mp3"></audio>
-                    <audio id="offline-sound-reached" src="../../minigames/trex-runner/sounds/score-reached.mp3"></audio>
-                  </div>
+              <div id="offline-resources">
+                <img id="offline-resources-1x" src="../../minigames/trex-runner/images/100-percent/100-offline-sprite.png">
+                <img id="offline-resources-2x" src="../../minigames/trex-runner/images/200-percent/200-offline-sprite.png">
+                <div id="audio-resources">
+                  <audio id="offline-sound-press" src="../../minigames/trex-runner/sounds/button-press.mp3"></audio>
+                  <audio id="offline-sound-hit" src="../../minigames/trex-runner/sounds/hit.mp3"></audio>
+                  <audio id="offline-sound-reached" src="../../minigames/trex-runner/sounds/score-reached.mp3"></audio>
                 </div>
               </div>
             </div>
-
-            <div class="leaderboard-panel">
-              <h2>Leaderboard</h2>
-            </div>
           </div>
-        </template>
+
+          <div class="leaderboard-panel">
+            <h2>Leaderboard</h2>
+          </div>
+        </div>
       </div>
     </div>
 
-    <template id="login-block-template" is="dom-if" if="{{!signedIn}}">
-      <div class="login-block">
-        <h2>You need to sign in before you can start playing our minigames.</h2>
-        <google-signin id="google-login-btn" client-id="269971026170-14cmh93s1b6br76i5gvhnffk9ktsbeme.apps.googleusercontent.com" label-signin="Sign in with Google"></google-signin>
-      </div>
-    </template>
+    <div class="login-block" hidden="[[signedIn]]">
+      <h2>You need to sign in before you can start playing our minigames.</h2>
+      <google-signin id="google-login-btn" client-id="269971026170-14cmh93s1b6br76i5gvhnffk9ktsbeme.apps.googleusercontent.com" label-signin="Sign in with Google"></google-signin>
+    </div>
 
     <footer-block app="{{app}}" cascaded></footer-block>
 
@@ -182,14 +178,13 @@
         ready: function() {
           var el = this;
 
-          this.$['login-block-template'].addEventListener('dom-change', function() {
-            el.$$('#google-login-btn').addEventListener('google-signin-success', function() {
-              var auth = gapi.auth2.getAuthInstance();
-              var user = auth.currentUser.get();
-              if (auth.isSignedIn.get()) {
-                el.signedIn = true;
-              }
-            });
+          this.$['google-login-btn'].addEventListener('google-signin-success', function() {
+            var auth = gapi.auth2.getAuthInstance();
+            var user = auth.currentUser.get();
+            if (auth.isSignedIn.get()) {
+              el.signedIn = true;
+              el.startMinigame();
+            }
           });
         },
 
