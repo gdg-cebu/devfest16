@@ -123,6 +123,12 @@
 
           <div class="leaderboard-panel">
             <h2>Leaderboard</h2>
+
+            <ul class="leaderboard">
+              <template is="dom-repeat" items="[[leaderboard]]" as="player">
+                <li>[[player.user.name]]: [[player.score]]</li>
+              </template>
+            </ul>
           </div>
         </div>
       </div>
@@ -170,7 +176,7 @@
             value: function() {
               return [];
             }
-          }
+          },
 
           animationConfig: {
             type: Object,
@@ -239,7 +245,10 @@
           // retrieve leaderboard
           var highscoresRef = firebase.database().ref('minigames/trex-runner/highscores');
           highscoresRef.orderByPriority().limitToFirst(20).on('value', function(data) {
-            el.leaderboard = data.val();
+            var leaderboard = data.val();
+            el.leaderboard = Object.keys(leaderboard).map(function(item) {
+              return leaderboard[item];
+            });
           });
         },
 
