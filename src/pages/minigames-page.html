@@ -156,6 +156,9 @@
             <h2>Leaderboard</h2>
 
             <ul class="leaderboard">
+              <template is="dom-if" if="[[!leaderboard.length]]" restamp>
+                <p>No highscores yet.</p>
+              </template>
               <template is="dom-repeat" items="[[leaderboard]]" as="player">
                 <li class="leaderboard-item">
                   <img class="player-avatar" src="[[player.user.avatar]]" alt="[[player.user.name]]">
