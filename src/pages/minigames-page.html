@@ -284,7 +284,9 @@
           highscoresRef.orderByPriority().limitToFirst(20).on('value', function(data) {
             var leaderboard = data.val();
             el.leaderboard = Object.keys(leaderboard).map(function(item) {
-              return leaderboard[item];
+              item = leaderboard[item];
+              item.score = runner.distanceMeter.getActualDistance(item.score);
+              return item;
             });
           });
         },

@@ -752,10 +752,7 @@ Runner.prototype = {
       this.highestScore = Math.ceil(this.distanceRan);
       this.distanceMeter.setHighScore(this.highestScore);
       localStorage.setItem('trex-runner-highest-score', this.highestScore);
-
-      // Emit event with score data.
-      var actualDistance = this.distanceMeter.getActualDistance(this.highestScore);
-      this.emit('highscore', actualDistance);
+      this.emit('highscore', this.highestScore);
     }
 
     // Reset the time clock.
