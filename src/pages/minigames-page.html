@@ -165,6 +165,13 @@
             }
           },
 
+          leaderboard: {
+            type: Array,
+            value: function() {
+              return [];
+            }
+          }
+
           animationConfig: {
             type: Object,
             value: function() {
@@ -215,11 +222,24 @@
           var runner = new Runner(wrapper);
 
           var refStr = 'minigames/trex-runner/highscores/' + this.user.uid;
-          var highscoresRef = firebase.database().ref(refStr);
+          var userHighscoresRef = firebase.database().ref(refStr);
           var el = this;
 
+          var userData = {
+            name: this.user.displayName,
+            email: this.user.email,
+            avatar: this.user.photoURL
+          };
+
           runner.on('highscore', function(score) {
-            highscoresRef.set(score);
+            var data = { user: userData, score: score };
+            userHighscoresRef.setWithPriority(data, -score);
+          });
+
+          // retrieve leaderboard
+          var highscoresRef = firebase.database().ref('minigames/trex-runner/highscores');
+          highscoresRef.orderByPriority().limitToFirst(20).on('value', function(data) {
+            el.leaderboard = data.val();
           });
         },
 
