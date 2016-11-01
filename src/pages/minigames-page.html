@@ -54,6 +54,37 @@
         padding: 15px;
       }
 
+      .leaderboard {
+        max-height: 300px;
+        padding: 0;
+        overflow: auto;
+        list-style: none;
+      }
+
+      .leaderboard-item {
+        display: flex;
+        align-items: flex-start;
+        margin: 10px 0;
+      }
+
+      .player-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .player-name {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .player-score {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+      }
+
       #google-login-btn {
         font-size: 0;
         width: 191px;
@@ -126,7 +157,13 @@
 
             <ul class="leaderboard">
               <template is="dom-repeat" items="[[leaderboard]]" as="player">
-                <li>[[player.user.name]]: [[player.score]]</li>
+                <li class="leaderboard-item">
+                  <img class="player-avatar" src="[[player.user.avatar]]" alt="[[player.user.name]]">
+                  <div class="player-details">
+                    <h2 class="player-name">[[player.user.name]]</h2>
+                    <p class="player-score">Score: [[player.score]]</p>
+                  </div>
+                </li>
               </template>
             </ul>
           </div>
