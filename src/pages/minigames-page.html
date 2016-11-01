@@ -279,6 +279,16 @@
             userHighscoresRef.setWithPriority(data, -score);
           });
 
+          // retrieve user's stored highscore
+          firebase.database().ref('minigames/trex-runner/highscores/' + this.user.uid).once('value', function(data) {
+            var highscore = data.val();
+            if (highscore) {
+              localStorage.setItem('trex-runner-highest-score', highscore.score);
+              runner.highestScore = highscore.score;
+              runner.distanceMeter.setHighScore(runner.highestScore);
+            }
+          });
+
           // retrieve leaderboard
           var highscoresRef = firebase.database().ref('minigames/trex-runner/highscores');
           highscoresRef.orderByPriority().limitToFirst(20).on('value', function(data) {
