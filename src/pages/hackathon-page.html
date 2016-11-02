@@ -18,6 +18,14 @@
         padding-bottom: 32px;
       }
 
+      .prizes-container {
+        background-color: var(--header-background);
+      }
+
+      .prizes-container .markdown-html {
+        color: var(--text-primary-color);
+      }
+
       @media (min-width: 1600px) {
         .container {
           max-width: 960px;
@@ -27,6 +35,7 @@
 
     <iron-ajax auto url="[[mechanicsSource]]" handle-as="text" last-response="{{mechanics}}"></iron-ajax>
     <iron-ajax auto url="[[criteriaSource]]" handle-as="text" last-response="{{criteria}}"></iron-ajax>
+    <iron-ajax auto url="[[prizesSource]]" handle-as="text" last-response="{{prizes}}"></iron-ajax>
 
     <div class="container">
       <div class="details">
@@ -35,7 +44,23 @@
             <div class="markdown-html"></div>
           </marked-element>
         </div>
+      </div>
+    </div>
 
+    <div class="prizes-container">
+      <div class="container">
+        <div class="details">
+          <div class="details-item" cascaded>
+            <marked-element markdown="[[prizes]]">
+              <div class="markdown-html"></div>
+            </marked-element>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="details">
         <div class="details-item" cascaded>
           <div class="details-item" cascaded>
             <marked-element markdown="{{criteria}}">
@@ -76,6 +101,11 @@
             value: 'https://gist.githubusercontent.com/jedijulia/7c9f410de6102667c0d6d27b833f05d1/raw/0911e4fe6f2209a83b1cf7fcc6481c9bd5e7572f/criteria.md'
           },
 
+          prizesSource: {
+            type: String,
+            value: 'https://gist.githubusercontent.com/jedijulia/7c9f410de6102667c0d6d27b833f05d1/raw/89cc658c8ba8cfa8ab9efcbc5fdef12de2d60cfd/prizes.md'
+          },
+
           mechanics: {
             type: String,
             value: '',
@@ -83,6 +113,12 @@
           },
 
           criteria: {
+            type: String,
+            value: '',
+            observer: '_updateCascadedNodes'
+          },
+
+          prizes: {
             type: String,
             value: '',
             observer: '_updateCascadedNodes'
