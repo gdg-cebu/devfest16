@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
@@ -75,7 +76,45 @@
       .selected {
         background: #eaeaea;
       }
+
+      .user-info-wrapper {
+        padding: 16px;
+        margin-bottom: 8px;
+        background-color: #eaeaea;
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+      }
+
+      .user-details {
+        margin-left: 8px;
+      }
+
+      .user-name {
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .user-signout {
+        font-size: 12px;
+        font-weight: normal;
+        text-decoration: none;
+        color: inherit;
+        opacity: 0.54;
+        cursor: pointer;
+      }
+
+      .user-signout:hover,
+      .user-signout:focus {
+        text-decoration: underline;
+        opacity: 0.8;
+      }
     </style>
+
+    <firebase-auth id="auth" app-name="devfest16" user="{{user}}" provider="google"></firebase-auth>
 
     <paper-toolbar class="tall">
       <div class="top">
@@ -94,9 +133,20 @@
         selected="{{pageData.page}}"
         selected-class="selected"
       >
+        <template is="dom-if" if="[[user]]">
+          <div class="user-info-wrapper" layout horizontal>
+            <img class="user-avatar" src="[[user.photoURL]]" alt="[[user.displayName]]">
+            <div class="user-details" layout vertical>
+              <h2 class="user-name">[[user.displayName]]</h2>
+              <a class="user-signout" href="#" on-tap="_signOutUser">Sign Out</a>
+            </div>
+          </div>
+        </template>
+
         <template is="dom-repeat" items="[[app.data.navigation]]" as="nav">
           <a class="navigation-link" name="[[nav.route]]" href$="[[nav.permalink]]" on-tap="closeDrawer">{{localize(nav.route)}}</a>
         </template>
+
         <!-- <a class="navigation-link" href$="[[app.data.tickets.url]]" target="_blank" on-tap="_trackBuyClick">[[localize('buy-ticket')]]
           <iron-icon
             class="open-in-new"
@@ -116,6 +166,10 @@
 
         is: 'drawer-block',
 
+        properties: {
+          user: Object
+        },
+
         behaviors: [
           HOVERBOARD.LocalizeBehavior
         ],
@@ -127,6 +181,10 @@
         _trackBuyClick: function () {
           HOVERBOARD.Analytics.trackEvent('ticket', 'buy_click', 'drawer');
           this.closeDrawer();
+        },
+
+        _signOutUser: function() {
+          this.$.auth.signOut();
         }
 
       });
