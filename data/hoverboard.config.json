@@ -58,6 +58,13 @@
         "fontColor": "#fff",
         "tabBarColor": "fff"
       }
+    },
+    "minigames": {
+      "headerSettings": {
+        "backgroundColor": "#673AB7",
+        "fontColor": "#fff",
+        "tabBarColor": "#fff"
+      }
     }
   },
   "navigation": [
@@ -68,6 +75,10 @@
     {
       "route": "hackathon",
       "permalink": "/hackathon/"
+    },
+    {
+      "route": "minigames",
+      "permalink": "/minigames/"
     },
     {
       "route": "team",
@@ -149,6 +160,7 @@
   },
   "teamPageTitle": "team-page-title",
   "teamPageText": "team-page-text",
+  "minigamesPageText": "minigames-page-text",
   "statistics": [
     {
       "counter": 1000,

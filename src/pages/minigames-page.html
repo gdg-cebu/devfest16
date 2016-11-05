@@ -1,0 +1,318 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+
+<link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
+
+<link rel="import" href="../behaviors/page-behavior.html">
+<link rel="import" href="../behaviors/localize-behavior.html">
+<link rel="import" href="../elements/footer-block.html">
+
+<link rel="import" href="../../minigames/trex-runner/trex-runner.html">
+<script src="../../minigames/trex-runner/trex-runner.js"></script>
+
+<dom-module id="minigames-page">
+
+  <template>
+
+    <style include="shared-styles trex-runner-styles">
+      .details {
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+      }
+
+      .details-item {
+        @apply(--layout-horizontal);
+        margin: 0 auto;
+        padding-bottom: 32px;
+      }
+
+      .login-block {
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+        padding: 75px;
+        background-color: var(--header-background);
+      }
+
+      .login-block h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #fff;
+      }
+
+      .game-container {
+        @apply(--layout-vertical);
+        width: 100%;
+      }
+
+      .game-panel,
+      .leaderboard-panel {
+        padding: 15px;
+      }
+
+      .leaderboard {
+        max-height: 300px;
+        padding: 0;
+        overflow: auto;
+        list-style: none;
+      }
+
+      .leaderboard-item {
+        display: flex;
+        align-items: flex-start;
+        margin: 10px 0;
+      }
+
+      .player-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .player-name {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .player-score {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+      }
+
+      #google-login-btn {
+        font-size: 0;
+        width: 191px;
+        height: 46px;
+        border: none;
+        background: url("../../images/signin/normal.png") center center no-repeat;
+        cursor: pointer;
+      }
+
+      #google-login-btn:focus {
+        background-image: url("../../images/signin/focus.png");
+      }
+
+      #google-login-btn:active {
+        background-image: url("../../images/signin/pressed.png");
+      }
+
+      @media (min-width: 800px) {
+        .game-container {
+          @apply(--layout-horizontal);
+        }
+
+        .game-panel {
+          @apply(--layout-flex-9);
+        }
+
+        .leaderboard-panel {
+          @apply(--layout-flex-3);
+        }
+      }
+
+      @media (min-width: 1600px) {
+        .container {
+          max-width: 960px;
+        }
+      }
+    </style>
+
+    <firebase-auth id="auth" app-name="devfest16" user="{{user}}" signed-in="{{signedIn}}" provider="google"></firebase-auth>
+
+    <div class="container">
+      <div class="details">
+        <div class="details-item" cascaded>
+          <marked-element markdown="{{localize(app.data.minigamesPageText)}}">
+            <div class="markdown-html"></div>
+          </marked-element>
+        </div>
+
+        <div class="details-item game-container" hidden="[[!signedIn]]">
+          <div class="game-panel">
+            <h2>T-Rex Runner</h2>
+
+            <div class="trex-runner-wrapper">
+              <div id="game-screen"></div>
+
+              <div id="offline-resources">
+                <img id="offline-resources-1x" src="../../minigames/trex-runner/images/100-percent/100-offline-sprite.png">
+                <img id="offline-resources-2x" src="../../minigames/trex-runner/images/200-percent/200-offline-sprite.png">
+                <div id="audio-resources">
+                  <audio id="offline-sound-press" src="../../minigames/trex-runner/sounds/button-press.mp3"></audio>
+                  <audio id="offline-sound-hit" src="../../minigames/trex-runner/sounds/hit.mp3"></audio>
+                  <audio id="offline-sound-reached" src="../../minigames/trex-runner/sounds/score-reached.mp3"></audio>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="leaderboard-panel">
+            <h2>Leaderboard</h2>
+
+            <ul class="leaderboard">
+              <template is="dom-if" if="[[!leaderboard.length]]" restamp>
+                <p>No highscores yet.</p>
+              </template>
+              <template is="dom-repeat" items="[[leaderboard]]" as="player">
+                <li class="leaderboard-item">
+                  <img class="player-avatar" src="[[player.user.avatar]]" alt="[[player.user.name]]">
+                  <div class="player-details">
+                    <h2 class="player-name">[[player.user.name]]</h2>
+                    <p class="player-score">Score: [[player.score]]</p>
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-block" hidden="[[signedIn]]">
+      <h2>You need to sign in before you can start playing our minigames.</h2>
+      <button id="google-login-btn">Sign in with Google</button>
+    </div>
+
+    <footer-block app="{{app}}" cascaded></footer-block>
+
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+
+        is: 'minigames-page',
+
+        behaviors: [
+          Polymer.NeonSharedElementAnimatableBehavior,
+          HOVERBOARD.PageBehavior,
+          HOVERBOARD.LocalizeBehavior
+        ],
+
+        properties: {
+          signedIn: {
+            type: Boolean,
+            value: false,
+            observer: '_signedInObserver'
+          },
+
+          user: {
+            type: Object,
+            value: function() {
+              return {};
+            }
+          },
+
+          leaderboard: {
+            type: Array,
+            value: function() {
+              return [];
+            }
+          },
+
+          animationConfig: {
+            type: Object,
+            value: function() {
+              var cascaded = Polymer.dom(this.root).querySelectorAll('[cascaded]');
+              var cascadedArray = Array.prototype.slice.call(cascaded);
+              return {
+                'entry': [{
+                  name: 'fade-in-animation',
+                  animation: 'fade-in-animation',
+                  node: this,
+                  timing: {
+                    delay: 500
+                  }
+                }, {
+                  name: 'cascaded-animation',
+                  animation: 'transform-animation',
+                  transformFrom: 'translate3d(0, 100%, 0)',
+                  nodes: cascadedArray,
+                  timing: {
+                    delay: 500
+                  }
+                }],
+                'exit': [{
+                  name: 'fade-out-animation',
+                  animation: 'fade-out-animation',
+                  node: this
+                }, {
+                  name: 'cascaded-animation',
+                  animation: 'transform-animation',
+                  transformTo: 'translate3d(0, 100%, 0)',
+                  nodes: cascadedArray
+                }]
+              };
+            }
+          }
+        },
+
+        ready: function() {
+          var el = this;
+
+          this.$['google-login-btn'].addEventListener('click', function() {
+            el.$.auth.signInWithPopup('google');
+          });
+        },
+
+        startMinigame: function() {
+          var wrapper = Polymer.dom(this.root).querySelector('.trex-runner-wrapper');
+          var runner = new Runner(wrapper);
+
+          var refStr = 'minigames/trex-runner/highscores/' + this.user.uid;
+          var userHighscoresRef = firebase.database().ref(refStr);
+          var el = this;
+
+          var userData = {
+            name: this.user.displayName,
+            email: this.user.email,
+            avatar: this.user.photoURL
+          };
+
+          runner.on('highscore', function(score) {
+            var data = { user: userData, score: score };
+            userHighscoresRef.setWithPriority(data, -score);
+          });
+
+          // retrieve user's stored highscore
+          firebase.database().ref('minigames/trex-runner/highscores/' + this.user.uid).once('value', function(data) {
+            var highscore = data.val();
+            if (highscore) {
+              localStorage.setItem('trex-runner-highest-score', highscore.score);
+              runner.highestScore = highscore.score;
+              runner.distanceMeter.setHighScore(runner.highestScore);
+            }
+          });
+
+          // retrieve leaderboard
+          var highscoresRef = firebase.database().ref('minigames/trex-runner/highscores');
+          highscoresRef.orderByPriority().limitToFirst(20).on('value', function(data) {
+            var leaderboard = data.val();
+            el.leaderboard = Object.keys(leaderboard).map(function(item) {
+              item = leaderboard[item];
+              item.score = runner.distanceMeter.getActualDistance(item.score);
+              return item;
+            });
+          });
+        },
+
+        _signedInObserver: function() {
+          this.user = this.$.auth.user;
+          if (this.signedIn) {
+            this.startMinigame();
+          }
+        }
+
+      });
+    })();
+  </script>
+
+</dom-module>
