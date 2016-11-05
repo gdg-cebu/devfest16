@@ -105,7 +105,7 @@
     ga.l = +new Date;
 
     // Creates the tracker.
-    if (window.ENV !== 'dev') {
+    if (location.hostname !== 'localhost') {
       ga('create', {
         trackingId: 'UA-82202527-2',
         cookieDomain: 'auto',
