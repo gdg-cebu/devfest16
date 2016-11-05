@@ -106,9 +106,7 @@
     </style>
 
     <firebase-auth id="auth" app-name="devfest16" user="{{user}}" provider="google"></firebase-auth>
-    <template is="dom-if" if="[[user]]">
-      <firebase-document id="codelabs-query" app-name="devfest16" path="/codelabs" data="{{_codelabs}}"></firebase-document>
-    </template>
+    <firebase-document id="codelabs-query" app-name="devfest16" path="/codelabs" data="{{_codelabs}}"></firebase-document>
 
     <div class="container">
       <div class="details">
@@ -133,7 +131,7 @@
 
     <div class="login-block" hidden="[[user]]" cascaded>
       <h2>You need to sign in before you can start doing the codelabs.</h2>
-      <button id="google-login-btn">Sign in with Google</button>
+      <button id="google-login-btn" on-tap="_initiateUserSignin">Sign in with Google</button>
     </div>
 
     <footer-block app="{{app}}" cascaded></footer-block>
@@ -201,7 +199,7 @@
           }
         },
 
-        ready: function() {
+        _initiateUserSignin: function() {
           var el = this;
 
           this.$['google-login-btn'].addEventListener('click', function() {
