@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
@@ -73,7 +74,42 @@
         background: var(--header-color);
         font-size: 13px;
       }
+
+      .user-info-wrapper {
+        margin-left: 16px;
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+      }
+
+      .user-details {
+        margin-left: 8px;
+      }
+
+      .user-name {
+        font-size: 14px;
+      }
+
+      .user-signout {
+        font-size: 12px;
+        font-weight: normal;
+        text-decoration: none;
+        color: inherit;
+        opacity: 0.54;
+        cursor: pointer;
+      }
+
+      .user-signout:hover,
+      .user-signout:focus {
+        text-decoration: underline;
+        opacity: 0.8;
+      }
     </style>
+
+    <firebase-auth id="auth" app-name="devfest16" user="{{user}}" signed-in="{{signedIn}}" provider="google"></firebase-auth>
 
     <app-toolbar id="mainToolbar">
       <div class="navItem leftItem" hidden$="{{!app.isPhoneSize}}">
@@ -103,6 +139,15 @@
               <paper-button class="action-button">[[localize('register-now')]]</paper-button>
             </a>
           </div>
+          <template is="dom-if" if="[[user]]">
+            <div class="user-info-wrapper" layout horizontal center-center>
+              <img class="user-avatar" src="[[user.photoURL]]" alt="[[user.displayName]]">
+              <div class="user-details" layout vertical>
+                <h2 class="user-name">[[user.displayName]]</h2>
+                <a class="user-signout" href="#" on-tap="_signOutUser">Sign Out</a>
+              </div>
+            </div>
+          </template>
         </template>
       </div>
     </app-toolbar>
@@ -125,7 +170,9 @@
         properties: {
           hideLogo: {
             type: Boolean
-          }
+          },
+
+          user: Object
         },
 
         observers: [
@@ -146,6 +193,10 @@
 
         _trackBuyClick: function () {
           HOVERBOARD.Analytics.trackEvent('ticket', 'buy_click', 'toolbar');
+        },
+
+        _signOutUser: function() {
+          this.$.auth.signOut();
         }
 
       });
