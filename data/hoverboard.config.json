@@ -172,6 +172,7 @@
   "teamPageTitle": "team-page-title",
   "teamPageText": "team-page-text",
   "minigamesPageText": "minigames-page-text",
+  "codelabsPageText": "codelabs-page-text",
   "statistics": [
     {
       "counter": 1000,

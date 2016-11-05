@@ -2,14 +2,80 @@
 
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 
 <link rel="import" href="../behaviors/page-behavior.html">
+<link rel="import" href="../behaviors/localize-behavior.html">
 <link rel="import" href="../elements/footer-block.html">
+<link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="codelabs-page">
 
   <template>
+
+    <style include="shared-styles">
+      .details {
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+      }
+
+      .details-item {
+        @apply(--layout-horizontal);
+        margin: 0 auto;
+        padding-bottom: 32px;
+      }
+
+      .login-block {
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+        padding: 75px;
+        background-color: var(--header-background);
+      }
+
+      .login-block h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #fff;
+      }
+
+      #google-login-btn {
+        font-size: 0;
+        width: 191px;
+        height: 46px;
+        border: none;
+        background: url("../../images/signin/normal.png") center center no-repeat;
+        cursor: pointer;
+      }
+
+      #google-login-btn:focus {
+        background-image: url("../../images/signin/focus.png");
+      }
+
+      #google-login-btn:active {
+        background-image: url("../../images/signin/pressed.png");
+      }
+    </style>
+
+    <firebase-auth id="auth" app-name="devfest16" user="{{user}}" provider="google"></firebase-auth>
+
+    <div class="container">
+      <div class="details">
+        <div class="details-item" cascaded>
+          <marked-element markdown="{{localize(app.data.codelabsPageText)}}">
+            <div class="markdown-html"></div>
+          </marked-element>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-block" hidden="[[user]]" cascaded>
+      <h2>You need to sign in before you can start doing the codelabs.</h2>
+      <button id="google-login-btn">Sign in with Google</button>
+    </div>
+
     <footer-block app="{{app}}" cascaded></footer-block>
+
   </template>
 
   <script>
@@ -22,10 +88,13 @@
 
         behaviors: [
           Polymer.NeonSharedElementAnimatableBehavior,
-          HOVERBOARD.PageBehavior
+          HOVERBOARD.PageBehavior,
+          HOVERBOARD.LocalizeBehavior
         ],
 
         properties: {
+          user: Object,
+
           animationConfig: {
             type: Object,
             value: function() {
@@ -61,6 +130,14 @@
               };
             }
           }
+        },
+
+        ready: function() {
+          var el = this;
+
+          this.$['google-login-btn'].addEventListener('click', function() {
+            el.$.auth.signInWithPopup('google');
+          });
         }
 
       });
