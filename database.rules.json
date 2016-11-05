@@ -1,6 +1,10 @@
 {
   "rules": {
     ".read": true,
-    ".write": false
+    ".write": false,
+    "minigames": {
+      ".read": true,
+      ".write": true
+    }
   }
 }
