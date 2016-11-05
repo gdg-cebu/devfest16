@@ -208,8 +208,8 @@
       </div>
 
       <template is="dom-repeat" items="[[app.team]]" as="team">
-        <div class="team-block">
-          <h3 class="team-name" cascaded>[[team.title]]</h3>
+        <div class="team-block" cascaded>
+          <h3 class="team-name">[[team.title]]</h3>
 
           <div class="team-container">
             <template is="dom-repeat" items="[[team.members]]" as="member" on-dom-change="_updateCascadedNodes">
