@@ -65,12 +65,23 @@
         "fontColor": "#fff",
         "tabBarColor": "#fff"
       }
+    },
+    "codelabs": {
+      "headerSettings": {
+        "backgroundColor": "#3F51B5",
+        "fontColor": "#fff",
+        "tabBarColor": "#fff"
+      }
     }
   },
   "navigation": [
     {
       "route": "home",
       "permalink": "/"
+    },
+    {
+      "route": "codelabs",
+      "permalink": "/codelabs/"
     },
     {
       "route": "hackathon",
