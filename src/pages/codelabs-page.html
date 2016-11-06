@@ -85,6 +85,7 @@
     <firebase-auth id="auth" app-name="devfest16" user="{{user}}" provider="google"></firebase-auth>
     <template is="dom-if" if="[[user]]">
       <firebase-document app-name="devfest16" path="/codelabs/challenges" data="{{_codelabs}}"></firebase-document>
+      <firebase-document app-name="devfest16" path="[[progressPath]]" data="{{progress}}"></firebase-document>
     </template>
 
     <div class="container">
@@ -100,7 +101,7 @@
           <spinner-element active="[[_displaySpinner(codelabs)]]"></spinner-element>
 
           <template is="dom-repeat" items="[[codelabs]]" as="codelab">
-            <codelab-element data="[[codelab]]"></codelab-element>
+            <codelab-element data="[[codelab]]" progress="[[progress]]"></codelab-element>
           </template>
         </div>
       </div>
@@ -137,6 +138,13 @@
           codelabs: {
             type: Array,
             computed: '_computeCodelabsProperty(_codelabs)'
+          },
+
+          progress: Object,
+
+          progressPath: {
+            type: String,
+            computed: '_computeProgressPathProperty(user)'
           },
 
           animationConfig: {
@@ -176,16 +184,16 @@
           }
         },
 
-        ready: function() {
-          console.dir(this);
-        },
-
         _computeCodelabsProperty: function() {
           return Object.keys(this._codelabs).map(function(key) {
             var codelab = this._codelabs[key];
             codelab.key = key;
             return codelab;
           }.bind(this));
+        },
+
+        _computeProgressPathProperty: function() {
+          return this.user ? '/codelabs/participants/' + this.user.uid : null;
         },
 
         _initiateUserSignIn: function() {

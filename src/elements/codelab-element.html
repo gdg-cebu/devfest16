@@ -54,7 +54,7 @@
     <paper-material elevation="1">
       <img class="codelab-category" src="[[_getCodelabImage(data)]]" alt="[[data.title]]">
       <p class="codelab-title">[[data.title]]</p>
-      <iron-icon class="codelab-status" icon="code"></iron-icon>
+      <iron-icon class="codelab-status" icon="[[_getCodelabStatusIcon(data, progress)]]"></iron-icon>
     </paper-material>
 
   </template>
@@ -68,11 +68,21 @@
         is: 'codelab-element',
 
         properties: {
-          data: Object
+          data: Object,
+
+          progress: Object
         },
 
         _getCodelabImage: function(codelab) {
           return '/images/technologies/' + codelab.category + '.png';
+        },
+
+        _getCodelabStatusIcon: function() {
+          if (!this.data || !this.progress) {
+            return null;
+          } else if (!this.progress[this.data.key]) {
+            return 'code';
+          }
         }
 
       });
