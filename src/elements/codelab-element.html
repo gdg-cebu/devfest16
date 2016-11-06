@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <dom-module id="codelab-element">
@@ -31,12 +32,19 @@
 
       .codelab-title {
         margin: 0;
+        flex-grow: 1;
+      }
+
+      .codelab-status {
+        flex-shrink: 0;
+        color: #009688;
       }
     </style>
 
     <paper-material elevation="1">
       <img class="codelab-category" src="[[_getCodelabImage(data)]]" alt="[[data.title]]">
       <p class="codelab-title">[[data.title]]</p>
+      <iron-icon class="codelab-status" icon="code"></iron-icon>
     </paper-material>
 
   </template>
