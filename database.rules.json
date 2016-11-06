@@ -5,6 +5,10 @@
     "minigames": {
       ".read": true,
       ".write": true
+    },
+    "codelabs": {
+      ".read": true,
+      ".write": true
     }
   }
 }
