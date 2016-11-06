@@ -1,8 +1,12 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
@@ -69,6 +73,35 @@
         background-image: url("../../images/signin/pressed.png");
       }
 
+      paper-dialog {
+        max-width: 500px;
+        padding: 16px;
+        background-color: #fff;
+      }
+
+      paper-dialog img {
+        width: 64px;
+      }
+
+      paper-dialog h1 {
+        margin-bottom: 24px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      paper-dialog p {
+        font-size: 16px;
+      }
+
+      paper-dialog span {
+        font-weight: bold;
+      }
+
+      paper-dialog paper-button {
+        color: #fff;
+        background-color: var(--paper-indigo-500);
+      }
+
       @media (min-width: 769px) {
         codelab-element {
           width: calc((100% - 40px) / 2);
@@ -111,6 +144,15 @@
       <h2>You need to sign in before you can start doing the codelabs.</h2>
       <button id="google-login-btn" on-tap="_initiateUserSignIn">Sign in with Google</button>
     </div>
+
+    <paper-dialog id="codelab-dialog" with-backdrop layout vertical center>
+      <img class="codelab-category" src="/images/technologies/android.png" alt="codelab category">
+      <h1 class="codelab-title">Getting your app ready for Android N</h1>
+      <p class="codelab-instructions">You have <span class="time">1 hour and 45 minutes</span> to finish the codelab to unlock the quiz.</p>
+      <div class="actions">
+        <paper-button raised>Start Codelab</paper-button>
+      </div>
+    </paper-dialog>
 
     <footer-block app="{{app}}" cascaded></footer-block>
 
