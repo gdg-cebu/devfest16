@@ -8,6 +8,7 @@
 <link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
 <link rel="import" href="../elements/footer-block.html">
+<link rel="import" href="../elements/spinner-element.html">
 <link rel="import" href="../behaviors/page-behavior.html">
 <link rel="import" href="../behaviors/localize-behavior.html">
 <link rel="import" href="../styles/shared-styles.html">
@@ -113,7 +114,10 @@
           </marked-element>
         </div>
 
+
         <div class="details-item codelabs-container" hidden="[[!user]]" cascaded>
+          <spinner-element active="[[_displaySpinner(codelabs)]]"></spinner-element>
+
           <template is="dom-repeat" items="[[codelabs]]" as="codelab">
             <paper-material elevation="1">
               <img class="codelab-category" src="[[_getCodelabImage(codelab)]]" alt="[[codelab.title]]">
@@ -212,6 +216,10 @@
 
         _getCodelabImage: function(codelab) {
           return '/images/technologies/' + codelab.category + '.png';
+        },
+
+        _displaySpinner: function() {
+          return this.codelabs.length === 0;
         }
 
       });
