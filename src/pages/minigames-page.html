@@ -134,7 +134,7 @@
           </marked-element>
         </div>
 
-        <div class="details-item game-container" hidden="[[!signedIn]]">
+        <div class="details-item game-container" hidden="[[!signedIn]]" cascaded>
           <div class="game-panel">
             <h2>T-Rex Runner</h2>
 
@@ -219,6 +219,14 @@
             }
           },
 
+          selected: {
+            type: Boolean,
+            value: false,
+            observer: '_selectedObserver'
+          },
+
+          runner: Object,
+
           animationConfig: {
             type: Object,
             value: function() {
@@ -266,7 +274,8 @@
 
         startMinigame: function() {
           var wrapper = Polymer.dom(this.root).querySelector('.trex-runner-wrapper');
-          var runner = new Runner(wrapper);
+          this.runner = new Runner(wrapper);
+          var runner = this.runner;
 
           var refStr = 'minigames/trex-runner/highscores/' + this.user.uid;
           var userHighscoresRef = firebase.database().ref(refStr);
@@ -309,6 +318,12 @@
           this.user = this.$.auth.user;
           if (this.signedIn) {
             this.startMinigame();
+          }
+        },
+
+        _selectedObserver: function() {
+          if (this.selected && this.runner) {
+            this.runner.adjustDimensions();
           }
         }
 
