@@ -84,7 +84,7 @@
 
     <firebase-auth id="auth" app-name="devfest16" user="{{user}}" provider="google"></firebase-auth>
     <template is="dom-if" if="[[user]]">
-      <firebase-document app-name="devfest16" path="/codelabs" data="{{_codelabs}}"></firebase-document>
+      <firebase-document app-name="devfest16" path="/codelabs/challenges" data="{{_codelabs}}"></firebase-document>
     </template>
 
     <div class="container">
