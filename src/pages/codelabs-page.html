@@ -3,12 +3,12 @@
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
 <link rel="import" href="../elements/footer-block.html">
 <link rel="import" href="../elements/spinner-element.html">
+<link rel="import" href="../elements/codelab-element.html">
 <link rel="import" href="../behaviors/page-behavior.html">
 <link rel="import" href="../behaviors/localize-behavior.html">
 <link rel="import" href="../styles/shared-styles.html">
@@ -33,29 +33,10 @@
         flex-wrap: wrap;
       }
 
-      paper-material {
-        display: flex;
-        align-items: center;
-        box-sizing: border-box;
+      codelab-element {
         width: 100%;
-        padding: 16px;
         margin: 10px;
-        font-weight: 300;
         background-color: #eee;
-        cursor: pointer;
-      }
-
-      .codelab-category {
-        flex-shrink: 0;
-        width: 50px;
-        height: 50px;
-        margin-right: 16px;
-        object-fit: contain;
-        object-position: center center;
-      }
-
-      .codelab-title {
-        margin: 0;
       }
 
       .login-block {
@@ -89,7 +70,7 @@
       }
 
       @media (min-width: 769px) {
-        paper-material {
+        codelab-element {
           width: calc((100% - 40px) / 2);
         }
       }
@@ -119,10 +100,7 @@
           <spinner-element active="[[_displaySpinner(codelabs)]]"></spinner-element>
 
           <template is="dom-repeat" items="[[codelabs]]" as="codelab">
-            <paper-material elevation="1">
-              <img class="codelab-category" src="[[_getCodelabImage(codelab)]]" alt="[[codelab.title]]">
-              <p class="codelab-title">[[codelab.title]]</p>
-            </paper-material>
+            <codelab-element data="[[codelab]]"></codelab-element>
           </template>
         </div>
       </div>
@@ -212,10 +190,6 @@
 
         _initiateUserSignIn: function() {
           this.$.auth.signInWithPopup('google');
-        },
-
-        _getCodelabImage: function(codelab) {
-          return '/images/technologies/' + codelab.category + '.png';
         },
 
         _displaySpinner: function() {

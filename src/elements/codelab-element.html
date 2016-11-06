@@ -1,0 +1,64 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+<dom-module id="codelab-element">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-material {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 16px;
+        font-weight: 300;
+        cursor: pointer;
+      }
+
+      .codelab-category {
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+        margin-right: 16px;
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .codelab-title {
+        margin: 0;
+      }
+    </style>
+
+    <paper-material elevation="1">
+      <img class="codelab-category" src="[[_getCodelabImage(data)]]" alt="[[data.title]]">
+      <p class="codelab-title">[[data.title]]</p>
+    </paper-material>
+
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+
+        is: 'codelab-element',
+
+        properties: {
+          data: Object
+        },
+
+        _getCodelabImage: function(codelab) {
+          return '/images/technologies/' + codelab.category + '.png';
+        },
+
+      });
+    })();
+  </script>
+
+</dom-module>
