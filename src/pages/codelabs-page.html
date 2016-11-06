@@ -75,7 +75,7 @@
 
       paper-dialog {
         max-width: 500px;
-        padding: 16px;
+        padding: 16px 32px;
         background-color: #fff;
       }
 
@@ -87,6 +87,7 @@
         margin-bottom: 24px;
         font-size: 18px;
         font-weight: bold;
+        text-align: center;
       }
 
       paper-dialog p {
@@ -134,7 +135,7 @@
           <spinner-element active="[[_displaySpinner(codelabs)]]"></spinner-element>
 
           <template is="dom-repeat" items="[[codelabs]]" as="codelab">
-            <codelab-element data="[[codelab]]" progress="[[progress]]"></codelab-element>
+            <codelab-element data="[[codelab]]" progress="[[progress]]" on-open-codelab="_openCodelab"></codelab-element>
           </template>
         </div>
       </div>
@@ -148,7 +149,7 @@
     <paper-dialog id="codelab-dialog" with-backdrop layout vertical center>
       <img class="codelab-category" src="/images/technologies/android.png" alt="codelab category">
       <h1 class="codelab-title">Getting your app ready for Android N</h1>
-      <p class="codelab-instructions">You have <span class="time">1 hour and 45 minutes</span> to finish the codelab to unlock the quiz.</p>
+      <p class="codelab-instructions">You have <span class="time">1 hour and 45 minutes</span> to finish this codelab to unlock the quiz.</p>
       <div class="actions">
         <paper-button raised>Start Codelab</paper-button>
       </div>
@@ -244,6 +245,27 @@
 
         _displaySpinner: function() {
           return this.codelabs.length === 0;
+        },
+
+        _currentCodelab: function() {
+          return Object.keys(this.progress).filter(function(key) {
+            var hasStartTime = this.progress[key].hasOwnProperty('start_time');
+            var hasEndTime = this.progress[key].hasOwnProperty('end_time');
+            return hasStartTime && !hasEndTime;
+          })[0];
+        },
+
+        _openCodelab: function(e, codelab) {
+          var currentCodelab = this._currentCodelab();
+          if (currentCodelab) {
+
+          } else {
+            var dialog = this.$['codelab-dialog'];
+            dialog.querySelector('img').src = codelab._getCodelabImage();
+            dialog.querySelector('h1').textContent = codelab.data.title;
+            dialog.querySelector('span.time').textContent = codelab._formattedDuration(codelab.data.duration);
+            dialog.open();
+          }
         }
 
       });

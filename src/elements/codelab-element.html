@@ -73,8 +73,14 @@
           progress: Object
         },
 
-        _getCodelabImage: function(codelab) {
-          return '/images/technologies/' + codelab.category + '.png';
+        ready: function() {
+          this.addEventListener('click', function() {
+            this.fire('open-codelab', this);
+          }.bind(this));
+        },
+
+        _getCodelabImage: function() {
+          return '/images/technologies/' + this.data.category + '.png';
         },
 
         _getCodelabStatusIcon: function() {
@@ -83,6 +89,27 @@
           } else if (!this.progress[this.data.key]) {
             return 'code';
           }
+        },
+
+        _formattedDuration: function(time) {
+          var hours = Math.floor(time / 60 / 60);
+          var minutes = Math.floor(time / 60) % 60;
+          var seconds = time % 60;
+          var duration = [];
+          if (hours > 0) {
+            duration.push(hours + (hours > 1 ? ' hours' : ' hour'));
+          }
+          if (minutes > 0) {
+            duration.push(minutes + (minutes > 1 ? ' minutes' : ' minute'));
+          }
+          if (seconds > 0) {
+            duration.push(seconds + (seconds > 1 ? ' seconds' : ' second'));
+          }
+          if (duration.length <= 2) {
+            return duration.join(' and ');
+          }
+          return duration.slice(0, duration.length - 1).join(', ')
+            + ' and ' + duration[duration.length - 1];
         }
 
       });
