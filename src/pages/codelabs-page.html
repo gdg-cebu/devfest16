@@ -103,6 +103,15 @@
         background-color: var(--paper-indigo-500);
       }
 
+      paper-dialog .actions {
+        text-align: center;
+      }
+
+      paper-dialog .error-message {
+        font-size: 12px;
+        color: var(--paper-red-500);
+      }
+
       @media (min-width: 769px) {
         codelab-element {
           width: calc((100% - 40px) / 2);
@@ -151,7 +160,10 @@
       <h1 class="codelab-title">[[_openedCodelab.data.title]]</h1>
       <p class="codelab-instructions">You have <span class="time">[[_openedCodelab.durationString]]</span> to finish this codelab to unlock the quiz.</p>
       <div class="actions">
-        <paper-button raised on-tap="_startCodelab">Start Codelab</paper-button>
+        <paper-button raised disabled="[[!_canStartCodelab(_openedCodelab)]]" on-tap="_startCodelab">Start Codelab</paper-button>
+        <template is="dom-if" if="[[!_canStartCodelab(_openedCodelab)]]">
+          <p class="error-message">You can't start this codelab because you have a codelab in progress.</p>
+        </template>
       </div>
     </paper-dialog>
 
@@ -190,10 +202,7 @@
             computed: '_computeProgressPathProperty(user)'
           },
 
-          _openedCodelab: {
-            type: Object,
-            notify: true
-          },
+          _openedCodelab: Object,
 
           animationConfig: {
             type: Object,
@@ -268,8 +277,11 @@
 
         _openCodelab: function(e, codelab) {
           this._openedCodelab = codelab;
-          var currentCodelab = this._currentCodelab();
           this.$['codelab-dialog'].open();
+        },
+
+        _canStartCodelab: function() {
+          return this._currentCodelab() === undefined;
         },
 
         _startCodelab: function() {
