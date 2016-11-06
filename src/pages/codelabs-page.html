@@ -2,15 +2,14 @@
 
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
-<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
+<link rel="import" href="../elements/footer-block.html">
 <link rel="import" href="../behaviors/page-behavior.html">
 <link rel="import" href="../behaviors/localize-behavior.html">
-<link rel="import" href="../elements/footer-block.html">
 <link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="codelabs-page">
@@ -27,6 +26,35 @@
         @apply(--layout-horizontal);
         margin: 0 auto;
         padding-bottom: 32px;
+      }
+
+      .codelabs-container {
+        flex-wrap: wrap;
+      }
+
+      paper-material {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 16px;
+        margin: 10px;
+        font-weight: 300;
+        background-color: #eee;
+        cursor: pointer;
+      }
+
+      .codelab-category {
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+        margin-right: 16px;
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .codelab-title {
+        margin: 0;
       }
 
       .login-block {
@@ -59,39 +87,6 @@
         background-image: url("../../images/signin/pressed.png");
       }
 
-      .codelabs-container {
-        flex-wrap: wrap;
-      }
-
-      paper-spinner:not([active]) {
-        display: none;
-      }
-
-      paper-material {
-        display: flex;
-        align-items: center;
-        box-sizing: border-box;
-        width: 100%;
-        padding: 16px;
-        margin: 10px;
-        font-weight: 300;
-        background-color: #eee;
-        cursor: pointer;
-      }
-
-      .codelab-category {
-        flex-shrink: 0;
-        width: 50px;
-        height: 50px;
-        margin-right: 16px;
-        object-fit: contain;
-        object-position: center center;
-      }
-
-      .codelab-title {
-        margin: 0;
-      }
-
       @media (min-width: 769px) {
         paper-material {
           width: calc((100% - 40px) / 2);
@@ -107,7 +102,7 @@
 
     <firebase-auth id="auth" app-name="devfest16" user="{{user}}" provider="google"></firebase-auth>
     <template is="dom-if" if="[[user]]">
-      <firebase-document id="codelabs-query" app-name="devfest16" path="/codelabs" data="{{_codelabs}}"></firebase-document>
+      <firebase-document app-name="devfest16" path="/codelabs" data="{{_codelabs}}"></firebase-document>
     </template>
 
     <div class="container">
@@ -119,11 +114,9 @@
         </div>
 
         <div class="details-item codelabs-container" hidden="[[!user]]" cascaded>
-          <paper-spinner id="spinner" active="[[!codelabs.length]]"></paper-spinner>
-
           <template is="dom-repeat" items="[[codelabs]]" as="codelab">
             <paper-material elevation="1">
-              <img class="codelab-category" src="/images/technologies/[[codelab.category]].png" alt="[[codelab.category]]">
+              <img class="codelab-category" src="[[_getCodelabImage(codelab)]]" alt="[[codelab.title]]">
               <p class="codelab-title">[[codelab.title]]</p>
             </paper-material>
           </template>
@@ -133,7 +126,7 @@
 
     <div class="login-block" hidden="[[user]]" cascaded>
       <h2>You need to sign in before you can start doing the codelabs.</h2>
-      <button id="google-login-btn">Sign in with Google</button>
+      <button id="google-login-btn" on-tap="_initiateUserSignIn">Sign in with Google</button>
     </div>
 
     <footer-block app="{{app}}" cascaded></footer-block>
@@ -160,7 +153,7 @@
           _codelabs: Object,
 
           codelabs: {
-            type: Array,
+            type: Object,
             computed: '_computeCodelabsProperty(_codelabs)'
           },
 
@@ -202,11 +195,7 @@
         },
 
         ready: function() {
-          var el = this;
-
-          this.$['google-login-btn'].addEventListener('click', function() {
-            el.$.auth.signInWithPopup('google');
-          });
+          console.dir(this);
         },
 
         _computeCodelabsProperty: function() {
@@ -215,6 +204,14 @@
             codelab.key = key;
             return codelab;
           }.bind(this));
+        },
+
+        _initiateUserSignIn: function() {
+          this.$.auth.signInWithPopup('google');
+        },
+
+        _getCodelabImage: function(codelab) {
+          return '/images/technologies/' + codelab.category + '.png';
         }
 
       });
