@@ -1,157 +1,148 @@
 {
   "100": {
     "id": 100,
-    "title": "Registration",
-    "description": "",
-    "image": "/images/backgrounds/registration.jpg"
+    "title": "Start of Hackathon"
   },
-  "101": {
-    "id": 101,
-    "title": "GDG DevFest Cebu Opening",
-    "description": "",
-    "image": "/images/backgrounds/opening.jpg"
+
+  "200": {
+    "id": 200,
+    "title": "Registration"
   },
-  "102": {
-    "id": 102,
-    "title": "Keynote: TBD",
-    "description": ""
+
+  "201": {
+    "id": 201,
+    "title": "Philippine National Anthem"
   },
-  "103": {
-    "id": 103,
-    "title": "Talk on Firebase 2.0",
-    "description": "",
+
+  "202": {
+    "id": 202,
+    "title": "Opening Remarks",
+    "speakers": [
+      9
+    ]
+  },
+
+  "203": {
+    "id": 203,
+    "title": "Introduction Spills"
+  },
+
+  "204": {
+    "id": 204,
+    "title": "Codelabs Introduction",
+    "speakers": [
+      4
+    ]
+  },
+
+  "205": {
+    "id": 205,
+    "title": "Google Developers Group Keynote",
     "speakers": [
       1
-    ],
-    "tags": [
-      "Firebase",
-      "Web"
     ]
   },
-  "104": {
-    "id": 104,
-    "title": "Talk on Android 4.8 N",
-    "description": "",
+
+  "206": {
+    "id": 206,
+    "title": "Talk: Progressive Web Apps",
     "speakers": [
-      2
-    ],
-    "tags": [
-      "Android"
-    ]
-  },
-  "105": {
-    "id": 105,
-    "title": "Lunch Break",
-    "description": "Fooooooooooood!",
-    "image": "/images/backgrounds/lunch.jpg"
-  },
-  "106": {
-    "id": 106,
-    "title": "Android Workshop",
-    "description": "",
-    "speakers": [
-      1
-    ],
-    "tags": [
-      "Android"
-    ]
-  },
-  "107": {
-    "id": 107,
-    "title": "Firebase 2.0",
-    "description": "",
-    "speakers": [
-      2
-    ],
-    "tags": [
-      "Firebase",
-      "Web"
-    ]
-  },
-  "108": {
-    "id": 108,
-    "title": "Polymer",
-    "description": "",
-    "speakers": [
-      1
-    ],
-    "tags": [
-      "Polymer",
-      "Web"
-    ]
-  },
-  "109": {
-    "id": 109,
-    "title": "Progressive Web Apps",
-    "description": "",
-    "complexity": "Intermediate",
-    "speakers": [
-      2
+      4
     ],
     "tags": [
       "Progressive Web Apps",
       "Web"
     ]
   },
-  "110": {
-    "id": 110,
-    "title": "Coffee Break",
-    "description": "",
-    "image": "/images/backgrounds/coffee-break.jpg"
+
+  "207": {
+    "id": 207,
+    "title": "Talk: IoT + Firebase",
+    "speaker": [
+      5
+    ],
+    "tags": [
+      "Internet of Things",
+      "Firebase"
+    ]
   },
-  "111": {
-    "id": 111,
-    "title": "Android Games",
-    "description": "",
+
+  "208": {
+    "id": 208,
+    "title": "Partners: Unionbank + CitySavings Supports Developers",
     "speakers": [
-      1
+      10
+    ]
+  },
+
+  "209": {
+    "id": 209,
+    "title": "Give out certificates for morning speakers"
+  },
+
+  "210": {
+    "id": 210,
+    "title": "Lunch Break"
+  },
+
+  "211": {
+    "id": 211,
+    "title": "Talk + Workshop: Beacons",
+    "speakers": [
+      7
+    ],
+    "tags": [
+      "Physical Web"
+    ]
+  },
+
+  "212": {
+    "id": 212,
+    "title": "Talk: Android",
+    "speakers": [
+      6
     ],
     "tags": [
       "Android"
     ]
   },
-  "112": {
-    "id": 112,
-    "title": "Startup for Entrepreneurs",
-    "description": "",
+
+  "213": {
+    "id": 213,
+    "title": "Talk: Google for Entrepreneurs and Startup Tools",
+    "speakers": [
+      8
+    ]
+  },
+
+  "214": {
+    "id": 214,
+    "title": "Talk: GDE Experience + Machine Learning with TensorFlow",
+    "speakers": [
+      3
+    ],
+    "tags": [
+      "TensorFlow",
+      "Machine Learning"
+    ]
+  },
+
+  "215": {
+    "id": 215,
+    "title": "Hackathon Judging + Awarding"
+  },
+
+  "216": {
+    "id": 216,
+    "title": "Closing Remarks",
     "speakers": [
       2
     ]
   },
-  "113": {
-    "id": 113,
-    "title": "Internet of Things",
-    "description": "",
-    "speakers": [
-      1
-    ]
-  },
-  "114": {
-    "id": 114,
-    "title": "TensorFlow",
-    "description": "",
-    "speakers": [
-      2
-    ]
-  },
-  "115": {
-    "id": 115,
-    "title": "Coffee Break",
-    "description": "",
-    "image": "/images/backgrounds/coffee-break.jpg"
-  },
-  "116": {
-    "id": 116,
-    "title": "Final Talk",
-    "description": "Albert Padin: Google Developer Expert on Web Development",
-    "speakers": [
-      1
-    ]
-  },
-  "117": {
-    "id": 117,
-    "title": "Closing",
-    "description": "Certificates for our speakers and group photo!",
-    "image": "/images/backgrounds/closing.jpg"
+
+  "217": {
+    "id": 217,
+    "title": "Give out certificates for the speakers",
+    "description": "plus distribution of shirts and group photo!"
   }
 }

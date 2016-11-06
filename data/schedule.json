@@ -1,95 +1,133 @@
 [
   {
-    "date": "2016-10-19",
-    "dateReadable": "November 19",
-    "tracks": [{
-      "title": "Alpha Room"
-    }, {
-      "title": "Beta Room"
-    }, {
-      "title": "Charlie Room"
-    }, {
-      "title": "Delta Room"
-    }],
-    "timeslots": [{
-      "startTime": "07:30",
-      "endTime": "09:00",
+    "date": "2016-11-18",
+    "dateReadable": "November 18",
+    "tracks": [ {
+      "title": "The TIDE"
+    } ],
+    "timeslots": [ {
+      "startTime": "18:00",
+      "endTime": "22:00",
       "sessions": [
         [100]
       ]
+    } ]
+  },
+
+  {
+    "date": "2016-11-19",
+    "dateReadable": "November 19",
+    "tracks": [ {
+      "title": "Centerstage Hall"
+    } ],
+    "timeslots": [ {
+      "startTime": "07:00",
+      "endTime": "08:45",
+      "sessions": [
+        [200]
+      ]
+    }, {
+      "startTime": "08:45",
+      "endTime": "08:50",
+      "sessions": [
+        [201]
+      ]
+    }, {
+      "startTime": "08:50",
+      "endTime": "09:00",
+      "sessions": [
+        [202]
+      ]
     }, {
       "startTime": "09:00",
+      "endTime": "09:15",
+      "sessions": [
+        [203]
+      ]
+    }, {
+      "startTime": "09:15",
       "endTime": "09:30",
       "sessions": [
-        [101]
+        [204]
       ]
     }, {
       "startTime": "09:30",
       "endTime": "10:15",
       "sessions": [
-        [102]
+        [205]
       ]
     }, {
       "startTime": "10:15",
+      "endTime": "10:50",
+      "sessions": [
+        [206]
+      ]
+    }, {
+      "startTime": "10:50",
       "endTime": "11:30",
       "sessions": [
-        [103]
+        [207]
       ]
     }, {
       "startTime": "11:30",
+      "endTime": "12:00",
+      "sessions": [
+        [208]
+      ]
+    }, {
+      "startTime": "12:00",
       "endTime": "12:15",
       "sessions": [
-        [104]
+        [209]
       ]
     }, {
       "startTime": "12:15",
-      "endTime": "13:30",
+      "endTime": "13:15",
       "sessions": [
-        [105]
+        [210]
       ]
     }, {
-      "startTime": "13:30",
+      "startTime": "13:15",
+      "endTime": "14:30",
+      "sessions": [
+        [211]
+      ]
+    }, {
+      "startTime": "14:30",
       "endTime": "15:30",
       "sessions": [
-        [106],
-        [107],
-        [108],
-        [109]
+        [212]
       ]
     }, {
       "startTime": "15:30",
-      "endTime": "15:45",
+      "endTime": "16:15",
       "sessions": [
-        [110]
+        [213]
       ]
     }, {
-      "startTime": "15:45",
+      "startTime": "16:15",
       "endTime": "17:30",
       "sessions": [
-        [111],
-        [112],
-        [113],
-        [114]
+        [214]
       ]
     }, {
       "startTime": "17:30",
-      "endTime": "18:00",
+      "endTime": "18:20",
       "sessions": [
-        [115]
+        [215]
       ]
     }, {
-      "startTime": "18:00",
-      "endTime": "18:45",
+      "startTime": "18:20",
+      "endTime": "18:40",
       "sessions": [
-        [116]
+        [216]
       ]
     }, {
-      "startTime": "18:45",
-      "endTime": "19:30",
+      "startTime": "18:40",
+      "endTime": "19:00",
       "sessions": [
-        [117]
+        [217]
       ]
-    }
-    ]
+    } ]
   }
 ]
