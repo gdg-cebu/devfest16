@@ -1,85 +1,151 @@
 {
   "1": {
     "id": 1,
-    "featured": "true",
-    "name": "Albert Padin",
-    "title": "CTO and Co-Founder",
-    "company": "Symph",
-    "companyLogo": "/images/logos/symph.png",
-    "country": "Cebu City, Philippines",
-    "photoUrl": "/images/people/albert_padin.jpg",
-    "shortBio": "Albert is a Co-Founder and CTO of Symph, as well as the only Google Developer Expert in the Philippines.",
-    "bio": "Albert is a Co-Founder and CTO of Symph, as well as the only Google Developer Expert in the Philippines.",
+    "name": "Soonson Kwon",
+    "title": "Head of APAC Ecosystem, Developer Platforms",
+    "photoUrl": "/images/people/soonson_kwon.jpg",
+    "company": "Google",
+    "companyLogo": "/images/logos/google.svg",
+    "country": "Korea",
+    "shortBio": "",
+    "bio": "",
     "tags": [
-      "AppEngine",
-      "Datastore",
-      "Cloud Storage"
-    ],
-    "badges": [
-
-    ],
-    "socials": [
-      {
-        "icon": "linkedin",
-        "name": "LinkedIn",
-        "link": "https://ph.linkedin.com/pub/albert-padin/9/556/82a/"
-      },
-      {
-        "icon": "twitter",
-        "name": "Twitter",
-        "link": "https://twitter.com/albertpadin/"
-      },
-      {
-        "icon": "github",
-        "name": "GitHub",
-        "link": "https://github.com/albertpadin/"
-      },
-      {
-        "icon": "gplus",
-        "name": "Google+",
-        "link": "https://plus.google.com/110932426733785443586/"
-      },
-      {
-        "icon": "website",
-        "name": "Website",
-        "link": "http://albertpadin.com/"
-      }
+      "Community"
     ]
   },
+
   "2": {
     "id": 2,
-    "featured": "true",
-    "name": "Shad Roi de la Cruz",
-    "title": "GDG Cebu Community Manager",
+    "name": "Chelle Gray",
+    "photoUrl": "/images/people/chelle_gray.jpg",
+    "title": "",
+    "company": "Google",
+    "companyLogo": "/images/logos/google.svg",
+    "country": "Manila, Philippines",
+    "shortBio": "",
+    "bio": "",
+    "tags": [
+      "Community"
+    ]
+  },
+
+  "3": {
+    "id": 3,
+    "name": "Albert Padin",
+    "title": "CTO and Co-Founder",
+    "photoUrl": "/images/people/albert_padin.jpg",
     "company": "Symph",
     "companyLogo": "/images/logos/symph.png",
     "country": "Cebu City, Philippines",
-    "photoUrl": "/images/people/shad_roi.jpg",
-    "shortBio": "Shad Roi is the current community manager of Google Developers Group Cebu.",
-    "bio": "Shad Roi is the current community manager of Google Developers Group Cebu.",
+    "shortBio": "",
+    "bio": "",
     "tags": [
-      "Firebase",
-      "Community"
-    ],
-    "badges": [
-
-    ],
-    "socials": [
-      {
-        "icon": "twitter",
-        "name": "Twitter",
-        "link": "https://github.com/shadroi/"
-      },
-      {
-        "icon": "github",
-        "name": "GitHub",
-        "link": "https://github.com/shadroi/"
-      },
-      {
-        "icon": "website",
-        "name": "Website",
-        "link": "http://www.shadroi.com/"
-      }
+      "TensorFlow",
+      "Machine Learning"
     ]
+  },
+
+  "4": {
+    "id": 4,
+    "name": "Julia Camille Menchavez",
+    "photoUrl": "/images/people/julia_menchavez.jpg",
+    "title": "Backend Developer",
+    "company": "Channelfix",
+    "companyLogo": "/images/logos/channelfix.png",
+    "country": "Mandaue City, Philippines",
+    "shortBio": "",
+    "bio": "",
+    "tags": [
+      "Progressive Web Apps"
+    ]
+  },
+
+  "5": {
+    "id": 5,
+    "name": "Josan Chug",
+    "photoUrl": "/images/people/josan_chug.jpg",
+    "title": "Creative Directory",
+    "company": "Aestrea Software Development",
+    "companyLogo": "/images/logos/aestrea.png",
+    "country": "Manila, Philippines",
+    "shortBio": "",
+    "bio": "Josan Astrid Dometita is a UI/UX Engineer and the GDG Cagayan de Oro community manager. Her personal advocacy is inspiring more women to become a techmaker. Currently, she plays around with her Gemma Kit, a Do-It-Yourself wearable kit and travels to different places to share great things about it. Her Gemma codelab resource is publicly available in Github.",
+    "tags": [
+      "IoT",
+      "Firebase"
+    ]
+  },
+
+  "6": {
+    "id": 6,
+    "name": "Franz Sarmiento",
+    "photoUrl": "/images/people/franz_sarmiento.jpg",
+    "title": "Software Engineer",
+    "company": "NetVirta, Inc.",
+    "companyLogo": "/images/logos/netvirta.png",
+    "country": "Singapore",
+    "shortBio": "",
+    "bio": "Franz has been building apps for Android since the days of Gingerbread. Today he lives in Singapore where he works for a 3D computer vision startup called NetVirta as an Android/iOS Engineer. Born and raised in Bacolod City, he has been involved with GDG since 2012 and has been a speaker at various Google community events in Singapore, Malaysia, Thailand, Sri Lanka, and of course the Philippines.",
+    "tags": [
+      "Android"
+    ]
+  },
+
+  "7": {
+    "id": 7,
+    "name": "Brian Tan Seng",
+    "photoUrl": "/images/people/brian_tan_seng.jpg",
+    "title": "",
+    "company": "98Labs Inc.",
+    "companyLogo": "/images/logos/98labs.jpg",
+    "country": "Manila, Philippines",
+    "shortBio": "",
+    "bio": "",
+    "tags": [
+      "Physical Web"
+    ]
+  },
+
+  "8": {
+    "id": 8,
+    "name": "Benj Tupas",
+    "photoUrl": "/images/people/benj_tupas.jpg",
+    "title": "",
+    "company": "FunBuddies",
+    "companyLogo": "/images/logos/funbuddies.jpg",
+    "country": "Manila, Philippines",
+    "shortBio": "",
+    "bio": "",
+    "tags": [
+      "Android"
+    ]
+  },
+
+  "9": {
+    "id": 9,
+    "name": "Shad Roi de la Cruz",
+    "photoUrl": "/images/people/shad_roi.jpg",
+    "title": "",
+    "company": "Symph",
+    "companyLogo": "/images/logos/symph.png",
+    "country": "Cebu City, Philippines",
+    "shortBio": "",
+    "bio": "",
+    "tags": [
+      "Community"
+    ]
+  },
+
+  "10": {
+    "id": 10,
+    "name": "Eugene Acevedo",
+    "photoUrl": "/images/people/eugene_acevedo.jpg",
+    "title": "",
+    "company": "",
+    "companyLogo": "",
+    "country": "",
+    "shortBio": "",
+    "bio": "",
+    "tags": []
   }
 }
