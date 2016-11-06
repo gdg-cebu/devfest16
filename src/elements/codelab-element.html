@@ -47,12 +47,13 @@
 
       .codelab-status {
         flex-shrink: 0;
+        margin-left: 8px;
         color: #009688;
       }
     </style>
 
     <paper-material elevation="1">
-      <img class="codelab-category" src="[[_getCodelabImage(data)]]" alt="[[data.title]]">
+      <img class="codelab-category" src="[[categoryImage]]" alt="[[data.title]]">
       <p class="codelab-title">[[data.title]]</p>
       <iron-icon class="codelab-status" icon="[[_getCodelabStatusIcon(data, progress)]]"></iron-icon>
     </paper-material>
@@ -70,7 +71,17 @@
         properties: {
           data: Object,
 
-          progress: Object
+          progress: Object,
+
+          durationString: {
+            type: String,
+            computed: '_computeDurationStringProperty(data)'
+          },
+
+          categoryImage: {
+            type: String,
+            computed: '_compuateCategoryImageProperty(data)'
+          }
         },
 
         ready: function() {
@@ -79,7 +90,11 @@
           }.bind(this));
         },
 
-        _getCodelabImage: function() {
+        _computeDurationStringProperty: function() {
+          return this._formatTime(this.data.duration);
+        },
+
+        _compuateCategoryImageProperty: function() {
           return '/images/technologies/' + this.data.category + '.png';
         },
 
@@ -91,7 +106,7 @@
           }
         },
 
-        _formattedDuration: function(time) {
+        _formatTime: function(time) {
           var hours = Math.floor(time / 60 / 60);
           var minutes = Math.floor(time / 60) % 60;
           var seconds = time % 60;

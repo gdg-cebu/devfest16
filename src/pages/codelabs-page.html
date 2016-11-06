@@ -147,9 +147,9 @@
     </div>
 
     <paper-dialog id="codelab-dialog" with-backdrop layout vertical center>
-      <img class="codelab-category" src="/images/technologies/android.png" alt="codelab category">
-      <h1 class="codelab-title">Getting your app ready for Android N</h1>
-      <p class="codelab-instructions">You have <span class="time">1 hour and 45 minutes</span> to finish this codelab to unlock the quiz.</p>
+      <img class="codelab-category" src="[[_openedCodelab.categoryImage]]" alt="codelab category">
+      <h1 class="codelab-title">[[_openedCodelab.data.title]]</h1>
+      <p class="codelab-instructions">You have <span class="time">[[_openedCodelab.durationString]]</span> to finish this codelab to unlock the quiz.</p>
       <div class="actions">
         <paper-button raised on-tap="_startCodelab">Start Codelab</paper-button>
       </div>
@@ -190,7 +190,10 @@
             computed: '_computeProgressPathProperty(user)'
           },
 
-          _openedCodelab: Object,
+          _openedCodelab: {
+            type: Object,
+            notify: true
+          },
 
           animationConfig: {
             type: Object,
@@ -264,18 +267,9 @@
         },
 
         _openCodelab: function(e, codelab) {
-          this._openedCodelab = codelab.data;
+          this._openedCodelab = codelab;
           var currentCodelab = this._currentCodelab();
-          if (currentCodelab) {
-
-          } else {
-            var dialog = this.$['codelab-dialog'];
-            dialog.querySelector('img').src = codelab._getCodelabImage();
-            dialog.querySelector('h1').textContent = codelab.data.title;
-            dialog.querySelector('span.time').textContent = codelab._formattedDuration(codelab.data.duration);
-            dialog.querySelector('paper-button').dataset.codelab = codelab.data.key;
-            dialog.open();
-          }
+          this.$['codelab-dialog'].open();
         },
 
         _startCodelab: function() {
@@ -283,7 +277,7 @@
             return null;
           }
           var time = Math.round((new Date()).getTime() / 1000);
-          var ref = this.progressPath + '/' + this._openedCodelab.key;
+          var ref = this.progressPath + '/' + this._openedCodelab.data.key;
           firebase.database().ref(ref).child('start_time').set(time);
         }
 
