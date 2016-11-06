@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-styles/shadow.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <dom-module id="codelab-element">
@@ -12,6 +13,14 @@
         display: block;
       }
 
+      :host(:hover) paper-material {
+        @apply(--shadow-elevation-4dp);
+      }
+
+      :host(:active) paper-material {
+        @apply(--shadow-none);
+      }
+
       paper-material {
         display: flex;
         align-items: center;
@@ -19,6 +28,7 @@
         padding: 16px;
         font-weight: 300;
         cursor: pointer;
+        @apply(--shadow-transition);
       }
 
       .codelab-category {
@@ -63,7 +73,7 @@
 
         _getCodelabImage: function(codelab) {
           return '/images/technologies/' + codelab.category + '.png';
-        },
+        }
 
       });
     })();
