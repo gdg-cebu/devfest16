@@ -58,12 +58,12 @@
   "207": {
     "id": 207,
     "title": "Talk: IoT + Firebase",
-    "speaker": [
+    "speakers": [
       5
     ],
     "tags": [
-      "Internet of Things",
-      "Firebase"
+      "Firebase",
+      "Internet of Things"
     ]
   },
 
