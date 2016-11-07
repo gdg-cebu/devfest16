@@ -40,6 +40,9 @@
     "title": "Google Developers Group Keynote",
     "speakers": [
       1
+    ],
+    "tags": [
+      "Community"
     ]
   },
 
@@ -112,6 +115,9 @@
     "title": "Talk: Google for Entrepreneurs and Startup Tools",
     "speakers": [
       8
+    ],
+    "tags": [
+      "Entrepreneurship"
     ]
   },
 
@@ -122,8 +128,7 @@
       3
     ],
     "tags": [
-      "TensorFlow",
-      "Machine Learning"
+      "Tensorflow"
     ]
   },
 
@@ -137,6 +142,9 @@
     "title": "Closing Remarks",
     "speakers": [
       2
+    ],
+    "tags": [
+      "Community"
     ]
   },
 
