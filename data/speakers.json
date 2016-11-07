@@ -6,17 +6,30 @@
     "photoUrl": "/images/people/soonson_kwon.jpg",
     "company": "Google",
     "companyLogo": "/images/logos/google.svg",
-    "country": "Korea",
+    "country": "South Korea",
     "shortBio": "",
     "bio": "",
     "tags": [
       "Community"
-    ]
+    ],
+    "socials": [ {
+      "icon": "linkedin",
+      "name": "LinkedIn",
+      "link": "https://kr.linkedin.com/in/ksoonson"
+    }, {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/ksoonson"
+    }, {
+      "icon": "gplus",
+      "name": "Google+",
+      "link": "https://plus.google.com/+SoonsonKwon"
+    } ]
   },
 
   "2": {
     "id": 2,
-    "name": "Chelle Gray",
+    "name": "Chelle Obligacion-Gray",
     "photoUrl": "/images/people/chelle_gray.jpg",
     "title": "",
     "company": "Google",
@@ -26,7 +39,20 @@
     "bio": "",
     "tags": [
       "Community"
-    ]
+    ],
+    "socials": [ {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/chelle.obligaciongray"
+    }, {
+      "icon": "twitter",
+      "name": "Twitter",
+      "link": "https://twitter.com/cellofoodiegeek"
+    }, {
+      "icon": "gplus",
+      "name": "Google+",
+      "link": "https://plus.google.com/+ChelleGray"
+    } ]
   },
 
   "3": {
@@ -42,7 +68,28 @@
     "tags": [
       "TensorFlow",
       "Machine Learning"
-    ]
+    ],
+    "socials": [ {
+      "icon": "linkedin",
+      "name": "LinkedIn",
+      "link": "https://ph.linkedin.com/in/jpadin"
+    }, {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/albertpadin"
+    }, {
+      "icon": "twitter",
+      "name": "Twitter",
+      "link": "https://twitter.com/albertpadin"
+    }, {
+      "icon": "gplus",
+      "name": "Google+",
+      "link": "https://plus.google.com/+AlbertPadin"
+    }, {
+      "icon": "github",
+      "name": "Github",
+      "link": "https://github.com/albertpadin"
+    } ]
   },
 
   "4": {
@@ -57,7 +104,24 @@
     "bio": "",
     "tags": [
       "Progressive Web Apps"
-    ]
+    ],
+    "socials": [ {
+      "icon": "linkedin",
+      "name": "LinkedIn",
+      "link": "https://ph.linkedin.com/in/jcmenchavez"
+    }, {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/jcmenchavez"
+    }, {
+      "icon": "twitter",
+      "name": "Twitter",
+      "link": "https://twitter.com/jedijulia"
+    }, {
+      "icon": "github",
+      "name": "Github",
+      "link": "https://github.com/jedijulia"
+    } ]
   },
 
   "5": {
@@ -73,7 +137,24 @@
     "tags": [
       "IoT",
       "Firebase"
-    ]
+    ],
+    "socials": [ {
+      "icon": "linkedin",
+      "name": "LinkedIn",
+      "link": "https://ph.linkedin.com/in/josanastrid"
+    }, {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/josanastrid"
+    }, {
+      "icon": "twitter",
+      "name": "Twitter",
+      "link": "https://twitter.com/josanastrid"
+    }, {
+      "icon": "github",
+      "name": "Github",
+      "link": "https://github.com/josanastrid"
+    } ]
   },
 
   "6": {
@@ -88,7 +169,16 @@
     "bio": "Franz has been building apps for Android since the days of Gingerbread. Today he lives in Singapore where he works for a 3D computer vision startup called NetVirta as an Android/iOS Engineer. Born and raised in Bacolod City, he has been involved with GDG since 2012 and has been a speaker at various Google community events in Singapore, Malaysia, Thailand, Sri Lanka, and of course the Philippines.",
     "tags": [
       "Android"
-    ]
+    ],
+    "socials": [ {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/franz.sarmiento"
+    }, {
+      "icon": "gplus",
+      "name": "Google+",
+      "link": "https://plus.google.com/+FranzSarmiento"
+    } ]
   },
 
   "7": {
@@ -103,7 +193,24 @@
     "bio": "",
     "tags": [
       "Physical Web"
-    ]
+    ],
+    "socials": [ {
+      "icon": "linkedin",
+      "name": "LinkedIn",
+      "link": "https://www.linkedin.com/in/briantanseng"
+    }, {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/brian.tanseng"
+    }, {
+      "icon": "twitter",
+      "name": "Twitter",
+      "link": "https://twitter.com/briantanseng"
+    }, {
+      "icon": "gplus",
+      "name": "Google+",
+      "link": "https://plus.google.com/115566348455021365396"
+    } ]
   },
 
   "8": {
@@ -118,7 +225,24 @@
     "bio": "",
     "tags": [
       "Android"
-    ]
+    ],
+    "socials": [ {
+      "icon": "linkedin",
+      "name": "LinkedIn",
+      "link": "https://www.linkedin.com/in/benjtupas"
+    }, {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/profile.php?id=100000195150265"
+    }, {
+      "icon": "twitter",
+      "name": "Twitter",
+      "link": "https://twitter.com/benj_tupas"
+    }, {
+      "icon": "gplus",
+      "name": "Google+",
+      "link": "https://plus.google.com/+BenjTupas0420"
+    } ]
   },
 
   "9": {
@@ -133,7 +257,28 @@
     "bio": "",
     "tags": [
       "Community"
-    ]
+    ],
+    "socials": [ {
+      "icon": "linkedin",
+      "name": "LinkedIn",
+      "link": "https://www.linkedin.com/in/shadroi"
+    }, {
+      "icon": "facebook",
+      "name": "Facebook",
+      "link": "https://www.facebook.com/shadroi"
+    }, {
+      "icon": "twitter",
+      "name": "Twitter",
+      "link": "https://twitter.com/SyadDeE"
+    }, {
+      "icon": "gplus",
+      "name": "Google+",
+      "link": "https://plus.google.com/+ShadRoidelaCruz"
+    }, {
+      "icon": "github",
+      "name": "Github",
+      "link": "https://github.com/shadroi"
+    } ]
   },
 
   "10": {
