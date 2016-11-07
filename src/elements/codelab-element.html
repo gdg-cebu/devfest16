@@ -56,7 +56,12 @@
     <paper-material elevation="1">
       <img class="codelab-category" src="[[categoryImage]]" alt="[[data.title]]">
       <p class="codelab-title">[[data.title]]</p>
-      <iron-icon class="codelab-status" icon="[[_getStatusIcon(status)]]"></iron-icon>
+      <template is="dom-if" if="[[status !== 1]]">
+        <iron-icon class="codelab-status" icon="[[_getStatusIcon(status)]]"></iron-icon>
+      </template>
+      <template is="dom-if" if="[[status === 1]]">
+        <p class="codelab-timer">[[_timeRemainingString]]</p>
+      </template>
     </paper-material>
 
   </template>
@@ -86,8 +91,15 @@
 
           status: {
             type: Number,
-            computed: '_computeStatusProperty(data, progress)'
-          }
+            computed: '_computeStatusProperty(data, progress)',
+            observer: '_statusPropertyChanged'
+          },
+
+          _timeRemaining: Number,
+
+          _timeRemainingString: String,
+
+          _timeRemainingTimer: Number
         },
 
         ready: function() {
@@ -109,6 +121,24 @@
             return 0;
           }
           return this.progress[this.data.key] ? this.progress[this.data.key].status : 0;
+        },
+
+        _statusPropertyChanged: function() {
+          if (this._isCurrentStatus('codelab-active')) {
+            var el = this;
+            var duration = this.data.duration;
+            var startTime = this.progress[this.data.key].start_time;
+            this._timeRemaining = getRemainingTime();
+            this._timeRemainingString = this._formatTimeShort(this._timeRemaining);
+            this._timeRemainingTimer = setInterval(function() {
+              this._timeRemaining = getRemainingTime();
+              this._timeRemainingString = this._formatTimeShort(this._timeRemaining);
+            }.bind(this), 1000);
+
+            function getRemainingTime() {
+              return duration - (Math.round((new Date()).getTime() / 1000) - startTime);
+            }
+          }
         },
 
         _isCurrentStatus: function(string) {
@@ -143,6 +173,22 @@
           }
           return duration.slice(0, duration.length - 1).join(', ')
             + ' and ' + duration[duration.length - 1];
+        },
+
+        _formatTimeShort: function(time) {
+          var hours = Math.floor(time / 60 / 60);
+          var minutes = Math.floor(time / 60) % 60;
+          var seconds = time % 60;
+          var time = [pad(minutes), pad(seconds)];
+
+          function pad(n) {
+            return n < 10 ? '0' + n : n;
+          }
+
+          if (hours > 0) {
+            time.unshift(pad(hours));
+          }
+          return time.join(':');
         }
 
       });
