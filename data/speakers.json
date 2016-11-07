@@ -66,8 +66,9 @@
     "shortBio": "",
     "bio": "",
     "tags": [
-      "TensorFlow",
-      "Machine Learning"
+      "Tensorflow",
+      "Appengine",
+      "Web"
     ],
     "socials": [ {
       "icon": "linkedin",
@@ -103,7 +104,8 @@
     "shortBio": "",
     "bio": "",
     "tags": [
-      "Progressive Web Apps"
+      "Progressive Web Apps",
+      "Web"
     ],
     "socials": [ {
       "icon": "linkedin",
