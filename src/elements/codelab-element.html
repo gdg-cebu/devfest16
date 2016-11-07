@@ -101,9 +101,10 @@
         _getCodelabStatusIcon: function() {
           if (!this.data || !this.progress) {
             return null;
-          } else if (!this.progress[this.data.key]) {
+          } else if (!this.progress.hasOwnProperty(this.data.key)) {
             return 'code';
           }
+          return null;
         },
 
         _formatTime: function(time) {
