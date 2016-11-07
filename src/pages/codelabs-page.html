@@ -157,7 +157,14 @@
     <paper-dialog id="codelab-dialog" with-backdrop layout vertical center>
       <img class="codelab-category" src="[[_openedCodelab.categoryImage]]" alt="codelab category">
       <h1 class="codelab-title">[[_openedCodelab.data.title]]</h1>
-      <p class="codelab-instructions">You have <span class="time">[[_openedCodelab.durationString]]</span> to finish this codelab to unlock the quiz.</p>
+      <template is="dom-if" if="[[_isOpenedCodelabReady]]">
+        <p class="codelab-instructions">You have <span class="time">[[_openedCodelab.durationString]]</span> to finish this codelab to unlock the quiz.</p>
+      </template>
+
+      <template is="dom-if" if="[[_isOpenedCodelabActive]]">
+        <p class="codelab-instructions">You have <span class="time">[[_openedCodelabTimeRemaining]]</span> to finish this codelab to unlock the quiz.</p>
+      </template>
+
       <div class="actions">
         <template is="dom-if" if="[[_isOpenedCodelabReady]]">
           <paper-button raised disabled="[[!_canStartCodelab(_openedCodelab)]]" on-tap="_startCodelab">Start Codelab</paper-button>
@@ -237,6 +244,10 @@
             value: false
           },
 
+          _openedCodelabTimeRemaining: String,
+
+          _openedCodelabTimeRemainingTimer: Number,
+
           animationConfig: {
             type: Object,
             value: function() {
@@ -295,6 +306,20 @@
         _openedCodelabPropertyChanged: function() {
           this._isOpenedCodelabReady = this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-ready');
           this._isOpenedCodelabActive = this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-active');
+
+          clearInterval(this._openedCodelabTimeRemainingTimer);
+          if (this._openedCodelab && this._isOpenedCodelabActive) {
+            var duration = this._openedCodelab.data.duration;
+            var startTime = this.progress[this._openedCodelab.data.key].start_time;
+            var currentTime = Math.round((new Date()).getTime() / 1000);
+            var timeRemaining = duration - (currentTime - startTime);
+            this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(timeRemaining);
+            this._openedCodelabTimeRemainingTimer = setInterval(function() {
+              var currentTime = Math.round((new Date()).getTime() / 1000);
+              var timeRemaining = duration - (currentTime - startTime);
+              this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(timeRemaining);
+            }.bind(this), 1000);
+          }
         },
 
         _initiateUserSignIn: function() {
