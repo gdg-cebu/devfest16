@@ -159,9 +159,15 @@
       <h1 class="codelab-title">[[_openedCodelab.data.title]]</h1>
       <p class="codelab-instructions">You have <span class="time">[[_openedCodelab.durationString]]</span> to finish this codelab to unlock the quiz.</p>
       <div class="actions">
-        <paper-button raised disabled="[[!_canStartCodelab(_openedCodelab)]]" on-tap="_startCodelab">Start Codelab</paper-button>
-        <template is="dom-if" if="[[!_canStartCodelab(_openedCodelab)]]">
-          <p class="error-message">You can't start this codelab because you have a codelab in progress.</p>
+        <template is="dom-if" if="[[_isOpenedCodelabReady]]">
+          <paper-button raised disabled="[[!_canStartCodelab(_openedCodelab)]]" on-tap="_startCodelab">Start Codelab</paper-button>
+          <template is="dom-if" if="[[!_canStartCodelab(_openedCodelab.*)]]">
+            <p class="error-message">You can't start this codelab because you have a codelab in progress.</p>
+          </template>
+        </template>
+
+        <template is="dom-if" if="[[_isOpenedCodelabActive]]">
+          <paper-button raised disabled>Start Quiz</paper-button>
         </template>
       </div>
     </paper-dialog>
@@ -201,7 +207,35 @@
             computed: '_computeProgressPathProperty(user)'
           },
 
-          _openedCodelab: Object,
+          _openedCodelab: {
+            type: Object,
+            observer: '_openedCodelabPropertyChanged'
+          },
+
+          _isOpenedCodelabReady: {
+            type: Boolean,
+            value: false
+          },
+
+          _isOpenedCodelabActive: {
+            type: Boolean,
+            value: false
+          },
+
+          _isOpenedCodelabQuizReady: {
+            type: Boolean,
+            value: false
+          },
+
+          _isOpenedCodelabQuizActive: {
+            type: Boolean,
+            value: false
+          },
+
+          _isOpenedCodelabFinished: {
+            type: Boolean,
+            value: false
+          },
 
           animationConfig: {
             type: Object,
@@ -258,6 +292,11 @@
           return this.user ? '/codelabs/participants/' + this.user.uid : null;
         },
 
+        _openedCodelabPropertyChanged: function() {
+          this._isOpenedCodelabReady = this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-ready');
+          this._isOpenedCodelabActive = this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-active');
+        },
+
         _initiateUserSignIn: function() {
           this.$.auth.signInWithPopup('google');
         },
@@ -289,7 +328,9 @@
           }
           var time = Math.round((new Date()).getTime() / 1000);
           var ref = this.progressPath + '/' + this._openedCodelab.data.key;
-          firebase.database().ref(ref).child('start_time').set(time);
+          firebase.database().ref(ref).update({ status: 1, start_time: time });
+          this._isOpenedCodelabReady = false;
+          this._isOpenedCodelabActive = true;
         }
 
       });

@@ -25,6 +25,7 @@
         display: flex;
         align-items: center;
         box-sizing: border-box;
+        height: 100%;
         padding: 16px;
         font-weight: 300;
         cursor: pointer;
@@ -55,7 +56,7 @@
     <paper-material elevation="1">
       <img class="codelab-category" src="[[categoryImage]]" alt="[[data.title]]">
       <p class="codelab-title">[[data.title]]</p>
-      <iron-icon class="codelab-status" icon="[[_getCodelabStatusIcon(data, progress)]]"></iron-icon>
+      <iron-icon class="codelab-status" icon="[[_getStatusIcon(status)]]"></iron-icon>
     </paper-material>
 
   </template>
@@ -80,7 +81,12 @@
 
           categoryImage: {
             type: String,
-            computed: '_compuateCategoryImageProperty(data)'
+            computed: '_computeCategoryImageProperty(data)'
+          },
+
+          status: {
+            type: Number,
+            computed: '_computeStatusProperty(data, progress)'
           }
         },
 
@@ -94,17 +100,28 @@
           return this._formatTime(this.data.duration);
         },
 
-        _compuateCategoryImageProperty: function() {
+        _computeCategoryImageProperty: function() {
           return '/images/technologies/' + this.data.category + '.png';
         },
 
-        _getCodelabStatusIcon: function() {
+        _computeStatusProperty: function() {
+          if (!this.data || !this.progress) {
+            return 0;
+          }
+          return this.progress[this.data.key] ? this.progress[this.data.key].status : 0;
+        },
+
+        _isCurrentStatus: function(string) {
+          var status = ['codelab-ready', 'codelab-active', 'quiz-ready', 'quiz-active', 'finished'];
+          return status[this.status] === string;
+        },
+
+        _getStatusIcon: function() {
           if (!this.data || !this.progress) {
             return null;
-          } else if (!this.progress.hasOwnProperty(this.data.key)) {
-            return 'code';
           }
-          return null;
+          var icon = ['code', ''];
+          return icon[this.status];
         },
 
         _formatTime: function(time) {
