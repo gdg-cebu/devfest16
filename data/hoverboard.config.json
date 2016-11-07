@@ -77,6 +77,10 @@
       "permalink": "/speakers/"
     },
     {
+      "route": "schedule",
+      "permalink": "/schedule/"
+    },
+    {
       "route": "hackathon",
       "permalink": "/hackathon/"
     },
