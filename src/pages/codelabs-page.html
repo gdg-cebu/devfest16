@@ -143,7 +143,7 @@
           <spinner-element active="[[_displaySpinner(codelabs)]]"></spinner-element>
 
           <template is="dom-repeat" items="[[codelabs]]" as="codelab">
-            <codelab-element data="[[codelab]]" progress="[[progress]]" on-open-codelab="_openCodelab"></codelab-element>
+            <codelab-element data="[[codelab]]" progress="[[progress]]" progress-path="[[progressPath]]" on-open-codelab="_openCodelab"></codelab-element>
           </template>
         </div>
       </div>
@@ -246,8 +246,6 @@
 
           _openedCodelabTimeRemaining: String,
 
-          _openedCodelabTimeRemainingTimer: Number,
-
           animationConfig: {
             type: Object,
             value: function() {
@@ -303,22 +301,19 @@
           return this.user ? '/codelabs/participants/' + this.user.uid : null;
         },
 
-        _openedCodelabPropertyChanged: function() {
+        _openedCodelabPropertyChanged: function(newOpenedCodelab, oldOpenedCodelab) {
+          var el = this;
           this._isOpenedCodelabReady = this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-ready');
           this._isOpenedCodelabActive = this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-active');
 
-          clearInterval(this._openedCodelabTimeRemainingTimer);
-          if (this._openedCodelab && this._isOpenedCodelabActive) {
-            var duration = this._openedCodelab.data.duration;
-            var startTime = this.progress[this._openedCodelab.data.key].start_time;
-            var currentTime = Math.round((new Date()).getTime() / 1000);
-            var timeRemaining = duration - (currentTime - startTime);
-            this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(timeRemaining);
-            this._openedCodelabTimeRemainingTimer = setInterval(function() {
-              var currentTime = Math.round((new Date()).getTime() / 1000);
-              var timeRemaining = duration - (currentTime - startTime);
-              this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(timeRemaining);
-            }.bind(this), 1000);
+          if (this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-active')) {
+            this._openedCodelab._timeRemainingChangedCallback = function() {
+              this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(this._openedCodelab.timeRemaining);
+            }.bind(this);
+            this._openedCodelab._timeRemainingChangedCallback();
+            this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
+          } else if (!this._openedCodelab) {
+            oldOpenedCodelab.removeEventListener('time-remaining-changed', oldOpenedCodelab._timeRemainingChangedCallback);
           }
         },
 
@@ -351,9 +346,7 @@
           if (this._currentCodelab()) {
             return null;
           }
-          var time = Math.round((new Date()).getTime() / 1000);
-          var ref = this.progressPath + '/' + this._openedCodelab.data.key;
-          firebase.database().ref(ref).update({ status: 1, start_time: time });
+          this._openedCodelab._setToCodelabActive();
           this._isOpenedCodelabReady = false;
           this._isOpenedCodelabActive = true;
         }

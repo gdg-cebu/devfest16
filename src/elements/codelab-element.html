@@ -60,7 +60,7 @@
         <iron-icon class="codelab-status" icon="[[_getStatusIcon(status)]]"></iron-icon>
       </template>
       <template is="dom-if" if="[[status === 1]]">
-        <p class="codelab-timer">[[_timeRemainingString]]</p>
+        <p class="codelab-timer">[[timeRemainingString]]</p>
       </template>
     </paper-material>
 
@@ -79,6 +79,8 @@
 
           progress: Object,
 
+          progressPath: String,
+
           durationString: {
             type: String,
             computed: '_computeDurationStringProperty(data)'
@@ -95,11 +97,14 @@
             observer: '_statusPropertyChanged'
           },
 
-          _timeRemaining: Number,
+          timeRemaining: {
+            type: Number,
+            notify: true
+          },
 
-          _timeRemainingString: String,
+          timeRemainingString: String,
 
-          _timeRemainingTimer: Number
+          timeRemainingTimer: Number
         },
 
         ready: function() {
@@ -128,12 +133,20 @@
             var el = this;
             var duration = this.data.duration;
             var startTime = this.progress[this.data.key].start_time;
-            this._timeRemaining = getRemainingTime();
-            this._timeRemainingString = this._formatTimeShort(this._timeRemaining);
-            this._timeRemainingTimer = setInterval(function() {
-              this._timeRemaining = getRemainingTime();
-              this._timeRemainingString = this._formatTimeShort(this._timeRemaining);
-            }.bind(this), 1000);
+            this.timeRemaining = getRemainingTime();
+            if (this.timeRemaining > 0) {
+              this.timeRemainingString = this._formatTimeShort(this.timeRemaining);
+              this.timeRemainingTimer = setInterval(function() {
+                this.timeRemaining = getRemainingTime();
+                this.timeRemainingString = this._formatTimeShort(this.timeRemaining);
+                if (this.timeRemaining <= 0) {
+                  clearInterval(this.timeRemainingTimer);
+                  this._setToQuizReady();
+                }
+              }.bind(this), 1000);
+            } else {
+              this._setToQuizReady();
+            }
 
             function getRemainingTime() {
               return duration - (Math.round((new Date()).getTime() / 1000) - startTime);
@@ -152,6 +165,18 @@
           }
           var icon = ['code', ''];
           return icon[this.status];
+        },
+
+        _setToCodelabActive: function() {
+          var time = Math.round((new Date()).getTime() / 1000);
+          var ref = this.progressPath + '/' + this.data.key;
+          firebase.database().ref(ref).update({ status: 1, start_time: time });
+        },
+
+        _setToQuizReady: function() {
+          var ref = this.progressPath + '/' + this.data.key;
+          var time = Math.round((new Date()).getTime() / 1000);
+          firebase.database().ref(ref).update({ status: 2, end_time: time });
         },
 
         _formatTime: function(time) {
