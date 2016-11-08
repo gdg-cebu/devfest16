@@ -349,6 +349,12 @@
           this._openedCodelab._setToCodelabActive();
           this._isOpenedCodelabReady = false;
           this._isOpenedCodelabActive = true;
+
+          this._openedCodelab._timeRemainingChangedCallback = function() {
+            this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(this._openedCodelab.timeRemaining || this._openedCodelab.data.duration);
+          }.bind(this);
+          this._openedCodelab._timeRemainingChangedCallback();
+          this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
         }
 
       });
