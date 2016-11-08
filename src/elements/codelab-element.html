@@ -2,6 +2,7 @@
 
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-styles/shadow.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <dom-module id="codelab-element">
@@ -32,6 +33,11 @@
         @apply(--shadow-transition);
       }
 
+      paper-material.quiz-ready {
+        color: #fff;
+        background-color: var(--paper-red-500);
+      }
+
       .codelab-category {
         flex-shrink: 0;
         width: 50px;
@@ -49,11 +55,15 @@
       .codelab-status {
         flex-shrink: 0;
         margin-left: 8px;
-        color: #009688;
+        color: var(--paper-green-500);
+      }
+
+      paper-material.quiz-ready .codelab-status {
+        color: #fff;
       }
     </style>
 
-    <paper-material elevation="1">
+    <paper-material class$="[[_getStatusClass(status)]]" elevation="1">
       <img class="codelab-category" src="[[categoryImage]]" alt="[[data.title]]">
       <p class="codelab-title">[[data.title]]</p>
       <template is="dom-if" if="[[status !== 1]]">
@@ -141,6 +151,7 @@
                 this.timeRemainingString = this._formatTimeShort(this.timeRemaining);
                 if (this.timeRemaining <= 0) {
                   clearInterval(this.timeRemainingTimer);
+                  this.timeRemainingString = null;
                   this._setToQuizReady();
                 }
               }.bind(this), 1000);
@@ -163,8 +174,13 @@
           if (!this.data || !this.progress) {
             return null;
           }
-          var icon = ['code', ''];
-          return icon[this.status];
+          var icon = ['code', '', 'info'];
+          return icon[this.status] || '';
+        },
+
+        _getStatusClass: function() {
+          var classes = [null, null, 'quiz-ready'];
+          return classes[this.status] || null;
         },
 
         _setToCodelabActive: function() {
