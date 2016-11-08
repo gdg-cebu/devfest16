@@ -173,7 +173,7 @@
       <div class="actions">
         <template is="dom-if" if="[[_isOpenedCodelabReady]]">
           <paper-button raised disabled="[[!_canStartCodelab(_openedCodelab)]]" on-tap="_startCodelab">Start Codelab</paper-button>
-          <template is="dom-if" if="[[!_canStartCodelab(_openedCodelab.*)]]">
+          <template is="dom-if" if="[[!_canStartCodelab(_openedCodelab)]]">
             <p class="error-message">You can't start this codelab because you have a codelab in progress.</p>
           </template>
         </template>
@@ -342,9 +342,7 @@
 
         _currentCodelab: function() {
           return Object.keys(this.progress).filter(function(key) {
-            var hasStartTime = this.progress[key].hasOwnProperty('start_time');
-            var hasEndTime = this.progress[key].hasOwnProperty('end_time');
-            return hasStartTime && !hasEndTime;
+            return this.progress[key].status > 0 && this.progress[key].status < 4;
           }.bind(this))[0];
         },
 
