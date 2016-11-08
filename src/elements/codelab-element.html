@@ -192,7 +192,9 @@
         _setToQuizReady: function() {
           var ref = this.progressPath + '/' + this.data.key;
           var time = Math.round((new Date()).getTime() / 1000);
-          firebase.database().ref(ref).update({ status: 2, codelab_end_time: time });
+          firebase.database().ref(ref).update({ status: 2, codelab_end_time: time }).then(function() {
+            this.fire('quiz-ready');
+          }.bind(this));
         },
 
         _formatTime: function(time) {

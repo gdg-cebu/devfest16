@@ -165,6 +165,11 @@
         <p class="codelab-instructions">You have <span class="time">[[_openedCodelabTimeRemaining]]</span> to finish this codelab to unlock the quiz.</p>
       </template>
 
+      <template is="dom-if" if="[[_isOpenedCodelabQuizReady]]">
+        <p class="codelab-instructins">You may now start answering a 5-question quiz. You are given <b>5 minutes</b> to answer them all.</p>
+        <p class="codelab-instructins">The faster you answer, the higher the points as long as the answers are correct.</p>
+      </template>
+
       <div class="actions">
         <template is="dom-if" if="[[_isOpenedCodelabReady]]">
           <paper-button raised disabled="[[!_canStartCodelab(_openedCodelab)]]" on-tap="_startCodelab">Start Codelab</paper-button>
@@ -175,6 +180,10 @@
 
         <template is="dom-if" if="[[_isOpenedCodelabActive]]">
           <paper-button raised disabled>Start Quiz</paper-button>
+        </template>
+
+        <template is="dom-if" if="[[_isOpenedCodelabQuizReady]]">
+          <paper-button raised>Start Quiz</paper-button>
         </template>
       </div>
     </paper-dialog>
@@ -305,13 +314,19 @@
           var el = this;
           this._isOpenedCodelabReady = this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-ready');
           this._isOpenedCodelabActive = this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-active');
+          this._isOpenedCodelabQuizReady = this._openedCodelab && this._openedCodelab._isCurrentStatus('quiz-ready');
 
           if (this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-active')) {
             this._openedCodelab._timeRemainingChangedCallback = function() {
               this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(this._openedCodelab.timeRemaining);
             }.bind(this);
+            this._openedCodelab._quizReadyCallback = function() {
+              this._isOpenedCodelabActive = this._openedCodelab._isCurrentStatus('codelab-active');
+              this._isOpenedCodelabQuizReady = this._openedCodelab._isCurrentStatus('quiz-ready');
+            }.bind(this);
             this._openedCodelab._timeRemainingChangedCallback();
             this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
+            this._openedCodelab.addEventListener('quiz-ready', this._openedCodelab._quizReadyCallback);
           } else if (!this._openedCodelab) {
             oldOpenedCodelab.removeEventListener('time-remaining-changed', oldOpenedCodelab._timeRemainingChangedCallback);
           }
@@ -353,8 +368,13 @@
           this._openedCodelab._timeRemainingChangedCallback = function() {
             this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(this._openedCodelab.timeRemaining || this._openedCodelab.data.duration);
           }.bind(this);
+          this._openedCodelab._quizReadyCallback = function() {
+            this._isOpenedCodelabActive = this._openedCodelab._isCurrentStatus('codelab-active');
+            this._isOpenedCodelabQuizReady = this._openedCodelab._isCurrentStatus('quiz-ready');
+          }.bind(this);
           this._openedCodelab._timeRemainingChangedCallback();
           this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
+          this._openedCodelab.addEventListener('quiz-ready', this._openedCodelab._quizReadyCallback);
         }
 
       });
