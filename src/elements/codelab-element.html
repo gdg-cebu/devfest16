@@ -142,7 +142,7 @@
           if (this._isCurrentStatus('codelab-active')) {
             var el = this;
             var duration = this.data.duration;
-            var startTime = this.progress[this.data.key].start_time;
+            var startTime = this.progress[this.data.key].codelab_start_time;
             this.timeRemaining = getRemainingTime();
             if (this.timeRemaining > 0) {
               this.timeRemainingString = this._formatTimeShort(this.timeRemaining);
@@ -186,13 +186,13 @@
         _setToCodelabActive: function() {
           var time = Math.round((new Date()).getTime() / 1000);
           var ref = this.progressPath + '/' + this.data.key;
-          firebase.database().ref(ref).update({ status: 1, start_time: time });
+          firebase.database().ref(ref).update({ status: 1, codelab_start_time: time });
         },
 
         _setToQuizReady: function() {
           var ref = this.progressPath + '/' + this.data.key;
           var time = Math.round((new Date()).getTime() / 1000);
-          firebase.database().ref(ref).update({ status: 2, end_time: time });
+          firebase.database().ref(ref).update({ status: 2, codelab_end_time: time });
         },
 
         _formatTime: function(time) {
