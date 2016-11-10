@@ -9,6 +9,7 @@
     "country": "South Korea",
     "shortBio": "",
     "bio": "",
+    "featured": true,
     "tags": [
       "Community"
     ],
@@ -37,6 +38,7 @@
     "country": "Manila, Philippines",
     "shortBio": "",
     "bio": "",
+    "featured": true,
     "tags": [
       "Community"
     ],
@@ -65,6 +67,7 @@
     "country": "Cebu City, Philippines",
     "shortBio": "",
     "bio": "Albert is a developer and entrepreneur who's worked on consumer, enterprise, and government software products. He is the co-founder and CTO of Symph, a design, development, and startup studio. At Symph, he has architected and developed solutions for 500 Startups, Office of the President of the Philippines, and the World Bank.<br><br>Albert leads a diverse team of developers in creating software solutions. He ensures that the team's output is high quality and performs well at scale. Albert is also passionate about empowering startups and has been involved in the Philippine Startup Ecosystem, by facilitating and mentoring at Startup Weekends and other events.<br><br>Prior to that, Albert started SpellDial, directed plays, and mentored street children. He studied Information Technology at the Centre for International Education Global Colleges. He lives in Cebu City, Philippines with his wife. His interests include theatre, performing arts, and the non-trivial act of eradicating poverty.",
+    "featured": true,
     "tags": [
       "Tensorflow",
       "Appengine",
@@ -103,6 +106,7 @@
     "country": "Mandaue City, Philippines",
     "shortBio": "",
     "bio": "",
+    "featured": true,
     "tags": [
       "Progressive Web Apps",
       "Web"
@@ -136,6 +140,7 @@
     "country": "Manila, Philippines",
     "shortBio": "",
     "bio": "Josan Astrid Dometita is a UI/UX Engineer and the GDG Cagayan de Oro community manager. Her personal advocacy is inspiring more women to become a techmaker. Currently, she plays around with her Gemma Kit, a Do-It-Yourself wearable kit and travels to different places to share great things about it. Her Gemma codelab resource is publicly available in Github.",
+    "featured": true,
     "tags": [
       "Internet of Things",
       "Firebase"
@@ -169,6 +174,7 @@
     "country": "Singapore",
     "shortBio": "",
     "bio": "Franz has been building apps for Android since the days of Gingerbread. Today he lives in Singapore where he works for a 3D computer vision startup called NetVirta as an Android/iOS Engineer. Born and raised in Bacolod City, he has been involved with GDG since 2012 and has been a speaker at various Google community events in Singapore, Malaysia, Thailand, Sri Lanka, and of course the Philippines.",
+    "featured": true,
     "tags": [
       "Android"
     ],
@@ -193,6 +199,7 @@
     "country": "Manila, Philippines",
     "shortBio": "",
     "bio": "Brian Tan Seng, is a technology entrepreneur and is the co-founder of 1.) 98Labs Inc., a software development company, and 2.) AllServe, the first local prepaid card provider that consolidated gaming and mobile prepaid cards, and 3.) CleverHeat, a hardware startup aiming to harness solar thermal energy to provide refrigeration.<br><br>Aside from technology, Brian is also interested in psychology, startups, ultra running, mountaineering and the arts.",
+    "featured": true,
     "tags": [
       "Physical Web"
     ],
@@ -225,6 +232,7 @@
     "country": "Manila, Philippines",
     "shortBio": "",
     "bio": "Benj is the Founder/CEO of Funbuddies. He's passionate about connecting like-minded people all over the world.",
+    "featured": true,
     "tags": [
       "Android",
       "Firebase"
@@ -258,6 +266,7 @@
     "country": "Cebu City, Philippines",
     "shortBio": "",
     "bio": "",
+    "featured": true,
     "tags": [
       "Community"
     ],
@@ -294,6 +303,7 @@
     "country": "Philippines",
     "shortBio": "",
     "bio": "Eugene Acevedo is the SEVP of UNIONBANK and the Chairman of CitySavings Bank",
+    "featured": true,
     "tags": [
       "Entrepreneurship",
       "Banking",
