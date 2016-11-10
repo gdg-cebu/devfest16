@@ -226,7 +226,8 @@
     "shortBio": "",
     "bio": "Benj is the Founder/CEO of Funbuddies. He's passionate about connecting like-minded people all over the world.",
     "tags": [
-      "Android"
+      "Android",
+      "Firebase"
     ],
     "socials": [ {
       "icon": "linkedin",
@@ -287,12 +288,12 @@
     "id": 10,
     "name": "Eugene Acevedo",
     "photoUrl": "/images/people/eugene_acevedo.jpg",
-    "title": "",
-    "company": "",
-    "companyLogo": "",
-    "country": "",
+    "title": "SEVP, Chairman",
+    "company": "UNIONBANK, CitySavings Bank",
+    "companyLogo": "/images/logos/unionbank.png",
+    "country": "Philippines",
     "shortBio": "",
-    "bio": "",
+    "bio": "Eugene Acevedo is the SEVP of UNIONBANK and the Chairman of CitySavings Bank",
     "tags": [
       "Entrepreneurship",
       "Banking",
