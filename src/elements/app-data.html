@@ -13,11 +13,12 @@
     <iron-ajax auto url="/data/speakers.json" handle-as="json" last-response="{{_speakersRaw}}"></iron-ajax>
     <iron-ajax auto url="/data/sessions.json" handle-as="json" last-response="{{sessions}}"></iron-ajax>
     <iron-ajax auto url="/data/schedule.json" handle-as="json" last-response="{{_scheduleRaw}}"></iron-ajax>
+    <iron-ajax auto url="/data/partners.json" handle-as="json" last-response="{{app.partners}}"></iron-ajax>
 
     <firebase-app name="devfest16" api-key="[[firebase.apiKey]]" database-url="[[firebase.databaseURL]]" auth-domain="[[firebase.authDomain]]"></firebase-app>
 
     <firebase-document app-name="devfest16" path="[[featuredSessionsSource]]" data="{{app.featuredSessions}}"></firebase-document>
-    <firebase-document app-name="devfest16" path="[[partnersSource]]" data="{{app.partners}}"></firebase-document>
+    <!-- <firebase-document app-name="devfest16" path="[[partnersSource]]" data="{{app.partners}}"></firebase-document> -->
     <!-- <firebase-document app-name="devfest16" path="[[scheduleSource]]" data="{{_scheduleRaw}}"></firebase-document>
     <firebase-document app-name="devfest16" path="[[sessionsSource]]" data="{{sessions}}"></firebase-document> -->
     <firebase-document app-name="devfest16" path="[[teamSource]]" data="{{app.team}}"></firebase-document>
