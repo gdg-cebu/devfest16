@@ -6,17 +6,20 @@
 
   "200": {
     "id": 200,
-    "title": "Registration"
+    "title": "Registration",
+    "image": "/images/backgrounds/bg-registration.png"
   },
 
   "201": {
     "id": 201,
-    "title": "Philippine National Anthem"
+    "title": "Philippine National Anthem",
+    "image": "/images/backgrounds/bg-anthem.png"
   },
 
   "202": {
     "id": 202,
     "title": "Opening Remarks",
+    "image": "/images/backgrounds/bg-opening-remarks.png",
     "speakers": [
       9
     ]
@@ -24,7 +27,8 @@
 
   "203": {
     "id": 203,
-    "title": "Introduction Spills"
+    "title": "Introduction Spills",
+    "image": "/images/backgrounds/bg-introspill.png"
   },
 
   "204": {
@@ -38,6 +42,7 @@
   "205": {
     "id": 205,
     "title": "Google Developers Group Keynote",
+    "image": "/images/backgrounds/bg-keynote.png",
     "speakers": [
       1
     ],
@@ -49,6 +54,7 @@
   "206": {
     "id": 206,
     "title": "Talk: Progressive Web Apps",
+    "image": "/images/backgrounds/bg-julia.png",
     "speakers": [
       4
     ],
