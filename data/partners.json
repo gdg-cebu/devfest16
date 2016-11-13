@@ -62,6 +62,18 @@
     ]
   },
   {
+    "title": "organizational-partners",
+    "logos": [
+      {
+        "name": "GDG Philippines",
+        "url": "http://www.gdgph.org/",
+        "logoUrl": "../images/logos/gdgph.png",
+        "width": 250,
+        "height": 37
+      }
+    ]
+  },
+  {
     "title": "special-thanks-to",
     "logos": [
       {
@@ -97,6 +109,27 @@
         "name": "Entertainment Republiq",
         "url": "http://rgc.world/",
         "logoUrl": "../images/logos/entertainment-republiq.png",
+        "width": 125,
+        "height": 125
+      },
+      {
+        "name": "prworks",
+        "url": "http://www.prworks.com/",
+        "logoUrl": "../images/logos/prworks.png",
+        "width": 125,
+        "height": 125
+      },
+      {
+        "name": "istorya.net",
+        "url": "https://www.istorya.net/",
+        "logoUrl": "../images/logos/istorya.png",
+        "width": 125,
+        "height": 125
+      },
+      {
+        "name": "inquirer.net",
+        "url": "https://www.inquirer.net/",
+        "logoUrl": "../images/logos/inquirer.svg",
         "width": 125,
         "height": 125
       }
