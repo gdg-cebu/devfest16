@@ -21,7 +21,7 @@
     "title": "Opening Remarks",
     "image": "/images/backgrounds/bg-opening-remarks.png",
     "speakers": [
-      9
+      10
     ]
   },
 
@@ -80,7 +80,7 @@
     "id": 208,
     "title": "Partners: Unionbank + CitySavings Supports Developers",
     "speakers": [
-      10
+      11
     ]
   },
 
@@ -158,5 +158,21 @@
     "id": 217,
     "title": "Give out certificates for the speakers",
     "description": "plus distribution of shirts and group photo!"
+  },
+
+  "218": {
+    "id": 218,
+    "title": "Snacks"
+  },
+
+  "219": {
+    "id": 219,
+    "title": "Business: Google Technologies for Startups",
+    "speakers": [
+      9
+    ],
+    "tags": [
+      "Entrepreneurship"
+    ]
   }
 }

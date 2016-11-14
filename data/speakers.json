@@ -258,6 +258,35 @@
 
   "9": {
     "id": 9,
+    "name": "Dave Overton",
+    "photoUrl": "/images/people/dave_overton.jpg",
+    "title": "CEO and Co-Founder",
+    "company": "Symph",
+    "companyLogo": "/images/logos/symph.png",
+    "country": "Cebu City, Philippines",
+    "shortBio": "",
+    "bio": "",
+    "featured": true,
+    "tags": [
+      "Entrepreneurship"
+    ],
+    "socials": [ {
+      "icon": "linkedin",
+      "name": "LinkedIn",
+      "link": "https://ph.linkedin.com/in/daveove"
+    }, {
+      "icon": "twitter",
+      "name": "Twitter",
+      "link": "https://twitter.com/daveove"
+    }, {
+      "icon": "gplus",
+      "name": "Google+",
+      "link": "https://plus.google.com/+DaveOverton-Symph"
+    } ]
+  },
+
+  "10": {
+    "id": 10,
     "name": "Shad Roi de la Cruz",
     "photoUrl": "/images/people/shad_roi.jpg",
     "title": "",
@@ -293,8 +322,8 @@
     } ]
   },
 
-  "10": {
-    "id": 10,
+  "11": {
+    "id": 11,
     "name": "Eugene Acevedo",
     "photoUrl": "/images/people/eugene_acevedo.jpg",
     "title": "SEVP, Chairman",
