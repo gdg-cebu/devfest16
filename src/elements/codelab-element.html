@@ -33,9 +33,19 @@
         @apply(--shadow-transition);
       }
 
-      paper-material.quiz-ready {
+      paper-material.quiz {
         color: #fff;
         background-color: var(--paper-red-500);
+      }
+
+      paper-material.done {
+        color: #fff;
+        background-color: var(--paper-green-500);
+      }
+
+      paper-material.quiz iron-icon,
+      paper-material.done iron-icon {
+        color: #fff;
       }
 
       .codelab-category {
@@ -69,7 +79,7 @@
       <template is="dom-if" if="[[status !== 1]]">
         <iron-icon class="codelab-status" icon="[[_getStatusIcon(status)]]"></iron-icon>
       </template>
-      <template is="dom-if" if="[[status === 1]]">
+      <template is="dom-if" if="[[status === 1 || status === 3]]">
         <p class="codelab-timer">[[timeRemainingString]]</p>
       </template>
     </paper-material>
@@ -139,18 +149,19 @@
         },
 
         _statusPropertyChanged: function() {
+          var el = this;
           if (this._isCurrentStatus('codelab-active')) {
-            var el = this;
             var duration = this.data.duration;
             var startTime = this.progress[this.data.key].codelab_start_time;
-            this.timeRemaining = getRemainingTime();
+            this.timeRemaining = getRemainingTime(duration, startTime);
             if (this.timeRemaining > 0) {
               this.timeRemainingString = this._formatTimeShort(this.timeRemaining);
               this.timeRemainingTimer = setInterval(function() {
-                this.timeRemaining = getRemainingTime();
+                this.timeRemaining = getRemainingTime(duration, startTime);
                 this.timeRemainingString = this._formatTimeShort(this.timeRemaining);
                 if (this.timeRemaining <= 0) {
                   clearInterval(this.timeRemainingTimer);
+                  this.timeRemaining = 0;
                   this.timeRemainingString = null;
                   this._setToQuizReady();
                 }
@@ -158,10 +169,29 @@
             } else {
               this._setToQuizReady();
             }
-
-            function getRemainingTime() {
-              return duration - (Math.round((new Date()).getTime() / 1000) - startTime);
+          } else if (this._isCurrentStatus('quiz-active')) {
+            var duration = this.data.quiz_duration;
+            var startTime = this.progress[this.data.key].quiz_start_time;
+            this.timeRemaining = getRemainingTime(duration, startTime);
+            if (this.timeRemaining > 0) {
+              this.timeRemainingString = this._formatTimeShort(this.timeRemaining);
+              this.timeRemainingTimer = setInterval(function() {
+                this.timeRemaining = getRemainingTime(duration, startTime);
+                this.timeRemainingString = this._formatTimeShort(this.timeRemaining);
+                if (this.timeRemaining <= 0) {
+                  clearInterval(this.timeRemainingTimer);
+                  this.timeRemaining = 0;
+                  this.timeRemainingString = null;
+                  this._setToFinished();
+                }
+              }.bind(this), 1000);
+            } else {
+              this._setToFinished();
             }
+          }
+
+          function getRemainingTime(duration, start) {
+            return duration - (Math.round((new Date()).getTime() / 1000) - start);
           }
         },
 
@@ -174,26 +204,42 @@
           if (!this.data || !this.progress) {
             return null;
           }
-          var icon = ['code', '', 'info'];
+          var icon = ['code', '', 'info', '', 'done'];
           return icon[this.status] || '';
         },
 
         _getStatusClass: function() {
-          var classes = [null, null, 'quiz-ready'];
+          var classes = [null, null, 'quiz', 'quiz', 'done'];
           return classes[this.status] || null;
         },
 
         _setToCodelabActive: function() {
           var time = Math.round((new Date()).getTime() / 1000);
           var ref = this.progressPath + '/' + this.data.key;
-          firebase.database().ref(ref).update({ status: 1, codelab_start_time: time });
+          return firebase.database().ref(ref).update({ status: 1, codelab_start_time: time });
         },
 
         _setToQuizReady: function() {
           var ref = this.progressPath + '/' + this.data.key;
           var time = Math.round((new Date()).getTime() / 1000);
-          firebase.database().ref(ref).update({ status: 2, codelab_end_time: time }).then(function() {
+          return firebase.database().ref(ref).update({ status: 2, codelab_end_time: time }).then(function() {
             this.fire('quiz-ready');
+          }.bind(this));
+        },
+
+        _setToQuizActive: function() {
+          var ref = this.progressPath + '/' + this.data.key;
+          var time = Math.round((new Date()).getTime() / 1000);
+          return firebase.database().ref(ref).update({ status: 3, quiz_start_time: time }).then(function() {
+            this.fire('quiz-active');
+          }.bind(this));
+        },
+
+        _setToFinished: function() {
+          var ref = this.progressPath + '/' + this.data.key;
+          var time = Math.round((new Date()).getTime() / 1000);
+          return firebase.database().ref(ref).update({ status: 4, quiz_end_time: time }).then(function() {
+            this.fire('finished');
           }.bind(this));
         },
 
