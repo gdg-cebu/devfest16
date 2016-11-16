@@ -243,6 +243,12 @@
           }.bind(this));
         },
 
+        _getQuestions: function() {
+          firebase.database().ref('codelabs/questions/' + this.data.key).once('value', function(data) {
+            this.fire('questions-ready', data.val());
+          }.bind(this));
+        },
+
         _formatTime: function(time) {
           var hours = Math.floor(time / 60 / 60);
           var minutes = Math.floor(time / 60) % 60;

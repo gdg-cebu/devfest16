@@ -6,6 +6,8 @@
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
@@ -73,10 +75,28 @@
         background-image: url("../../images/signin/pressed.png");
       }
 
+      .questions {
+        list-style: none;
+      }
+
+      .question:not(:first-child) {
+        margin-top: 50px;
+      }
+
+      .question:not(:last-child) {
+        margin-bottom: 50px;
+      }
+
+      paper-radio-button {
+        display: block;
+      }
+
       paper-dialog {
         max-width: 500px;
+        max-height: 75vh;
         padding: 16px 32px;
         background-color: #fff;
+        overflow: auto;
       }
 
       paper-dialog img {
@@ -171,7 +191,18 @@
       </template>
 
       <template is="dom-if" if="[[_isOpenedCodelabQuizActive]]">
-        <p class="codelab-instruction">Codelab quiz in-progress.</p>
+        <ul class="questions">
+          <template is="dom-repeat" items="[[_quizQuestions]]" as="question" on-dom-change="_refitCodelabDialog">
+            <li class="question">
+              <p>[[question.question]]</p>
+              <paper-radio-group>
+                <template is="dom-repeat" items="[[question.choices]]" as="choice">
+                  <paper-radio-button name="choice-[[index]]">[[choice]]</paper-radio-button>
+                </template>
+              </paper-radio-group>
+            </li>
+          </template>
+        </ul>
       </template>
 
       <template is="dom-if" if="[[_isOpenedCodelabFinished]]">
@@ -267,6 +298,8 @@
 
           _openedCodelabTimeRemaining: String,
 
+          _quizQuestions: Array,
+
           animationConfig: {
             type: Object,
             value: function() {
@@ -325,6 +358,9 @@
         _openedCodelabPropertyChanged: function(newOpenedCodelab, oldOpenedCodelab) {
           var el = this;
           this._updateOpenedCodelabStatusFlags();
+          setTimeout(function() {
+            this._updateOpenedCodelabStatusFlags();
+          }.bind(this), 100);
 
           if (this._openedCodelab && this._openedCodelab._isCurrentStatus('codelab-active')) {
             this._openedCodelab._timeRemainingChangedCallback = function() {
@@ -335,17 +371,23 @@
             this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
             this._openedCodelab.addEventListener('quiz-ready', this._openedCodelab._quizReadyCallback);
           } else if (this._openedCodelab && this._openedCodelab._isCurrentStatus('quiz-active')) {
+            this._openedCodelab._getQuestions();
+            this._openedCodelab._questionsReadyCallback = function(e) {
+              this._quizQuestions = e.detail;
+            }.bind(this);
             this._openedCodelab._timeRemainingChangedCallback = function() {
               this._openedCodelabTimeRemaining = this._openedCodelab._timeRemainingString;
             }.bind(this);
             this._openedCodelab._finishedCallback = this._updateOpenedCodelabStatusFlags.bind(this);
             this._openedCodelab._timeRemainingChangedCallback();
+            this._openedCodelab.addEventListener('questions-ready', oldOpenedCodelab._questionsReadyCallback);
             this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
             this._openedCodelab.addEventListener('finished', this._openedCodelab._finishedCallback);
           } else if (!this._openedCodelab) {
             oldOpenedCodelab.removeEventListener('time-remaining-changed', oldOpenedCodelab._timeRemainingChangedCallback);
             oldOpenedCodelab.removeEventListener('quiz-ready', oldOpenedCodelab._quizReadyCallback);
             oldOpenedCodelab.removeEventListener('finished', oldOpenedCodelab._finishedCallback);
+            oldOpenedCodelab.removeEventListener('questions-ready', oldOpenedCodelab._questionsReadyCallback);
           }
         },
 
@@ -378,6 +420,9 @@
           }
           this._openedCodelab._setToCodelabActive().then(function() {
             this._updateOpenedCodelabStatusFlags();
+            setTimeout(function() {
+              this._updateOpenedCodelabStatusFlags();
+            }.bind(this), 100);
 
             this._openedCodelab._timeRemainingChangedCallback = function() {
               this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(this._openedCodelab.timeRemaining || this._openedCodelab.data.duration);
@@ -395,12 +440,20 @@
           }
           this._openedCodelab._setToQuizActive().then(function() {
             this._updateOpenedCodelabStatusFlags();
+            setTimeout(function() {
+              this._updateOpenedCodelabStatusFlags();
+            }.bind(this), 100);
+            this._openedCodelab._getQuestions();
 
             this._openedCodelab._timeRemainingChangedCallback = function() {
               this._openedCodelabTimeRemaining = this._openedCodelab._timeRemainingString;
             }.bind(this);
+            this._openedCodelab._questionsReadyCallback = function(e) {
+              this._quizQuestions = e.detail;
+            }.bind(this);
             this._openedCodelab._finishedCallback = this._updateOpenedCodelabStatusFlags.bind(this);
             this._openedCodelab._timeRemainingChangedCallback();
+            this._openedCodelab.addEventListener('questions-ready', this._openedCodelab._questionsReadyCallback);
             this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
             this._openedCodelab.addEventListener('finished', this._openedCodelab._finishedCallback);
           }.bind(this));
@@ -412,6 +465,10 @@
           this._isOpenedCodelabQuizReady = this._openedCodelab && this._openedCodelab._isCurrentStatus('quiz-ready');
           this._isOpenedCodelabQuizActive = this._openedCodelab && this._openedCodelab._isCurrentStatus('quiz-active');
           this._isOpenedCodelabFinished = this._openedCodelab && this._openedCodelab._isCurrentStatus('finished');
+        },
+
+        _refitCodelabDialog: function() {
+          this.$['codelab-dialog'].refit();
         }
 
       });
