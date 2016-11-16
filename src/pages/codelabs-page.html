@@ -163,7 +163,7 @@
           <spinner-element active="[[_displaySpinner(codelabs)]]"></spinner-element>
 
           <template is="dom-repeat" items="[[codelabs]]" as="codelab">
-            <codelab-element data="[[codelab]]" progress="[[progress]]" progress-path="[[progressPath]]" on-open-codelab="_openCodelab"></codelab-element>
+            <codelab-element data="[[codelab]]" user="[[user]]" progress="[[progress]]" progress-path="[[progressPath]]" on-open-codelab="_openCodelab"></codelab-element>
           </template>
         </div>
       </div>
@@ -197,7 +197,7 @@
               <p>[[question.question]]</p>
               <paper-radio-group>
                 <template is="dom-repeat" items="[[question.choices]]" as="choice">
-                  <paper-radio-button name="choice-[[index]]">[[choice]]</paper-radio-button>
+                  <paper-radio-button name="[[index]]">[[choice]]</paper-radio-button>
                 </template>
               </paper-radio-group>
             </li>
@@ -341,6 +341,12 @@
           this.$['codelab-dialog'].addEventListener('iron-overlay-closed', function() {
             this._openedCodelab = null;
           }.bind(this));
+
+          this.$['codelab-dialog'].addEventListener('iron-select', function(e) {
+            var choice = e.detail.item.name;
+            var parent = e.detail.item.parentNode;
+            var question = Array.prototype.slice.call(parent.parentNode.parentNode.children).indexOf(parent.parentNode);
+          });
         },
 
         _computeCodelabsProperty: function() {

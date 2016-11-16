@@ -97,6 +97,8 @@
         properties: {
           data: Object,
 
+          user: Object,
+
           progress: Object,
 
           progressPath: String,
@@ -244,8 +246,34 @@
         },
 
         _getQuestions: function() {
-          firebase.database().ref('codelabs/questions/' + this.data.key).once('value', function(data) {
-            this.fire('questions-ready', data.val());
+          firebase.database().ref('codelabs/questions/' + this.data.key).once('value', function(questionsData) {
+            questionsData = questionsData.val();
+            var answersRef = firebase.database().ref('codelabs/participants/' + this.user.uid + '/' + this.data.key + '/answers');
+            answersRef.once('value', function(answersData) {
+              answersData = answersData.val();
+              var indeces = [];
+              if (answersData) {
+                for (var i in answersData) {
+                  indeces.push(answersData[i].index);
+                }
+              } else {
+                for (var i = 0; i < questionsData.length; i++) {
+                  indeces.push(i);
+                }
+                indeces = indeces.sort(function() {
+                  return Math.random() - 0.5;
+                }).slice(0, 5);
+              }
+              var questions = indeces.map(function(index) {
+                return questionsData[index];
+              });
+              if (!answersData) {
+                indeces.forEach(function(index) {
+                  answersRef.push({ index: index, answer: -1 });
+                });
+              }
+              this.fire('questions-ready', questions);
+            }.bind(this));
           }.bind(this));
         },
 
