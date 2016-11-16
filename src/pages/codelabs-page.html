@@ -79,11 +79,11 @@
         list-style: none;
       }
 
-      .question:not(:first-child) {
+      .question:not(:first-of-type) {
         margin-top: 50px;
       }
 
-      .question:not(:last-child) {
+      .question:not(:last-of-type) {
         margin-bottom: 50px;
       }
 
@@ -380,7 +380,7 @@
             }.bind(this);
             this._openedCodelab._finishedCallback = this._updateOpenedCodelabStatusFlags.bind(this);
             this._openedCodelab._timeRemainingChangedCallback();
-            this._openedCodelab.addEventListener('questions-ready', oldOpenedCodelab._questionsReadyCallback);
+            this._openedCodelab.addEventListener('questions-ready', this._openedCodelab._questionsReadyCallback);
             this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
             this._openedCodelab.addEventListener('finished', this._openedCodelab._finishedCallback);
           } else if (!this._openedCodelab) {
