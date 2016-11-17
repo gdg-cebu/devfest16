@@ -238,6 +238,7 @@
         },
 
         _setToFinished: function() {
+          clearInterval(this.timeRemainingTimer);
           var ref = this.progressPath + '/' + this.data.key;
           var time = Math.round((new Date()).getTime() / 1000);
           return firebase.database().ref(ref).update({ status: 4, quiz_end_time: time }).then(function() {
@@ -248,6 +249,11 @@
         _getQuestions: function() {
           var participantQuizRefPath = 'codelabs/participants/' + this.user.uid + '/' + this.data.key + '/quiz';
           var codelabQuestionsRefPath = 'codelabs/questions/' + this.data.key;
+
+          if (this.quizData) {
+            this.fire('questions-ready', this.quizData);
+            return null;
+          }
 
           firebase.database().ref(participantQuizRefPath).once('value', function(quizData) {
             quizData = quizData.val();
@@ -278,9 +284,15 @@
               }
             });
             promise.then(function(quizData) {
+              this.quizData = quizData;
               this.fire('questions-ready', quizData);
             }.bind(this));
           }.bind(this));
+        },
+
+        _setScore: function(score) {
+          var refPath = 'codelabs/participants/' + this.user.uid + '/' + this.data.key + '/score';
+          firebase.database().ref(refPath).set(score);
         },
 
         _formatTime: function(time) {
