@@ -197,7 +197,7 @@
               <p>[[question.question]]</p>
               <paper-radio-group>
                 <template is="dom-repeat" items="[[question.choices]]" as="choice">
-                  <paper-radio-button name="[[index]]">[[choice.choice]]</paper-radio-button>
+                  <paper-radio-button name="[[index]]" checked="[[choice.selected]]">[[choice.choice]]</paper-radio-button>
                 </template>
               </paper-radio-group>
             </li>
@@ -342,11 +342,21 @@
             this._openedCodelab = null;
           }.bind(this));
 
+          this.$['codelab-dialog'].addEventListener('iron-deselect', function(e) {
+            var choice = e.detail.item.name;
+            var parent = e.detail.item.parentNode;
+            var question = Array.prototype.slice.call(parent.parentNode.parentNode.children).indexOf(parent.parentNode);
+            var questionChoiceRef = 'codelabs/participants/' + this.user.uid + '/' + this._openedCodelab.data.key + '/quiz/' + question + '/choices/' + choice + '/selected';
+            firebase.database().ref(questionChoiceRef).set(false);
+          }.bind(this));
+
           this.$['codelab-dialog'].addEventListener('iron-select', function(e) {
             var choice = e.detail.item.name;
             var parent = e.detail.item.parentNode;
             var question = Array.prototype.slice.call(parent.parentNode.parentNode.children).indexOf(parent.parentNode);
-          });
+            var questionChoiceRef = 'codelabs/participants/' + this.user.uid + '/' + this._openedCodelab.data.key + '/quiz/' + question + '/choices/' + choice + '/selected';
+            firebase.database().ref(questionChoiceRef).set(true);
+          }.bind(this));
         },
 
         _computeCodelabsProperty: function() {
