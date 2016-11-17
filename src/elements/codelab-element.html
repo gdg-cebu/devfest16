@@ -246,33 +246,39 @@
         },
 
         _getQuestions: function() {
-          firebase.database().ref('codelabs/questions/' + this.data.key).once('value', function(questionsData) {
-            questionsData = questionsData.val();
-            var answersRef = firebase.database().ref('codelabs/participants/' + this.user.uid + '/' + this.data.key + '/answers');
-            answersRef.once('value', function(answersData) {
-              answersData = answersData.val();
-              var indeces = [];
-              if (answersData) {
-                for (var i in answersData) {
-                  indeces.push(answersData[i].index);
-                }
+          var participantQuizRefPath = 'codelabs/participants/' + this.user.uid + '/' + this.data.key + '/quiz';
+          var codelabQuestionsRefPath = 'codelabs/questions/' + this.data.key;
+
+          firebase.database().ref(participantQuizRefPath).once('value', function(quizData) {
+            quizData = quizData.val();
+            var promise = new Promise(function(resolve, reject) {
+              if (quizData) {
+                resolve(quizData);
               } else {
-                for (var i = 0; i < questionsData.length; i++) {
-                  indeces.push(i);
-                }
-                indeces = indeces.sort(function() {
-                  return Math.random() - 0.5;
-                }).slice(0, 5);
-              }
-              var questions = indeces.map(function(index) {
-                return questionsData[index];
-              });
-              if (!answersData) {
-                indeces.forEach(function(index) {
-                  answersRef.push({ index: index, answer: -1 });
+                firebase.database().ref(codelabQuestionsRefPath).once('value', function(questionsData) {
+                  questionsData = questionsData.val();
+                  var questions = questionsData.sort(function() {
+                    return Math.random() - 0.5;
+                  }).slice(0, 5).map(function(question) {
+                    question.choices = question.choices.map(function(choice, i) {
+                      return {
+                        choice: choice,
+                        correct: i === 0,
+                        selected: false
+                      };
+                    }).sort(function() {
+                      return Math.random() - 0.5;
+                    });
+                    return question;
+                  });
+                  firebase.database().ref(participantQuizRefPath).set(questions).then(function() {
+                    resolve(questions);
+                  });
                 });
               }
-              this.fire('questions-ready', questions);
+            });
+            promise.then(function(quizData) {
+              this.fire('questions-ready', quizData);
             }.bind(this));
           }.bind(this));
         },
