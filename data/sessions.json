@@ -34,6 +34,7 @@
   "204": {
     "id": 204,
     "title": "Codelabs Introduction",
+    "image": "/images/backgrounds/bg-codelabs-intro.png",
     "speakers": [
       4
     ]
@@ -67,6 +68,7 @@
   "207": {
     "id": 207,
     "title": "Talk: IoT + Firebase",
+    "image": "/images/backgrounds/bg-iot-firebase.png",
     "speakers": [
       5
     ],
@@ -86,12 +88,14 @@
 
   "209": {
     "id": 209,
-    "title": "Give out certificates for morning speakers"
+    "title": "Give out certificates for morning speakers",
+    "image": "/images/backgrounds/bg-give-out-certs-morning.png"
   },
 
   "210": {
     "id": 210,
-    "title": "Lunch Break"
+    "title": "Lunch Break",
+    "image": "/images/backgrounds/bg-lunch.png"
   },
 
   "211": {
@@ -119,6 +123,7 @@
   "213": {
     "id": 213,
     "title": "Talk: Getting Started with Firebase",
+    "image": "/images/backgrounds/bg-firebase-intro.png",
     "speakers": [
       8
     ],
@@ -130,6 +135,7 @@
   "214": {
     "id": 214,
     "title": "Talk: GDE Experience + Machine Learning with TensorFlow",
+    "image": "/images/backgrounds/bg-gde-experience.png",
     "speakers": [
       3
     ],
@@ -140,7 +146,8 @@
 
   "215": {
     "id": 215,
-    "title": "Hackathon Judging + Awarding"
+    "title": "Hackathon Judging + Awarding",
+    "image": "/images/backgrounds/bg-hackathon-awarding.png"
   },
 
   "216": {
@@ -157,7 +164,8 @@
   "217": {
     "id": 217,
     "title": "Give out certificates for the speakers",
-    "description": "plus distribution of shirts and group photo!"
+    "description": "plus distribution of shirts and group photo!",
+    "image": "/images/backgrounds/bg-give-out-certs-final.png"
   },
 
   "218": {
@@ -168,6 +176,7 @@
   "219": {
     "id": 219,
     "title": "Business: Google Technologies for Startups",
+    "image": "/images/backgrounds/bg-business-google-tech.png",
     "speakers": [
       9
     ],
