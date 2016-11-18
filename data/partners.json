@@ -6,7 +6,14 @@
         "name": "Google",
         "url": "https://www.google.com.ua/intl/en/about/",
         "logoUrl": "../images/logos/google.svg",
-        "width": 170
+        "width": 10000
+      },
+      {
+        "name": "GDG Cebu",
+        "url": "https://gdgcebu.org/",
+        "logoUrl": "../images/gdg-cebu-logo.png",
+        "width": 230,
+        "height": 100
       }
     ]
   },
@@ -33,7 +40,9 @@
       {
         "name": "Arcanys",
         "url": "https://www.arcanys.com/",
-        "logoUrl": "../images/logos/arcanys.jpg"
+        "logoUrl": "../images/logos/arcanys.jpg",
+        "width": 250,
+        "height": 100
       }
     ]
   },
@@ -49,6 +58,18 @@
         "name": "UVNS",
         "url": "http://newschool.com.ph/wp/",
         "logoUrl": "../images/logos/uvns.png"
+      }
+    ]
+  },
+  {
+    "title": "organizational-partners",
+    "logos": [
+      {
+        "name": "GDG Philippines",
+        "url": "http://www.gdgph.org/",
+        "logoUrl": "../images/logos/gdgph.png",
+        "width": 250,
+        "height": 37
       }
     ]
   },
@@ -75,21 +96,6 @@
     ]
   },
   {
-    "title": "organizational-partners",
-    "logos": [
-      {
-        "name": "TechTalks.ph",
-        "url": "http://www.techtalks.ph/",
-        "logoUrl": "../images/logos/techtalks.png"
-      },
-      {
-        "name": "The Tide",
-        "url": "http://www.thetidecebu.com/",
-        "logoUrl": "../images/logos/the-tide.png"
-      }
-    ]
-  },
-  {
     "title": "official-media-partners",
     "logos": [
       {
@@ -103,6 +109,27 @@
         "name": "Entertainment Republiq",
         "url": "http://rgc.world/",
         "logoUrl": "../images/logos/entertainment-republiq.png",
+        "width": 125,
+        "height": 125
+      },
+      {
+        "name": "prworks",
+        "url": "http://www.prworks.com/",
+        "logoUrl": "../images/logos/prworks.png",
+        "width": 125,
+        "height": 125
+      },
+      {
+        "name": "istorya.net",
+        "url": "https://www.istorya.net/",
+        "logoUrl": "../images/logos/istorya.png",
+        "width": 125,
+        "height": 125
+      },
+      {
+        "name": "inquirer.net",
+        "url": "https://www.inquirer.net/",
+        "logoUrl": "../images/logos/inquirer.svg",
         "width": 125,
         "height": 125
       }
