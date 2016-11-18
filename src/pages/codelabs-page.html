@@ -46,9 +46,16 @@
       }
 
       .codelabs-header {
+        display: flex;
+        justify-content: space-between;
         font-size: 16px;
         font-weight: 300;
         text-align: left;
+      }
+
+      .codelabs-header paper-button {
+        color: #fff;
+        background-color: var(--paper-indigo-500);
       }
 
       spinner-element {
@@ -230,6 +237,9 @@
 
         <div class="details-item codelabs-header" cascaded>
           <p class="total-score">Your score: <strong>[[_totalScore]]</strong></p>
+          <a href="/leaderboard/" tabindex="-1">
+            <paper-button raised>View Leaderboard</paper-button>
+          </a>
         </div>
 
         <div class="details-item codelabs-container" hidden="[[!user]]" cascaded>
