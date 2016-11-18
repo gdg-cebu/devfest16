@@ -401,37 +401,8 @@
             oldOpenedCodelab.removeEventListener('quiz-active', oldOpenedCodelab._quizActiveCallback);
             oldOpenedCodelab.removeEventListener('questions-ready', oldOpenedCodelab._questionsReadyCallback);
             oldOpenedCodelab.removeEventListener('finished', oldOpenedCodelab._finishedCallback);
+            this._quizQuestions = [];
             return null;
-          }
-
-          this.$['codelab-ready'].classList.add('hidden');
-          this.$['codelab-active'].classList.add('hidden');
-          this.$['quiz-ready'].classList.add('hidden');
-          this.$['quiz-active'].classList.add('hidden');
-          this.$['codelab-finished'].classList.add('hidden');
-          this.$['codelab-ready-actions'].classList.add('hidden');
-          this.$['codelab-active-actions'].classList.add('hidden');
-          this.$['quiz-ready-actions'].classList.add('hidden');
-          this.$['quiz-active-actions'].classList.add('hidden');
-
-          if (this._openedCodelab._isCurrentStatus('codelab-ready')) {
-            this.$['codelab-ready'].classList.remove('hidden');
-            this.$['codelab-ready-actions'].classList.remove('hidden');
-          } else if (this._openedCodelab._isCurrentStatus('codelab-active')) {
-            this.$['codelab-active'].classList.remove('hidden');
-            this.$['codelab-active-actions'].classList.remove('hidden');
-          } else if (this._openedCodelab._isCurrentStatus('quiz-ready')) {
-            this.$['quiz-ready'].classList.remove('hidden');
-            this.$['quiz-ready-actions'].classList.remove('hidden');
-          } else if (this._openedCodelab._isCurrentStatus('quiz-active')) {
-            this.$['quiz-active'].classList.remove('hidden');
-            this.$['quiz-active-actions'].classList.remove('hidden');
-            this._openedCodelab._getQuestions();
-            this._checkQuizStatus();
-          } else if (this._openedCodelab._isCurrentStatus('finished')) {
-            this.$['codelab-finished'].classList.remove('hidden');
-            this._openedCodelab._getQuestions();
-            this._openedCodelabScore = this._openedCodelab._getScore();
           }
 
           this._openedCodelab._timeRemainingChangedCallback = function() {
@@ -472,10 +443,7 @@
             this.$['quiz-active'].classList.add('hidden');
             this.$['quiz-active-actions'].classList.add('hidden');
             this.$['codelab-finished'].classList.remove('hidden');
-            this._openedCodelabScore = this._submitAnswers();
-            this._quizQuestions = null;
-            this._openedCodelab.quizData = null;
-            this._openedCodelab._getQuestions();
+            this._submitAnswers();
           }.bind(this);
 
           this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
@@ -484,6 +452,36 @@
           this._openedCodelab.addEventListener('quiz-active', this._openedCodelab._quizActiveCallback);
           this._openedCodelab.addEventListener('questions-ready', this._openedCodelab._questionsReadyCallback);
           this._openedCodelab.addEventListener('finished', this._openedCodelab._finishedCallback);
+
+          this.$['codelab-ready'].classList.add('hidden');
+          this.$['codelab-active'].classList.add('hidden');
+          this.$['quiz-ready'].classList.add('hidden');
+          this.$['quiz-active'].classList.add('hidden');
+          this.$['codelab-finished'].classList.add('hidden');
+          this.$['codelab-ready-actions'].classList.add('hidden');
+          this.$['codelab-active-actions'].classList.add('hidden');
+          this.$['quiz-ready-actions'].classList.add('hidden');
+          this.$['quiz-active-actions'].classList.add('hidden');
+
+          if (this._openedCodelab._isCurrentStatus('codelab-ready')) {
+            this.$['codelab-ready'].classList.remove('hidden');
+            this.$['codelab-ready-actions'].classList.remove('hidden');
+          } else if (this._openedCodelab._isCurrentStatus('codelab-active')) {
+            this.$['codelab-active'].classList.remove('hidden');
+            this.$['codelab-active-actions'].classList.remove('hidden');
+          } else if (this._openedCodelab._isCurrentStatus('quiz-ready')) {
+            this.$['quiz-ready'].classList.remove('hidden');
+            this.$['quiz-ready-actions'].classList.remove('hidden');
+          } else if (this._openedCodelab._isCurrentStatus('quiz-active')) {
+            this.$['quiz-active'].classList.remove('hidden');
+            this.$['quiz-active-actions'].classList.remove('hidden');
+            this._openedCodelab._getQuestions();
+            this._checkQuizStatus();
+          } else if (this._openedCodelab._isCurrentStatus('finished')) {
+            this.$['codelab-finished'].classList.remove('hidden');
+            this._openedCodelab._getQuestions();
+            this._openedCodelabScore = this._openedCodelab._getScore();
+          }
         },
 
         _initiateUserSignIn: function() {
@@ -552,7 +550,10 @@
           this.$['quiz-active-actions'].classList.add('hidden');
           this.$['codelab-finished'].classList.remove('hidden');
 
-          return this._openedCodelab._submitAnswers();
+          this._openedCodelabScore = this._openedCodelab._submitAnswers();
+          this._quizQuestions = null;
+          this._openedCodelab.quizData = null;
+          this._openedCodelab._getQuestions();
         },
 
         _getSelectedChoice: function(question) {
