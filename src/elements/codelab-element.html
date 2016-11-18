@@ -219,6 +219,12 @@
         _setToCodelabActive: function() {
           var time = Math.round((new Date()).getTime() / 1000);
           var ref = this.progressPath + '/' + this.data.key;
+          firebase.database().ref(this.progressPath).update({
+            _user: {
+              name: this.user.displayName,
+              avatar: this.user.photoURL
+            }
+          });
           return firebase.database().ref(ref).update({ status: 1, codelab_start_time: time }).then(function() {
             this.fire('codelab-active');
           }.bind(this));

@@ -2,6 +2,8 @@
 
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
 <link rel="import" href="../elements/spinner-element.html">
 <link rel="import" href="../behaviors/page-behavior.html">
@@ -12,12 +14,51 @@
 
   <template>
 
-    <style include="shared-styles"></style>
+    <style include="shared-styles">
+      paper-material {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        margin: 8px;
+        background-color: #eee;
+      }
+
+      img {
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+      }
+
+      p {
+        flex-grow: 1;
+        margin: 0 16px;
+        font-size: 18px;
+      }
+
+      span {
+        flex-shrink: 0;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    </style>
+
+    <firebase-document app-name="devfest16" path="/codelabs/participants" data="{{_leaderboardRaw}}"></firebase-document>
 
     <div class="container">
       <div class="details">
         <div class="details-item" hidden="[[!user]]" cascaded>
-          <spinner-element active></spinner-element>
+          <spinner-element active="[[!leaderboard.length]]"></spinner-element>
+
+          <template is="dom-repeat" items="[[leaderboard]]" as="participant">
+            <template is="dom-if" if="[[_displayParticipant(participant)]]">
+              <paper-material>
+                <img src="[[participant._user.avatar]]" alt="[[participant._user.name]]">
+                <p>[[participant._user.name]]</p>
+                <span>[[participant.total_score]]</span>
+              </paper-material>
+            </template>
+          </template>
         </div>
       </div>
     </div>
@@ -39,6 +80,13 @@
         ],
 
         properties: {
+          leaderboard: Array,
+
+          _leaderboardRaw: {
+            type: Object,
+            observer: '_leaderboardRawPropertyChanged'
+          },
+
           animationConfig: {
             type: Object,
             value: function() {
@@ -74,6 +122,21 @@
               };
             }
           }
+        },
+
+        _leaderboardRawPropertyChanged: function() {
+          if (!this._leaderboardRaw) {
+            return null;
+          }
+          this.leaderboard = Object.keys(this._leaderboardRaw).map(function(key) {
+            var item = this._leaderboardRaw[key];
+            item.key = key;
+            return item;
+          }.bind(this));
+        },
+
+        _displayParticipant: function(participant) {
+          return participant.total_score && participant.total_score > 0;
         }
 
       });
