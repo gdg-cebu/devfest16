@@ -362,6 +362,7 @@
           var currentScore = this.progress.total_score || 0;
           this.progress.total_score = currentScore + score;
           firebase.database().ref(this.progressPath + '/total_score').set(this.progress.total_score);
+          firebase.database().ref(this.progressPath).setPriority(-this.progress.total_score);
 
           return score;
         }
