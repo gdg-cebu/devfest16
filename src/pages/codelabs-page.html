@@ -36,12 +36,21 @@
 
       .details-item {
         @apply(--layout-horizontal);
+        width: 100%;
         margin: 0 auto;
         padding-bottom: 32px;
       }
 
       .codelabs-container {
         flex-wrap: wrap;
+      }
+
+      .codelabs-header {
+        text-align: left;
+      }
+
+      spinner-element {
+        margin: 0 auto;
       }
 
       codelab-element {
@@ -217,6 +226,10 @@
           </marked-element>
         </div>
 
+        <div class="details-item codelabs-header" cascaded>
+          <p class="total-score">Your score: [[_totalScore]]</p>
+        </div>
+
         <div class="details-item codelabs-container" hidden="[[!user]]" cascaded>
           <spinner-element active="[[_displaySpinner(codelabs)]]"></spinner-element>
 
@@ -333,7 +346,10 @@
             computed: '_computeCodelabsProperty(_codelabs)'
           },
 
-          progress: Object,
+          progress: {
+            type: Object,
+            observer: '_progressPropertyChanged'
+          },
 
           progressPath: {
             type: String,
@@ -343,6 +359,11 @@
           _openedCodelab: {
             type: Object,
             observer: '_openedCodelabPropertyChanged'
+          },
+
+          _totalScore: {
+            type: Number,
+            value: 0
           },
 
           _openedCodelabTimeRemaining: String,
@@ -419,6 +440,10 @@
 
         _computeProgressPathProperty: function() {
           return this.user ? '/codelabs/participants/' + this.user.uid : null;
+        },
+
+        _progressPropertyChanged: function() {
+          this._totalScore = this.progress.total_score || 0;
         },
 
         _openedCodelabPropertyChanged: function(newOpenedCodelab, oldOpenedCodelab) {
