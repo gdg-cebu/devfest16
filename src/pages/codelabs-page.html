@@ -230,7 +230,7 @@
         </section>
 
         <section id="quiz-active-actions" class="hidden">
-          <paper-button raised disabled$="[[!_quizSubmittable]]" on-tap="_submitAnswers">Submit Answers</paper-button>
+          <paper-button id="submit-answers" raised disabled on-tap="_submitAnswers">Submit Answers</paper-button>
         </section>
       </div>
     </paper-dialog>
@@ -386,6 +386,8 @@
           } else if (this._openedCodelab._isCurrentStatus('quiz-active')) {
             this.$['quiz-active'].classList.remove('hidden');
             this.$['quiz-active-actions'].classList.remove('hidden');
+            this._openedCodelab._getQuestions();
+            this._checkQuizStatus();
           } else if (this._openedCodelab._isCurrentStatus('finished')) {
             this.$['codelab-finished'].classList.remove('hidden');
           }
@@ -493,7 +495,7 @@
             return acc + (selectedChoices > 0 ? 1 : 0);
           }, 0);
           if (answeredQuestions === 5) {
-            this._quizSubmittable = true;
+            this.$['submit-answers'].disabled = false;
           }
         },
 
