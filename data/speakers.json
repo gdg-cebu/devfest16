@@ -1,30 +1,30 @@
 {
   "1": {
     "id": 1,
-    "name": "Soonson Kwon",
-    "title": "Head of APAC Ecosystem, Developer Platforms",
-    "photoUrl": "/images/people/soonson_kwon.jpg",
+    "name": "Johnny Benitez",
+    "title": "Solutions Engineer, Google Cloud Team",
+    "photoUrl": "/images/people/johnny_benitez.jpg",
     "company": "Google",
     "companyLogo": "/images/logos/google.svg",
-    "country": "South Korea",
+    "country": "Manila, Philippines",
     "shortBio": "",
-    "bio": "",
+    "bio": "Johnny Benitez, Google Apps Regional Solution Engineer covering Asia. He has been working in the IT industry for 16 years for various industries such as education, consulting, telco,  manufacturing and technology both here and abroad. He has been with Google for 2 years as part of  Google for Work and currently specializes in cloud and collaboration technologies. He is very passionate about getting businesses to leverage the  the cloud to improve their  processes and give them a competitive edge by helping drive innovation and collaboration in their organizations.",
     "featured": true,
     "tags": [
-      "Community"
+      "Cloud"
     ],
     "socials": [ {
       "icon": "linkedin",
       "name": "LinkedIn",
-      "link": "https://kr.linkedin.com/in/ksoonson"
+      "link": "https://ph.linkedin.com/in/johnny-benitez-7a2347"
     }, {
       "icon": "facebook",
       "name": "Facebook",
-      "link": "https://www.facebook.com/ksoonson"
+      "link": "https://www.facebook.com/johnny.benitez"
     }, {
       "icon": "gplus",
       "name": "Google+",
-      "link": "https://plus.google.com/+SoonsonKwon"
+      "link": "https://plus.google.com/117251788469259982608"
     } ]
   },
 
