@@ -470,6 +470,7 @@
             this.$['codelab-ready-actions'].classList.add('hidden');
             this.$['codelab-active'].classList.remove('hidden');
             this.$['codelab-active-actions'].classList.remove('hidden');
+            this._refitCodelabDialog();
           }.bind(this);
 
           this._openedCodelab._quizReadyCallback = function() {
@@ -477,6 +478,7 @@
             this.$['codelab-active-actions'].classList.add('hidden');
             this.$['quiz-ready'].classList.remove('hidden');
             this.$['quiz-ready-actions'].classList.remove('hidden');
+            this._refitCodelabDialog();
           }.bind(this);
 
           this._openedCodelab._quizActiveCallback = function() {
@@ -484,16 +486,19 @@
             this.$['quiz-ready-actions'].classList.add('hidden');
             this.$['quiz-active'].classList.remove('hidden');
             this.$['quiz-active-actions'].classList.remove('hidden');
+            this._refitCodelabDialog();
           }.bind(this);
 
           this._openedCodelab._questionsReadyCallback = function(e) {
             this._quizQuestions = e.detail;
+            this._refitCodelabDialog();
           }.bind(this);
 
           this._openedCodelab._finishedCallback = function() {
             this.$['quiz-active'].classList.add('hidden');
             this.$['quiz-active-actions'].classList.add('hidden');
             this.$['codelab-finished'].classList.remove('hidden');
+            this._refitCodelabDialog();
             this._submitAnswers();
           }.bind(this);
 
