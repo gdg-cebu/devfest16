@@ -185,10 +185,12 @@
                   this.timeRemaining = 0;
                   this.timeRemainingString = null;
                   this._setToFinished();
+                  this._submitAnswers();
                 }
               }.bind(this), 1000);
             } else {
               this._setToFinished();
+              this._submitAnswers();
             }
           }
 
@@ -332,6 +334,25 @@
             time.unshift(pad(hours));
           }
           return time.join(':');
+        },
+
+        _submitAnswers: function() {
+          var correctAnswers = this.quizData.reduce(function(acc, question) {
+            var questionCorrectlyAnswered = question.choices.reduce(function(acc, choice) {
+              return (choice.selected && choice.correct) || acc;
+            }, false);
+            return acc + (questionCorrectlyAnswered ? 1 : 0);
+          }, 0);
+
+          clearInterval(this.timeRemainingTimer);
+          this.timeRemainingString = null;
+          var ref = this.progressPath + '/' + this.data.key;
+          var time = Math.round((new Date()).getTime() / 1000);
+          return firebase.database().ref(ref).update({
+            status: 4,
+            quiz_end_time: time,
+            score: correctAnswers * 10
+          });
         }
 
       });

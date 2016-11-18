@@ -501,22 +501,7 @@
           if (!this._openedCodelab && !this._openedCodelab.quizData) {
             return null;
           }
-          var correctAnswers = this._openedCodelab.quizData.reduce(function(acc, question) {
-            var questionCorrectlyAnswered = question.choices.reduce(function(acc, choice) {
-              return (choice.selected && choice.correct) || acc;
-            }, false);
-            return acc + (questionCorrectlyAnswered ? 1 : 0);
-          }, 0);
-
-          clearInterval(this._openedCodelab.timeRemainingTimer);
-          this._openedCodelab.timeRemainingString = null;
-          var ref = this.progressPath + '/' + this._openedCodelab.data.key;
-          var time = Math.round((new Date()).getTime() / 1000);
-          return firebase.database().ref(ref).update({
-            status: 4,
-            quiz_end_time: time,
-            score: correctAnswers * 10
-          });
+          this._openedCodelab._submitAnswers();
         }
 
       });
