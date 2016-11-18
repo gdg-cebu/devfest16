@@ -81,6 +81,7 @@
       }
 
       .questions {
+        padding: 0;
         list-style: none;
       }
 
@@ -135,6 +136,31 @@
       paper-dialog .error-message {
         font-size: 12px;
         color: var(--paper-red-500);
+      }
+
+      p.answer {
+        display: flex;
+        align-items: center;
+      }
+
+      p.answer strong {
+        margin-left: 10px;
+      }
+
+      p.answer iron-icon {
+        margin-left: 15px;
+      }
+
+      p.answer iron-icon.check {
+        color: var(--paper-green-500);
+      }
+
+      p.answer iron-icon.clear {
+        color: var(--paper-red-500);
+      }
+
+      footer {
+        margin-top: 50px;
       }
 
       @media (min-width: 769px) {
@@ -215,13 +241,16 @@
           <template is="dom-repeat" items="[[_quizQuestions]]" as="question" on-dom-change="_refitCodelabDialog">
             <li class="question">
               <p>[[question.question]]</p>
-              <div class="answer">
-                <p>Your answer: [[_getQuestionAnswer(question)]]</p>
-                <iron-icon icon="[[_getQuestionAnswerCorrectnessIcon(question)]]"></iron-icon>
-              </div>
+              <p class="answer">
+                Your answer: <strong>[[_getQuestionAnswer(question)]]</strong>
+                <iron-icon icon="[[_getQuestionAnswerCorrectnessIcon(question)]]" class$="[[_getQuestionAnswerCorrectnessIcon(question)]]"></iron-icon>
+              </p>
             </li>
           </template>
         </ul>
+        <footer>
+          <p class="score">Codelab Score: [[_openedCodelabScore]] / 50</p>
+        </footer>
       </section>
 
       <div class="actions">
@@ -290,7 +319,7 @@
 
           _quizQuestions: Array,
 
-          _quizSubmittable: false,
+          _openedCodelabScore: Number,
 
           animationConfig: {
             type: Object,
@@ -401,6 +430,8 @@
             this._checkQuizStatus();
           } else if (this._openedCodelab._isCurrentStatus('finished')) {
             this.$['codelab-finished'].classList.remove('hidden');
+            this._openedCodelab._getQuestions();
+            this._openedCodelabScore = this._openedCodelab._getScore();
           }
 
           this._openedCodelab._timeRemainingChangedCallback = function() {
@@ -441,7 +472,10 @@
             this.$['quiz-active'].classList.add('hidden');
             this.$['quiz-active-actions'].classList.add('hidden');
             this.$['codelab-finished'].classList.remove('hidden');
-            this._submitAnswers();
+            this._openedCodelabScore = this._submitAnswers();
+            this._quizQuestions = null;
+            this._openedCodelab.quizData = null;
+            this._openedCodelab._getQuestions();
           }.bind(this);
 
           this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
@@ -514,19 +548,27 @@
           if (!this._openedCodelab && !this._openedCodelab.quizData) {
             return null;
           }
-          this._openedCodelab._submitAnswers();
-
           this.$['quiz-active'].classList.add('hidden');
           this.$['quiz-active-actions'].classList.add('hidden');
           this.$['codelab-finished'].classList.remove('hidden');
+
+          return this._openedCodelab._submitAnswers();
+        },
+
+        _getSelectedChoice: function(question) {
+          return question.choices.reduce(function(answer, choice) {
+            return choice.selected ? choice : answer;
+          }, undefined);
         },
 
         _getQuestionAnswer: function(question) {
-          return 'sample answer';
+          var choice = this._getSelectedChoice(question);
+          return choice ? choice.choice : 'You did not select an answer.';
         },
 
-        _getQuestionAnswerCorrectnessIcon: function() {
-          return 'check';
+        _getQuestionAnswerCorrectnessIcon: function(question) {
+          var choice = this._getSelectedChoice(question);
+          return choice && choice.correct && choice.selected ? 'check' : 'clear';
         }
 
       });

@@ -299,6 +299,10 @@
           firebase.database().ref(refPath).set(score);
         },
 
+        _getScore: function() {
+          return this.progress[this.data.key].score;
+        },
+
         _formatTime: function(time) {
           var hours = Math.floor(time / 60 / 60);
           var minutes = Math.floor(time / 60) % 60;
@@ -348,11 +352,13 @@
           this.timeRemainingString = null;
           var ref = this.progressPath + '/' + this.data.key;
           var time = Math.round((new Date()).getTime() / 1000);
-          return firebase.database().ref(ref).update({
+          firebase.database().ref(ref).update({
             status: 4,
             quiz_end_time: time,
-            score: correctAnswers * 10
+            score: correctAnswers * 10,
+            quiz: this.quizData
           });
+          return correctAnswers * 10;
         }
 
       });
