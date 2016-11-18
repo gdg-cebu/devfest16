@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
 <link rel="import" href="../elements/spinner-element.html">
@@ -41,12 +42,28 @@
         font-size: 18px;
         font-weight: bold;
       }
+
+      .leaderboard-header {
+        padding-bottom: 30px;
+        text-align: right;
+      }
+
+      paper-button {
+        color: #fff;
+        background-color: var(--paper-indigo-500);
+      }
     </style>
 
     <firebase-document app-name="devfest16" path="/codelabs/participants" data="{{_leaderboardRaw}}"></firebase-document>
 
     <div class="container">
       <div class="details">
+        <div class="details-item leaderboard-header" cascaded>
+          <a href="/codelabs/" tabindex="-1">
+            <paper-button raised>Return to Codelabs</paper-button>
+          </a>
+        </div>
+
         <div class="details-item" hidden="[[!user]]" cascaded>
           <spinner-element active="[[!leaderboard.length]]"></spinner-element>
 
