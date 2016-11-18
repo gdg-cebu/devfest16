@@ -72,6 +72,13 @@
         "fontColor": "#fff",
         "tabBarColor": "#fff"
       }
+    },
+    "leaderboard": {
+      "headerSettings": {
+        "backgroundColor": "#3F51B5",
+        "fontColor": "#fff",
+        "tabBarColor": "#fff"
+      }
     }
   },
   "navigation": [
