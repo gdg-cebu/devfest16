@@ -395,7 +395,10 @@
             this._openedCodelab._timeRemainingChangedCallback = function() {
               this._openedCodelabTimeRemaining = this._openedCodelab._timeRemainingString;
             }.bind(this);
-            this._openedCodelab._finishedCallback = this._updateOpenedCodelabStatusFlags.bind(this);
+            this._openedCodelab._finishedCallback = function() {
+              this._updateOpenedCodelabStatusFlags();
+              this._submitAnswers();
+            }.bind(this);
             this._openedCodelab._timeRemainingChangedCallback();
             this._openedCodelab.addEventListener('questions-ready', this._openedCodelab._questionsReadyCallback);
             this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
@@ -468,7 +471,10 @@
             this._openedCodelab._questionsReadyCallback = function(e) {
               this._quizQuestions = e.detail;
             }.bind(this);
-            this._openedCodelab._finishedCallback = this._updateOpenedCodelabStatusFlags.bind(this);
+            this._openedCodelab._finishedCallback = function() {
+              this._updateOpenedCodelabStatusFlags();
+              this._submitAnswers();
+            }.bind(this);
             this._openedCodelab._timeRemainingChangedCallback();
             this._openedCodelab.addEventListener('questions-ready', this._openedCodelab._questionsReadyCallback);
             this._openedCodelab.addEventListener('time-remaining-changed', this._openedCodelab._timeRemainingChangedCallback);
@@ -514,9 +520,18 @@
             return acc + (questionCorrectlyAnswered ? 1 : 0);
           }, 0);
 
-          this._openedCodelab._setToFinished().then(function() {
-            this._openedCodelab._setScore(correctAnswers * 10);
-          }.bind(this));
+          clearInterval(this._openedCodelab.timeRemainingTimer);
+          this._openedCodelab.timeRemainingString = null;
+          var ref = this.progressPath + '/' + this._openedCodelab.data.key;
+          var time = Math.round((new Date()).getTime() / 1000);
+          return firebase.database().ref(ref).update({
+            status: 4,
+            quiz_end_time: time,
+            score: correctAnswers * 10
+          });
+
+          this._isOpenedCodelabQuizActive = false;
+          this._isOpenedCodelabFinished = true;
         }
 
       });
