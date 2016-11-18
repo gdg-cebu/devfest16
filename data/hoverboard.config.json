@@ -24,7 +24,7 @@
     },
     "speakers": {
       "headerSettings": {
-        "backgroundColor": "#3f51b5",
+        "backgroundColor": "#2196f3",
         "fontColor": "#fff",
         "tabBarColor": "#fff"
       }
@@ -61,7 +61,7 @@
     },
     "minigames": {
       "headerSettings": {
-        "backgroundColor": "#673AB7",
+        "backgroundColor": "#009688",
         "fontColor": "#fff",
         "tabBarColor": "#fff"
       }
