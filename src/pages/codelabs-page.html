@@ -9,6 +9,7 @@
 <link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
@@ -210,7 +211,17 @@
       </section>
 
       <section id="codelab-finished" class="hidden">
-        <p class="codelab-instruction">You have already finished this codelab!</p>
+        <ul class="questions">
+          <template is="dom-repeat" items="[[_quizQuestions]]" as="question" on-dom-change="_refitCodelabDialog">
+            <li class="question">
+              <p>[[question.question]]</p>
+              <div class="answer">
+                <p>Your answer: [[_getQuestionAnswer(question)]]</p>
+                <iron-icon icon="[[_getQuestionAnswerCorrectnessIcon(question)]]"></iron-icon>
+              </div>
+            </li>
+          </template>
+        </ul>
       </section>
 
       <div class="actions">
@@ -504,6 +515,18 @@
             return null;
           }
           this._openedCodelab._submitAnswers();
+
+          this.$['quiz-active'].classList.add('hidden');
+          this.$['quiz-active-actions'].classList.add('hidden');
+          this.$['codelab-finished'].classList.remove('hidden');
+        },
+
+        _getQuestionAnswer: function(question) {
+          return 'sample answer';
+        },
+
+        _getQuestionAnswerCorrectnessIcon: function() {
+          return 'check';
         }
 
       });
