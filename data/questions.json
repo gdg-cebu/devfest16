@@ -381,5 +381,30 @@
 	}, {
 		"question": "The complete command to deploy or upload the Hello World server to the App Engine environment.",
 		"choices": ["gcloud app deploy app.yaml", "gcloud host app helloworld", "dev_appserver.py ./ --upload", "gcloud app upload helloworld.py"]
-	} ]
+	} ],
+
+  "polymer-2-carousel": [ {
+    "question": "The Polymer CLI command to start a web server for your Polymer element.",
+    "choices": ["polymer serve", "polymer build", "polymer start", "polymer init"]
+  }, {
+    "question": "Which Web Components technology allows us to define our own HTML tags?",
+    "choices": ["Custom Elements", "Shadow DOM", "HTML Imports", "Custom Properties"]
+  }, {
+    "question": "With Polymer 2.0, we can define custom elements by extending a class from:",
+    "choices": ["Polymer.Element", "HTMLElement", "Polymer.CustomElement", "Polymer.HTMLElement"]
+  }, {
+    "question": "In Polymer 2.0, the <content> element has been replaced with:",
+    "choices": ["<slot>", "<insert>", "<placeholder>", "<temp>"]
+  }, {
+    "question": "In a shadow root, what CSS selector can we use to refer to the host of the shadow root?",
+    "choices": [":host", ":self", ":this", ":content"]
+  } ],
+
+  "polymer-firebase-pwa": [
+
+  ],
+
+  "pwa-from-scratch": [
+
+  ]
 }
