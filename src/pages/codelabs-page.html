@@ -80,6 +80,10 @@
         background-image: url("../../images/signin/pressed.png");
       }
 
+      #quiz-active .codelab-instructions {
+        margin-bottom: 50px;
+      }
+
       .questions {
         padding: 0;
         list-style: none;
@@ -222,6 +226,7 @@
       </section>
 
       <section id="quiz-active" class="hidden">
+        <p class="codelab-instructions">You have <span class="time">[[_openedCodelabTimeRemaining]]</span> left.</p>
         <ul class="questions">
           <template is="dom-repeat" items="[[_quizQuestions]]" as="question" on-dom-change="_refitCodelabDialog">
             <li class="question">
@@ -408,12 +413,8 @@
           }
 
           this._openedCodelab._timeRemainingChangedCallback = function() {
-            if (this._openedCodelab._isCurrentStatus('codelab-active')) {
-              var time = Math.max(this._openedCodelab.timeRemaining, 0);
-              this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(time);
-            } else if (this._openedCodelab._isCurrentStatus('quiz-active')) {
-              this._openedCodelabTimeRemaining = this._openedCodelab._timeRemainingString;
-            }
+            var time = Math.max(this._openedCodelab.timeRemaining, 0);
+            this._openedCodelabTimeRemaining = this._openedCodelab._formatTime(time);
           }.bind(this);
 
           this._openedCodelab._codelabActiveCallback = function() {
